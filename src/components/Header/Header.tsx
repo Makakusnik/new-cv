@@ -17,12 +17,12 @@ export const Header = () => {
       alignItems="center"
       position="relative"
       justifyContent="center"
-      bgGradient="linear(to-br,primaryBlue.500,primaryBlue.300)"
+      bgGradient="linear(to-br,primary.500,primary.300)"
     >
       <HeaderAnimation />
       <Flex
         position="relative"
-        alignItems="end"
+        alignItems="center"
         justifyContent="center"
         paddingBottom="32px"
         w="450px"
