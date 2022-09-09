@@ -70,8 +70,10 @@ const HeaderAnimation = () => {
     borderDefaultOptions
   );
 
+  let f4Options = new FrameOptions("md", primary600, borderDefaultOptions);
+
   let builder = new Builder(180, frameDefaultOptions);
-  let frame2 = new Frame("fr1", frameDefaultOptions);
+  let frame2 = new Frame("fr1", f4Options);
   let frame4 = new Frame("fr2", frameDefaultOptions);
   let frame6 = new Frame("fr3", frameDefaultOptions);
   let frame7 = new Frame("fr4", frameDefaultOptions);
@@ -113,11 +115,25 @@ const HeaderAnimation = () => {
   builder.appendBottom(pipe4, frame6);
   builder.appendRight(frame6, pipe5);
   builder.appendRight(pipe5, frame8);
-  builder.appendUp(frame8, pipe6);
   builder.appendUp(pipe6, kneeJoint);
   builder.appendLeft(kneeJoint, pipe7);
   builder.appendRight(kneeJoint, pipe8);
   builder.appendUp(kneeJoint, pipe9);
+  builder.appendBottom(frame7, pipe6);
+
+  let path = builder.buildPath(
+    frame7,
+    pipe2,
+    frame2,
+    pipe1,
+    builder.getNodes()[0],
+    pipe3,
+    frame4,
+    pipe4,
+    frame6,
+    pipe5
+  );
+  console.log(`Xcenter ${frame7.getXCenter()}`);
 
   return (
     <Container
@@ -137,6 +153,7 @@ const HeaderAnimation = () => {
         {builder.getNodes().map((node) => {
           return node.getNode();
         })}
+        <Bullet path={path} />
       </LayerContainer>
       <Bullet top="75px" path="M 0 0 h 147 v 58 h 30 h 63 v -55" />
       <LayerContainer top="15px">
@@ -232,6 +249,7 @@ interface BoxikProps {
   right: number;
   bottom: number;
   path: string;
+  bgColor: string;
 }
 
 const Boxik = styled.div<BoxikProps>`
@@ -247,18 +265,18 @@ const Boxik = styled.div<BoxikProps>`
   width: 8px;
   height: 8px;
   border-radius: 100%;
-  background: yellow;
+  background: ${(props) => props.bgColor || "yellow"};
   z-index: 1;
 `;
 
-const Bullet = (props: any) => {
+export const Bullet = (props: any) => {
   return (
     <Boxik
       {...props}
+      left="0"
+      right="0"
       path={props.path}
       id="motion-demo"
-      height="3px"
-      width="3px"
       bgColor={props.color}
     />
   );
