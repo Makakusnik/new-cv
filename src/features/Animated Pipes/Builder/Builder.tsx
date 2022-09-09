@@ -134,6 +134,37 @@ class Builder {
     this.nodes.push(objectToAppend);
   }
 
+  buildPath(...nodes: NodeObject[]): string {
+    let pathString = "";
+    let previousX: number, previousY: number;
+    nodes.forEach((node, index) => {
+      let centerX = node.getXCenter();
+      let centerY = node.getYCenter();
+
+      if (index === 0) {
+        pathString = pathString.concat(`M ${centerX} ${centerY} `);
+        previousX = centerX;
+        previousY = centerY;
+      } else {
+        if (previousX === centerX) {
+          pathString = pathString.concat(`v ${centerY - previousY} `);
+        } else if (previousY === centerY) {
+          pathString = pathString.concat(`h ${centerX - previousX} `);
+        } else {
+          throw new Error(
+            "Components should be aligned either horizontally or vertically."
+          );
+        }
+        previousX = centerX;
+        previousY = centerY;
+      }
+    });
+    (nodes[0] as Frame).getFrameOptions().setPath(pathString);
+    console.log(pathString);
+
+    return pathString;
+  }
+
   getNodes(): NodeType[] {
     return this.nodes;
   }
