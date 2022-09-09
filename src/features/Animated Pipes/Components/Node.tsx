@@ -2,90 +2,119 @@ import { throws } from "assert";
 import { Position, VerticalPoints } from "./Types";
 
 class NodeObject {
-  position: Position;
+  id: string;
+  top;
+  topCenter;
+  right;
+  rightCenter;
+  left;
+  leftCenter;
   width: number;
   height: number;
 
-  constructor(width: number, height: number, position: Position) {
+  constructor(id: string, width: number, height: number, position?: Position) {
+    this.id = id;
     this.width = width;
     this.height = height;
-    this.position = {
-      top: position.top - this.height / 2,
-    };
-    if (position.left) {
-      this.position = {
-        ...this.position,
-        left: position.left + this.width / 2,
-      };
-    } else if (position.right) {
-      this.position = {
-        ...this.position,
-        right: position.right - this.width / 2,
-      };
+    if (position) {
+      if (position.top) {
+        this.top = position.top;
+        this.topCenter = position.top + height / 2;
+      } else {
+        this.top = 0;
+        this.topCenter = this.top + height / 2;
+      }
+      if (position.left) {
+        this.left = position.left;
+        this.leftCenter = position.left + width / 2;
+      } else if (position.right) {
+        this.right = position.right;
+        this.rightCenter = position.right - width / 2;
+      }
+    } else {
+      this.top = 0;
+      this.topCenter = this.top + height / 2;
     }
   }
 
   getTopOffset(): number | undefined {
-    return this.position.top;
+    return this.top;
   }
 
   getRightOffset(): number | undefined {
-    return this.position.right;
+    return this.right;
   }
 
   getLeftOffset(): number | undefined {
-    return this.position.left;
-  }
-
-  setTopOffset(value: number) {
-    this.position.top = value;
-  }
-
-  setLeftOffset(value: number) {
-    this.position.left = value;
-  }
-
-  setRightOffset(value: number) {
-    this.position.right = value;
+    return this.left;
   }
 
   getYStart(): number {
-    return this.position.top;
+    return this.top;
   }
 
   getYCenter(): number {
-    return this.position.top + this.height / 2;
+    return this.top + this.height / 2;
   }
 
   getYEnd(): number {
-    return this.position.top + this.height;
+    return this.top + this.height;
   }
 
   getXStart(): number {
-    if (this.position.right !== undefined) {
-      return -this.position.right - this.width;
-    } else if (this.position.left !== undefined) {
-      return this.position.left;
+    if (this.right !== undefined) {
+      return -this.right - this.width;
+    } else if (this.left !== undefined) {
+      return this.left;
     }
     return -this.width / 2;
   }
 
   getXEnd(): number {
-    if (this.position.right !== undefined) {
-      return -this.position.right;
-    } else if (this.position.left !== undefined) {
-      return this.position.left + this.width;
+    if (this.right !== undefined) {
+      return -this.right;
+    } else if (this.left !== undefined) {
+      return this.left + this.width;
     }
     return this.width / 2;
   }
 
   getXCenter(): number {
-    if (this.position.right !== undefined) {
-      return -this.position.right - this.width / 2;
-    } else if (this.position.left !== undefined) {
-      return this.position.left + this.width / 2;
+    if (this.right !== undefined) {
+      return -this.right - this.width / 2;
+    } else if (this.left !== undefined) {
+      return this.left + this.width / 2;
     }
     return 0;
+  }
+
+  // TODO prerob undefined na pouzivanie jednotnej strany
+  setXStart(value: number) {
+    this.left = undefined;
+    this.right = -value - this.width;
+  }
+  setXCenter(value: number) {
+    this.left = undefined;
+    this.right = -value - this.width / 2;
+  }
+
+  setXEnd(value: number) {
+    this.left = undefined;
+    this.right = -value;
+  }
+
+  setYStart(value: number) {
+    this.top = value;
+  }
+  setYCenter(value: number) {
+    this.top = value - this.height / 2;
+  }
+  setYEnd(value: number) {
+    this.top = value - this.height;
+  }
+
+  getNode() {
+    throw new Error("Implement this");
   }
 }
 

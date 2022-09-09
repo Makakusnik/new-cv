@@ -3,7 +3,7 @@ import { FC, FunctionComponentElement, ReactNode } from "react";
 import { AssetProps } from "../Assets/AssetProps";
 import ElectricityBolt from "../Assets/ElectricityBolt";
 import NodeObject from "./Node";
-import { Position } from "./Types";
+import { BorderOptions, Position } from "./Types";
 
 type FrameSize = "sm" | "md" | "lg" | "xl";
 
@@ -12,11 +12,15 @@ class Frame extends NodeObject {
   pictureElement: FC<AssetProps>;
 
   constructor(
-    options: FrameOptions,
-    positionObject: Position,
+    id: string,
+    options?: FrameOptions,
+    positionObject?: Position,
     pictureElement?: FC<AssetProps>
   ) {
-    super(options.getSize(), options.getSize(), positionObject);
+    if (!options) {
+      options = new FrameOptions();
+    }
+    super(id, options.getSize(), options.getSize(), positionObject);
     this.options = options;
     this.pictureElement = pictureElement || ElectricityBolt;
   }
@@ -24,7 +28,7 @@ class Frame extends NodeObject {
   /* 
     TODO Comment stuff
   */
-  getFrame() {
+  getNode() {
     let PicElement = this.pictureElement;
     let top =
       this.getTopOffset() === undefined
@@ -41,6 +45,7 @@ class Frame extends NodeObject {
 
     return (
       <Box
+        key={this.id}
         width={this.options.getSizeInPx()}
         height={this.options.getSizeInPx()}
         bgColor={this.options.getBackgroundColor()}
@@ -58,10 +63,14 @@ class Frame extends NodeObject {
       </Box>
     );
   }
+
+  getFrameOptions(): FrameOptions {
+    return this.options;
+  }
 }
 
 export class FrameOptions {
-  borderOptions?: BorderOptions;
+  borderOptions: BorderOptions;
   size: FrameSize;
   backgroundColor: string;
 
@@ -120,37 +129,9 @@ export class FrameOptions {
   getBackgroundColor(): string {
     return this.backgroundColor;
   }
-}
 
-type BorderType =
-  | "none"
-  | "hidden"
-  | "dotted"
-  | "dashed"
-  | "solid"
-  | "double"
-  | "groove"
-  | "ridge"
-  | "inset"
-  | "outset";
-
-export class BorderOptions {
-  thickness: number;
-  type: BorderType;
-  color: string;
-
-  constructor(
-    thickness: number = 2,
-    type: BorderType = "solid",
-    color: string = "black"
-  ) {
-    this.thickness = thickness;
-    this.type = type;
-    this.color = color;
-  }
-
-  getBorderString(): string {
-    return `${this.thickness}px ${this.type} ${this.color}`;
+  getBorderOptions(): BorderOptions {
+    return this.borderOptions;
   }
 }
 
