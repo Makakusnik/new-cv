@@ -1,7 +1,6 @@
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { ReactNode } from "react";
-import HeaderAnimation from "./HeaderAnimation";
+import HeaderAnimation from "@features/Animated Pipes/HeaderAnimation";
 
 export const Header = () => {
   return (
