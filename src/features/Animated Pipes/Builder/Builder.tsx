@@ -42,9 +42,11 @@ class Builder {
     const frame = new Frame(this.frameDefaultOptions, {
       top: this.anchorPoint,
     });
-
+    this.nodes.push(frame);
     return frame.getFrame();
   }
+
+  appendLeft(existingObject: NodeObject, objectToAppend: NodeObject) {}
 }
 
 export default Builder;

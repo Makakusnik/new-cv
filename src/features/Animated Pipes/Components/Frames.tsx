@@ -28,8 +28,8 @@ export const SvgFrame = (props: any) => {
       position="absolute"
       borderRadius="full"
       bgColor="primary.600"
-      borderColor="primary.700"
       border="4px solid"
+      borderColor="primary.700"
       w={`${size}px`}
       h={`${size}px`}
     >

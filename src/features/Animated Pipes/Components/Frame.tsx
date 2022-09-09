@@ -26,25 +26,28 @@ class Frame extends NodeObject {
   */
   getFrame() {
     let PicElement = this.pictureElement;
+    let top =
+      this.getTopOffset() === undefined
+        ? undefined
+        : this.getTopOffset() + "px";
+    let right =
+      this.getRightOffset() === undefined
+        ? undefined
+        : this.getRightOffset() + "px";
+    let left =
+      this.getLeftOffset() === undefined
+        ? undefined
+        : this.getLeftOffset() + "px";
+
     return (
       <Box
         width={this.options.getSizeInPx()}
         height={this.options.getSizeInPx()}
         bgColor={this.options.getBackgroundColor()}
         border={this.options.borderOptions?.getBorderString()}
-        top={
-          this.getTopOffset() === undefined
-            ? undefined
-            : this.getTopOffset() + "px"
-        }
-        right={
-          this.getRightOffset() === undefined
-            ? undefined
-            : this.getRightOffset()
-        }
-        left={
-          this.getLeftOffset() === undefined ? undefined : this.getLeftOffset()
-        }
+        top={top}
+        right={right}
+        left={left}
         borderRadius="full"
         display="flex"
         alignItems="center"

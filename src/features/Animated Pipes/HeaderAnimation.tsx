@@ -26,7 +26,17 @@ const HeaderAnimation = () => {
   let frameOptions = new FrameOptions("md", primary600);
   let borderOptions = new BorderOptions(4, "dashed", primary700);
 
-  let builder = new Builder(45, borderOptions, frameOptions);
+  let builder = new Builder(75, borderOptions, frameOptions);
+  let framePosition: Position = { top: 0 };
+  let frame = new Frame(frameOptions, framePosition);
+
+  let frameOptions2 = new FrameOptions("lg", "blue");
+  let framePosition2: Position = { top: 0 };
+  let frame2 = new Frame(frameOptions2, framePosition2);
+
+  let frameOptions3 = new FrameOptions("sm", "green");
+  let framePosition3: Position = { top: 140, right: -40 };
+  let frame3 = new Frame(frameOptions3, framePosition3);
 
   return (
     <Container
@@ -42,7 +52,11 @@ const HeaderAnimation = () => {
       <SvgFrame size="lg" top="35px">
         <ElectricityBolt sizeInPx="50px" />
       </SvgFrame>
-      <LayerContainer top="0px">{builder.getMainFrame()}</LayerContainer>
+      <LayerContainer top="0px">
+        {builder.getMainFrame()}
+        {frame2.getFrame()}
+        {frame3.getFrame()}
+      </LayerContainer>
       <Bullet top="75px" path="M 0 0 h 147 v 58 h 30 h 63 v -55" />
       <LayerContainer top="15px">
         <VerticallPipe height="10px" left="-10px" top="15px" />
@@ -95,6 +109,14 @@ const HeaderAnimation = () => {
           left: "100px",
           backgroundColor: "gray",
           padding: "8px 16px",
+        }}
+        onClick={() => {
+          console.log(
+            `Y S: ${frame2.getYStart()} C: ${frame2.getYCenter()} E: ${frame2.getYEnd()}`
+          );
+          console.log(
+            `X S: ${frame2.getXStart()} C: ${frame2.getXCenter()} E: ${frame2.getXEnd()}`
+          );
         }}
       >
         klik me

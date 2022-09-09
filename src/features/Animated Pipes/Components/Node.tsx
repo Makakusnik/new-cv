@@ -9,7 +9,20 @@ class NodeObject {
   constructor(width: number, height: number, position: Position) {
     this.width = width;
     this.height = height;
-    this.position = position;
+    this.position = {
+      top: position.top - this.height / 2,
+    };
+    if (position.left) {
+      this.position = {
+        ...this.position,
+        left: position.left + this.width / 2,
+      };
+    } else if (position.right) {
+      this.position = {
+        ...this.position,
+        right: position.right - this.width / 2,
+      };
+    }
   }
 
   getTopOffset(): number | undefined {
@@ -68,7 +81,7 @@ class NodeObject {
 
   getXCenter(): number {
     if (this.position.right !== undefined) {
-      return this.position.right - this.width / 2;
+      return -this.position.right - this.width / 2;
     } else if (this.position.left !== undefined) {
       return this.position.left + this.width / 2;
     }
