@@ -13,16 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-        <Box width="150px" height="250px" bgColor="red"></Box>
-      </main>
+      <main></main>
       <footer></footer>
     </>
   );
