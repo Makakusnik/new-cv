@@ -72,7 +72,6 @@ class Pipe extends NodeObject {
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        zIndex="1"
         {...borderAttributes}
         borderColor={this.options.borderOptions?.getColor()}
       />
