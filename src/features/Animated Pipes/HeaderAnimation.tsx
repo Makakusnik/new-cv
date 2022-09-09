@@ -12,10 +12,11 @@ import { KneeJoint, TJoint } from "./Components/Joints";
 import { LayerContainer } from "./Components/Layers";
 import Builder from "./Builder/Builder";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Frame, { BorderOptions, FrameOptions } from "./Components/Frame";
+import Frame, { FrameOptions } from "./Components/Frame";
 import ElectricityBolt from "./Assets/ElectricityBolt";
 import YoutubeLogo from "./Assets/YoutubeLogo";
-import { Position } from "./Components/Types";
+import { BorderOptions, Position } from "./Components/Types";
+import Pipe, { PipeOptions } from "./Components/Pipe";
 
 const HeaderAnimation = () => {
   const [primary600, primary700] = useToken("colors", [
@@ -23,20 +24,75 @@ const HeaderAnimation = () => {
     "primary.700",
   ]);
 
-  let frameOptions = new FrameOptions("md", primary600);
-  let borderOptions = new BorderOptions(4, "dashed", primary700);
+  let borderDefaultOptions = new BorderOptions(4, "solid", primary700);
+  let frameDefaultOptions = new FrameOptions(
+    "md",
+    primary600,
+    borderDefaultOptions
+  );
+  let pipeDefaultOptions = new PipeOptions(
+    50,
+    "horizontal",
+    18,
+    primary600,
+    borderDefaultOptions
+  );
+  let pipe4Options = new PipeOptions(
+    50,
+    "vertical",
+    18,
+    primary600,
+    borderDefaultOptions
+  );
 
-  let builder = new Builder(75, borderOptions, frameOptions);
-  let framePosition: Position = { top: 0 };
-  let frame = new Frame(frameOptions, framePosition);
+  let longPipeOptions = new PipeOptions(
+    150,
+    "horizontal",
+    18,
+    primary600,
+    borderDefaultOptions
+  );
 
-  let frameOptions2 = new FrameOptions("lg", "blue");
-  let framePosition2: Position = { top: 0 };
-  let frame2 = new Frame(frameOptions2, framePosition2);
+  let pipe5Options = new PipeOptions(
+    100,
+    "horizontal",
+    18,
+    primary600,
+    borderDefaultOptions
+  );
 
-  let frameOptions3 = new FrameOptions("sm", "green");
-  let framePosition3: Position = { top: 140, right: -40 };
-  let frame3 = new Frame(frameOptions3, framePosition3);
+  let builder = new Builder(180, frameDefaultOptions);
+  let frame2 = new Frame("fr1", frameDefaultOptions);
+  let frame4 = new Frame("fr2", frameDefaultOptions);
+  let frame6 = new Frame("fr3", frameDefaultOptions);
+  let frame7 = new Frame("fr4", frameDefaultOptions);
+  let frame3 = new Frame("fr5");
+  let frame5 = new Frame("fr6");
+  let frame8 = new Frame("fr8", frameDefaultOptions);
+  let frame9 = new Frame("fr9", frameDefaultOptions);
+
+  let pipe1 = new Pipe("pipe1", pipeDefaultOptions);
+  let pipe2 = new Pipe("pipe2", longPipeOptions);
+  let pipe3 = new Pipe("pipe3", longPipeOptions);
+  let pipe4 = new Pipe("pipe4", pipe4Options);
+  let pipe5 = new Pipe("pipe5", pipe5Options);
+  let pipe6 = new Pipe("pipe6", pipe4Options);
+
+  builder.getMainFrame();
+  builder.appendLeft(builder.getNodes()[0], pipe1);
+  builder.appendBottom(builder.getNodes()[0], frame3);
+  builder.appendUp(builder.getNodes()[0], frame5);
+  builder.appendLeft(pipe1, frame2);
+  builder.appendLeft(frame2, pipe2);
+  builder.appendLeft(pipe2, frame7);
+  builder.appendRight(builder.getNodes()[0], pipe3);
+  builder.appendRight(pipe3, frame4);
+  builder.appendBottom(frame4, pipe4);
+  builder.appendBottom(pipe4, frame6);
+  builder.appendRight(frame6, pipe5);
+  builder.appendRight(pipe5, frame8);
+  builder.appendUp(frame8, pipe6);
+  builder.appendUp(pipe6, frame9);
 
   return (
     <Container
@@ -52,10 +108,10 @@ const HeaderAnimation = () => {
       <SvgFrame size="lg" top="35px">
         <ElectricityBolt sizeInPx="50px" />
       </SvgFrame>
-      <LayerContainer top="0px">
-        {builder.getMainFrame()}
-        {frame2.getFrame()}
-        {frame3.getFrame()}
+      <LayerContainer top="0px" zIndex="1">
+        {builder.getNodes().map((node) => {
+          return node.getNode();
+        })}
       </LayerContainer>
       <Bullet top="75px" path="M 0 0 h 147 v 58 h 30 h 63 v -55" />
       <LayerContainer top="15px">
