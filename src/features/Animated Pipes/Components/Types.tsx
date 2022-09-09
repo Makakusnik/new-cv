@@ -1,4 +1,5 @@
 import Frame from "./Frame";
+import Joint from "./Joint";
 import Pipe from "./Pipe";
 
 export type Position = {
@@ -58,4 +59,4 @@ export class BorderOptions {
   }
 }
 
-export type NodeType = Frame | Pipe;
+export type NodeType = Frame | Pipe | Joint;

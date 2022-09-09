@@ -17,9 +17,11 @@ import ElectricityBolt from "./Assets/ElectricityBolt";
 import YoutubeLogo from "./Assets/YoutubeLogo";
 import { BorderOptions, Position } from "./Components/Types";
 import Pipe, { PipeOptions } from "./Components/Pipe";
+import Joint, { JointOptions } from "./Components/Joint";
 
 const HeaderAnimation = () => {
-  const [primary600, primary700] = useToken("colors", [
+  const [primary500, primary600, primary700] = useToken("colors", [
+    "primary.500",
     "primary.600",
     "primary.700",
   ]);
@@ -60,6 +62,13 @@ const HeaderAnimation = () => {
     primary600,
     borderDefaultOptions
   );
+  let pipe7Options = new PipeOptions(
+    50,
+    "horizontal",
+    18,
+    primary600,
+    borderDefaultOptions
+  );
 
   let builder = new Builder(180, frameDefaultOptions);
   let frame2 = new Frame("fr1", frameDefaultOptions);
@@ -78,6 +87,19 @@ const HeaderAnimation = () => {
   let pipe5 = new Pipe("pipe5", pipe5Options);
   let pipe6 = new Pipe("pipe6", pipe4Options);
 
+  let pipe7 = new Pipe("pipe7", pipe7Options);
+  let pipe8 = new Pipe("pipe8", pipe7Options);
+  let pipe9 = new Pipe("pipe9", pipe4Options);
+
+  let jointOptions = new JointOptions(
+    "cross",
+    0,
+    18,
+    primary500,
+    borderDefaultOptions
+  );
+  let kneeJoint = new Joint("knee1", jointOptions);
+
   builder.getMainFrame();
   builder.appendLeft(builder.getNodes()[0], pipe1);
   builder.appendBottom(builder.getNodes()[0], frame3);
@@ -92,7 +114,10 @@ const HeaderAnimation = () => {
   builder.appendRight(frame6, pipe5);
   builder.appendRight(pipe5, frame8);
   builder.appendUp(frame8, pipe6);
-  builder.appendUp(pipe6, frame9);
+  builder.appendUp(pipe6, kneeJoint);
+  builder.appendLeft(kneeJoint, pipe7);
+  builder.appendRight(kneeJoint, pipe8);
+  builder.appendUp(kneeJoint, pipe9);
 
   return (
     <Container
