@@ -2,6 +2,7 @@ import { border, Box } from "@chakra-ui/react";
 import { FC, FunctionComponentElement, ReactNode } from "react";
 import { AssetProps } from "../Assets/AssetProps";
 import ElectricityBolt from "../Assets/ElectricityBolt";
+import { Bullet } from "../HeaderAnimation";
 import NodeObject from "./Node";
 import { BorderOptions, Position } from "./Types";
 
@@ -57,6 +58,7 @@ class Frame extends NodeObject {
         display="flex"
         alignItems="center"
         justifyContent="center"
+        zIndex="-1"
         position="absolute"
       >
         <PicElement sizeInPx={this.options.getPictureSizeInPx()} />
@@ -73,6 +75,8 @@ export class FrameOptions {
   borderOptions: BorderOptions;
   size: FrameSize;
   backgroundColor: string;
+  hasPath: boolean;
+  path: string;
 
   constructor(
     size: FrameSize = "md",
@@ -86,6 +90,8 @@ export class FrameOptions {
     } else {
       this.borderOptions = borderOptions;
     }
+    this.hasPath = false;
+    this.path = "";
   }
 
   getPictureSizeInPx(): string {
@@ -132,6 +138,11 @@ export class FrameOptions {
 
   getBorderOptions(): BorderOptions {
     return this.borderOptions;
+  }
+
+  setPath(value: string): void {
+    this.hasPath = true;
+    this.path = value;
   }
 }
 
