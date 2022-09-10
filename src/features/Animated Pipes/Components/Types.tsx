@@ -31,11 +31,8 @@ export class BorderOptions {
   type: BorderType;
   color: string;
   overlap: number;
-  constructor(
-    thickness: number = 2,
-    type: BorderType = "solid",
-    color: string = "black"
-  ) {
+
+  constructor(thickness: number = 2, type: BorderType = "solid", color: string = "black") {
     this.thickness = thickness;
     this.type = type;
     this.color = color;
@@ -52,6 +49,10 @@ export class BorderOptions {
 
   getThickness(): number {
     return this.thickness;
+  }
+
+  getThicknessInPx(): string {
+    return `${this.getThickness()}px`;
   }
 
   getType(): BorderType {
