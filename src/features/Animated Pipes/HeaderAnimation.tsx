@@ -1,64 +1,85 @@
 // Lib Imports
-
-import { background, border, Box, Container, useToken } from "@chakra-ui/react";
-import { css, keyframes } from "@emotion/react";
+import { Container, useToken } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
 // My Imports
-
-import { SvgFrame } from "./Components/Frames";
-import { HorizontalPipe, VerticallPipe } from "./Components/Pipes";
-import { KneeJoint, TJoint } from "./Components/Joints";
 import { LayerContainer } from "./Components/Layers";
 import Builder from "./Builder/Builder";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Frame, { FrameOptions } from "./Components/Frame";
-import ElectricityBolt from "./Assets/ElectricityBolt";
-import YoutubeLogo from "./Assets/YoutubeLogo";
-import { BorderOptions, Position } from "./Components/Types";
-import Pipe, { PipeOptions } from "./Components/Pipe";
-import Joint, { JointOptions } from "./Components/Joint";
+import Frame, { FrameOptionsType } from "./Components/Frame";
+import { BorderOptions, BorderOptionsType } from "./Components/Types";
+import Pipe, { PipeOptionsType } from "./Components/Pipe";
+import Joint, { JointOptionsType } from "./Components/Joint";
 
 const HeaderAnimation = () => {
   const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
 
-  let borderDefaultOptions = new BorderOptions(4, "solid", primary700);
-  let frameDefaultOptions = new FrameOptions("xl", primary600, borderDefaultOptions);
-  let pipeDefaultOptions = new PipeOptions(50, "horizontal", 18, primary600, borderDefaultOptions);
-  let pipe4Options = new PipeOptions(50, "vertical", 18, primary600, borderDefaultOptions);
+  let borderDefaultOptions: BorderOptionsType = { thickness: 4, type: "solid", color: primary700, overlap: 4 };
+  let frameDefaultOptions: FrameOptionsType = {
+    size: "xl",
+    backgroundColor: primary600,
+    borderOptions: borderDefaultOptions,
+  };
+  let pipeDefaultOptions: PipeOptionsType = {
+    thickness: 18,
+    length: 50,
+    backgroundColor: primary600,
+    borderOptions: borderDefaultOptions,
+  };
 
-  let longPipeOptions = new PipeOptions(150, "horizontal", 18, primary600, borderDefaultOptions);
-
-  let pipe7Options = new PipeOptions(50, "horizontal", 18, primary600, borderDefaultOptions);
-
-  let f4Options = new FrameOptions("md", primary600, borderDefaultOptions);
+  let horizontalPipeOptions: PipeOptionsType = {
+    ...pipeDefaultOptions,
+    orientation: "horizontal",
+  };
+  let verticalPipeOptions: PipeOptionsType = {
+    ...pipeDefaultOptions,
+    orientation: "vertical",
+  };
 
   let builder = new Builder(45, frameDefaultOptions);
-  let frame2 = new Frame("fr1", f4Options);
+  let frameOptionss: FrameOptionsType = { backgroundColor: "white" };
+  let frame2 = new Frame("fr1", frameOptionss);
 
-  let pipe30VOptions = new PipeOptions(30, "vertical", 18, primary600, borderDefaultOptions);
+  let pipe1 = new Pipe("pipe1", horizontalPipeOptions);
+  let pipe2 = new Pipe("pipe2", horizontalPipeOptions);
+  let pipe3 = new Pipe("pipe3", horizontalPipeOptions);
+  let pipe4 = new Pipe("pipe4", verticalPipeOptions);
+  let pipe7 = new Pipe("pipe7", horizontalPipeOptions);
+  let pipe30V = new Pipe("pipe30V", verticalPipeOptions);
 
-  let pipe1 = new Pipe("pipe1", pipeDefaultOptions);
-  let pipe2 = new Pipe("pipe2", longPipeOptions);
-  let pipe3 = new Pipe("pipe3", longPipeOptions);
-  let pipe4 = new Pipe("pipe4", pipe4Options);
-  let pipe7 = new Pipe("pipe7", pipe7Options);
-  let pipe30V = new Pipe("pipe30V", pipe30VOptions);
+  let TJointOptions: JointOptionsType = {
+    backgroundColor: primary500,
+    borderOptions: borderDefaultOptions,
+    rotation: 90,
+    thickness: 18,
+    type: "T",
+  };
 
-  let jointOptions = new JointOptions("T", 0, 18, primary500, borderDefaultOptions);
-  let kneeJoint = new Joint("knee1", jointOptions);
+  let KneeJointOptions: JointOptionsType = {
+    backgroundColor: primary500,
+    borderOptions: borderDefaultOptions,
+    rotation: 90,
+    thickness: 18,
+    type: "knee",
+  };
 
-  let jointOptions2 = new JointOptions("knee", 90, 18, primary500, borderDefaultOptions);
-  let kneeJoint2 = new Joint("knee2", jointOptions2);
+  let CrossJointOptions: JointOptionsType = {
+    backgroundColor: primary500,
+    borderOptions: borderDefaultOptions,
+    rotation: 0,
+    thickness: 18,
+    type: "cross",
+  };
 
-  let jointOptions3 = new JointOptions("knee", 180, 18, primary500, borderDefaultOptions);
-  let kneeJoint3 = new Joint("knee3", jointOptions3);
+  let tJoint = new Joint("tJoint1", { ...TJointOptions, rotation: 0 });
 
-  let jointOptions4 = new JointOptions("knee", 0, 18, primary500, borderDefaultOptions);
-  let kneeJoint4 = new Joint("knee4", jointOptions4);
+  let kneeJoint2 = new Joint("knee1", KneeJointOptions);
 
-  let crossJointOptions = new JointOptions("cross", 0, 18, primary500, borderDefaultOptions);
-  let crossJoint4 = new Joint("cross", crossJointOptions);
+  let kneeJoint3 = new Joint("knee3", { ...KneeJointOptions, rotation: 180 });
+
+  let kneeJoint4 = new Joint("knee4", KneeJointOptions);
+
+  let crossJoint4 = new Joint("cross", CrossJointOptions);
 
   builder.getMainFrame();
 
@@ -66,10 +87,10 @@ const HeaderAnimation = () => {
     .appendLeft(builder.getNodes()[0], pipe1)
     ?.appendLeft(frame2)
     ?.appendLeft(pipe2)
-    ?.appendLeft(kneeJoint)
+    ?.appendLeft(tJoint)
     ?.appendLeft(pipe3);
   builder
-    .appendBottom(kneeJoint, pipe4)
+    .appendBottom(tJoint, pipe4)
     .appendBottom(kneeJoint2)
     .appendLeft(pipe7)
     .appendLeft(kneeJoint3)
@@ -82,7 +103,7 @@ const HeaderAnimation = () => {
     pipe1,
     frame2,
     pipe2,
-    kneeJoint,
+    tJoint,
     pipe4,
     kneeJoint2,
     pipe7,
@@ -103,6 +124,8 @@ const HeaderAnimation = () => {
     >
       <LayerContainer top="0px">
         {builder.getNodes().map((node) => {
+          console.log(node);
+
           return node.getNode();
         })}
         {path && <Bullet path={path} />}
