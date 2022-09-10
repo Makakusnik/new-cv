@@ -26,17 +26,24 @@ export type BorderType =
   | "inset"
   | "outset";
 
+export type BorderOptionsType = {
+  thickness: number;
+  type: BorderType;
+  color: string;
+  overlap: number;
+};
+
 export class BorderOptions {
   thickness: number;
   type: BorderType;
   color: string;
   overlap: number;
 
-  constructor(thickness: number = 2, type: BorderType = "solid", color: string = "black") {
-    this.thickness = thickness;
-    this.type = type;
-    this.color = color;
-    this.overlap = this.thickness;
+  constructor(borderOptionsObject: BorderOptionsType) {
+    this.thickness = borderOptionsObject.thickness;
+    this.type = borderOptionsObject.type;
+    this.color = borderOptionsObject.color;
+    this.overlap = borderOptionsObject.thickness;
   }
 
   getBorderString(): string {
