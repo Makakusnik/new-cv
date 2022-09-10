@@ -20,121 +20,76 @@ import Pipe, { PipeOptions } from "./Components/Pipe";
 import Joint, { JointOptions } from "./Components/Joint";
 
 const HeaderAnimation = () => {
-  const [primary500, primary600, primary700] = useToken("colors", [
-    "primary.500",
-    "primary.600",
-    "primary.700",
-  ]);
+  const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
 
   let borderDefaultOptions = new BorderOptions(4, "solid", primary700);
-  let frameDefaultOptions = new FrameOptions(
-    "md",
-    primary600,
-    borderDefaultOptions
-  );
-  let pipeDefaultOptions = new PipeOptions(
-    50,
-    "horizontal",
-    18,
-    primary600,
-    borderDefaultOptions
-  );
-  let pipe4Options = new PipeOptions(
-    50,
-    "vertical",
-    18,
-    primary600,
-    borderDefaultOptions
-  );
+  let frameDefaultOptions = new FrameOptions("xl", primary600, borderDefaultOptions);
+  let pipeDefaultOptions = new PipeOptions(50, "horizontal", 18, primary600, borderDefaultOptions);
+  let pipe4Options = new PipeOptions(50, "vertical", 18, primary600, borderDefaultOptions);
 
-  let longPipeOptions = new PipeOptions(
-    150,
-    "horizontal",
-    18,
-    primary600,
-    borderDefaultOptions
-  );
+  let longPipeOptions = new PipeOptions(150, "horizontal", 18, primary600, borderDefaultOptions);
 
-  let pipe5Options = new PipeOptions(
-    100,
-    "horizontal",
-    18,
-    primary600,
-    borderDefaultOptions
-  );
-  let pipe7Options = new PipeOptions(
-    50,
-    "horizontal",
-    18,
-    primary600,
-    borderDefaultOptions
-  );
+  let pipe7Options = new PipeOptions(50, "horizontal", 18, primary600, borderDefaultOptions);
 
   let f4Options = new FrameOptions("md", primary600, borderDefaultOptions);
 
-  let builder = new Builder(180, frameDefaultOptions);
+  let builder = new Builder(45, frameDefaultOptions);
   let frame2 = new Frame("fr1", f4Options);
-  let frame4 = new Frame("fr2", frameDefaultOptions);
-  let frame6 = new Frame("fr3", frameDefaultOptions);
-  let frame7 = new Frame("fr4", frameDefaultOptions);
-  let frame3 = new Frame("fr5");
-  let frame5 = new Frame("fr6");
-  let frame8 = new Frame("fr8", frameDefaultOptions);
-  let frame9 = new Frame("fr9", frameDefaultOptions);
+
+  let pipe30VOptions = new PipeOptions(30, "vertical", 18, primary600, borderDefaultOptions);
 
   let pipe1 = new Pipe("pipe1", pipeDefaultOptions);
   let pipe2 = new Pipe("pipe2", longPipeOptions);
   let pipe3 = new Pipe("pipe3", longPipeOptions);
   let pipe4 = new Pipe("pipe4", pipe4Options);
-  let pipe5 = new Pipe("pipe5", pipe5Options);
-  let pipe6 = new Pipe("pipe6", pipe4Options);
-
   let pipe7 = new Pipe("pipe7", pipe7Options);
-  let pipe8 = new Pipe("pipe8", pipe7Options);
-  let pipe9 = new Pipe("pipe9", pipe4Options);
+  let pipe30V = new Pipe("pipe30V", pipe30VOptions);
 
-  let jointOptions = new JointOptions(
-    "cross",
-    0,
-    18,
-    primary500,
-    borderDefaultOptions
-  );
+  let jointOptions = new JointOptions("T", 0, 18, primary500, borderDefaultOptions);
   let kneeJoint = new Joint("knee1", jointOptions);
 
+  let jointOptions2 = new JointOptions("knee", 90, 18, primary500, borderDefaultOptions);
+  let kneeJoint2 = new Joint("knee2", jointOptions2);
+
+  let jointOptions3 = new JointOptions("knee", 180, 18, primary500, borderDefaultOptions);
+  let kneeJoint3 = new Joint("knee3", jointOptions3);
+
+  let jointOptions4 = new JointOptions("knee", 0, 18, primary500, borderDefaultOptions);
+  let kneeJoint4 = new Joint("knee4", jointOptions4);
+
+  let crossJointOptions = new JointOptions("cross", 0, 18, primary500, borderDefaultOptions);
+  let crossJoint4 = new Joint("cross", crossJointOptions);
+
   builder.getMainFrame();
-  builder.appendLeft(builder.getNodes()[0], pipe1);
-  builder.appendBottom(builder.getNodes()[0], frame3);
-  builder.appendUp(builder.getNodes()[0], frame5);
-  builder.appendLeft(pipe1, frame2);
-  builder.appendLeft(frame2, pipe2);
-  builder.appendLeft(pipe2, frame7);
-  builder.appendRight(builder.getNodes()[0], pipe3);
-  builder.appendRight(pipe3, frame4);
-  builder.appendBottom(frame4, pipe4);
-  builder.appendBottom(pipe4, frame6);
-  builder.appendRight(frame6, pipe5);
-  builder.appendRight(pipe5, frame8);
-  builder.appendUp(pipe6, kneeJoint);
-  builder.appendLeft(kneeJoint, pipe7);
-  builder.appendRight(kneeJoint, pipe8);
-  builder.appendUp(kneeJoint, pipe9);
-  builder.appendBottom(frame7, pipe6);
+
+  builder
+    .appendLeft(builder.getNodes()[0], pipe1)
+    ?.appendLeft(frame2)
+    ?.appendLeft(pipe2)
+    ?.appendLeft(kneeJoint)
+    ?.appendLeft(pipe3);
+  builder
+    .appendBottom(kneeJoint, pipe4)
+    .appendBottom(kneeJoint2)
+    .appendLeft(pipe7)
+    .appendLeft(kneeJoint3)
+    .appendUp(pipe30V)
+    ?.appendUp(kneeJoint4)
+    ?.appendLeft(crossJoint4);
 
   let path = builder.buildPath(
-    frame7,
-    pipe2,
-    frame2,
-    pipe1,
     builder.getNodes()[0],
-    pipe3,
-    frame4,
+    pipe1,
+    frame2,
+    pipe2,
+    kneeJoint,
     pipe4,
-    frame6,
-    pipe5
+    kneeJoint2,
+    pipe7,
+    kneeJoint3,
+    pipe30V,
+    kneeJoint4
   );
-  console.log(`Xcenter ${frame7.getXCenter()}`);
-
   return (
     <Container
       id="animation-root"
@@ -146,59 +101,11 @@ const HeaderAnimation = () => {
       height="100%"
       p="0"
     >
-      <SvgFrame size="lg" top="35px">
-        <ElectricityBolt sizeInPx="50px" />
-      </SvgFrame>
-      <LayerContainer top="0px" zIndex="1">
+      <LayerContainer top="0px">
         {builder.getNodes().map((node) => {
           return node.getNode();
         })}
-        <Bullet path={path} />
-      </LayerContainer>
-      <Bullet top="75px" path="M 0 0 h 147 v 58 h 30 h 63 v -55" />
-      <LayerContainer top="15px">
-        <VerticallPipe height="10px" left="-10px" top="15px" />
-        <KneeJoint top="-2px" left="-10px" rotate="270" />
-        <HorizontalPipe top="-2px" left="8px" width="370px" />
-        <KneeJoint top="-2px" left="378px" />
-        <VerticallPipe height="30px" left="378px" top="15px" />
-        <LayerContainer top="45px">
-          <KneeJoint left="378px" rotate="180" />
-          <HorizontalPipe left="396px" width="40px" />
-          <KneeJoint left="436px" />
-          <VerticallPipe height="30px" left="436px" top="18px" />
-        </LayerContainer>
-      </LayerContainer>
-      <LayerContainer top="46px">
-        <SvgFrame size="md" top="3px" left="207px">
-          <YoutubeLogo sizeInPx="30" />
-        </SvgFrame>
-        <SvgFrame size="md" top="-29px" right="433px"></SvgFrame>
-        <VerticallPipe top="10px" right="390px" height="10px" />
-        <KneeJoint top="-8px" right="390px" />
-        <HorizontalPipe top="-8px" right="408px" width="30px" />
-        <SvgFrame size="sm" top="13px" left="287px"></SvgFrame>
-      </LayerContainer>
-      <LayerContainer top="66px">
-        <HorizontalPipe top="4px" left="262px" width="30px" />
-        <HorizontalPipe left="35px" width="100px" />
-        <HorizontalPipe right="35px" width="140px" />
-        <HorizontalPipe right="225px" width="35px" />
-        <TJoint right="260px" />
-        <HorizontalPipe right="278px" width="112px" />
-        <KneeJoint left="135px" />
-        <KneeJoint right="390px" rotate="180" />
-        <LayerContainer top="18px">
-          <VerticallPipe left="135px" height="40px" />
-          <LayerContainer top="40px">
-            <KneeJoint left="135px" rotate="180" />
-            <HorizontalPipe left="153px" width="75px" />
-            <TJoint left="228px" rotate="90" />
-            <VerticallPipe top="18px" left="228px" height="20px" />
-          </LayerContainer>
-          <VerticallPipe top="20px" left="228px" height="20px" />
-          <VerticallPipe right="260px" height="50px" />
-        </LayerContainer>
+        {path && <Bullet path={path} />}
       </LayerContainer>
       <button
         style={{
@@ -209,12 +116,8 @@ const HeaderAnimation = () => {
           padding: "8px 16px",
         }}
         onClick={() => {
-          console.log(
-            `Y S: ${frame2.getYStart()} C: ${frame2.getYCenter()} E: ${frame2.getYEnd()}`
-          );
-          console.log(
-            `X S: ${frame2.getXStart()} C: ${frame2.getXCenter()} E: ${frame2.getXEnd()}`
-          );
+          console.log(`Y S: ${frame2.getYStart()} C: ${frame2.getYCenter()} E: ${frame2.getYEnd()}`);
+          console.log(`X S: ${frame2.getXStart()} C: ${frame2.getXCenter()} E: ${frame2.getXEnd()}`);
         }}
       >
         klik me
@@ -228,11 +131,8 @@ const move = keyframes`
       offset-distance: 0%;
       opacity: 0
     }
-    20% {
-      opacity: 0
-    }
-    25% {
-      opacity: 1;
+    30% {
+      opacity: 1
     }
     90% {
       opacity: 1;
@@ -266,20 +166,11 @@ const Boxik = styled.div<BoxikProps>`
   height: 8px;
   border-radius: 100%;
   background: ${(props) => props.bgColor || "yellow"};
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const Bullet = (props: any) => {
-  return (
-    <Boxik
-      {...props}
-      left="0"
-      right="0"
-      path={props.path}
-      id="motion-demo"
-      bgColor={props.color}
-    />
-  );
+  return <Boxik {...props} left="0" right="0" path={props.path} id="motion-demo" bgColor={props.color} />;
 };
 
 export default HeaderAnimation;
