@@ -1,39 +1,25 @@
 import { Box } from "@chakra-ui/react";
 import { MutableRefObject, ReactNode, RefObject } from "react";
-import Frame, { FrameOptions } from "../Components/Frame";
+import Frame, { FrameOptionsType } from "../Components/Frame";
 import NodeObject from "../Components/Node";
 import Pipe from "../Components/Pipe";
-import { BorderOptions, NodeType } from "../Components/Types";
+import { NodeType } from "../Components/Types";
 
 class Builder {
   private mainFrame: Frame;
   private nodes: Array<NodeType>;
   private lastAppended: NodeType | null;
-  borderDefaultOptions;
-  frameDefaultOptions;
+  mainFrameOptions;
   anchorPoint: number;
 
-  constructor(anchorPoint: number, mainFrameOptions: FrameOptions) {
+  constructor(anchorPoint: number, mainFrameOptions?: FrameOptionsType) {
     this.nodes = new Array<NodeType>();
     this.anchorPoint = anchorPoint;
     this.lastAppended = null;
 
-    if (mainFrameOptions?.borderOptions) {
-      this.borderDefaultOptions = mainFrameOptions?.borderOptions;
-    } else {
-      this.borderDefaultOptions = new BorderOptions(4, "solid", "purple");
-    }
-    if (mainFrameOptions) {
-      this.frameDefaultOptions = new FrameOptions(
-        mainFrameOptions.size,
-        mainFrameOptions.backgroundColor,
-        this.borderDefaultOptions
-      );
-    } else {
-      this.frameDefaultOptions = new FrameOptions("md", "lime", this.borderDefaultOptions);
-    }
+    this.mainFrameOptions = mainFrameOptions;
 
-    this.mainFrame = new Frame("main-node", this.frameDefaultOptions, {
+    this.mainFrame = new Frame("main-node", this.mainFrameOptions, {
       top: this.anchorPoint,
     });
     this.nodes.push(this.mainFrame);
@@ -51,9 +37,9 @@ class Builder {
       objectToAppend = nodes[1];
       let overlap = 0;
       if (existingObject instanceof Frame && objectToAppend instanceof Pipe) {
-        overlap = existingObject.getFrameOptions().getBorderOptions().getThickness() + 1;
+        overlap = existingObject.getBorderOptions().getThickness() + 1;
       } else if (existingObject instanceof Pipe && objectToAppend instanceof Frame) {
-        overlap = objectToAppend.getFrameOptions().getBorderOptions().getThickness() + 1;
+        overlap = objectToAppend.getBorderOptions().getThickness() + 1;
       }
       let existingObjectXStart = existingObject.getXStart() + overlap;
       let existingObjectYCenter = existingObject.getYCenter();
@@ -84,9 +70,9 @@ class Builder {
       objectToAppend = nodes[1];
       let overlap = 0;
       if (existingObject instanceof Frame && objectToAppend instanceof Pipe) {
-        overlap = -(existingObject.getFrameOptions().getBorderOptions().getThickness() + 1);
+        overlap = -(existingObject.getBorderOptions().getThickness() + 1);
       } else if (existingObject instanceof Pipe && objectToAppend instanceof Frame) {
-        overlap = -(objectToAppend.getFrameOptions().getBorderOptions().getThickness() + 1);
+        overlap = -(objectToAppend.getBorderOptions().getThickness() + 1);
       }
 
       let existingObjectXEnd = existingObject.getXEnd() + overlap;
@@ -117,9 +103,9 @@ class Builder {
       objectToAppend = nodes[1];
       let overlap = 0;
       if (existingObject instanceof Frame && objectToAppend instanceof Pipe) {
-        overlap = -(existingObject.getFrameOptions().getBorderOptions().getThickness() + 1);
+        overlap = -(existingObject.getBorderOptions().getThickness() + 1);
       } else if (existingObject instanceof Pipe && objectToAppend instanceof Frame) {
-        overlap = -(objectToAppend.getFrameOptions().getBorderOptions().getThickness() + 1);
+        overlap = -(objectToAppend.getBorderOptions().getThickness() + 1);
       }
 
       let existingObjectXCenter = existingObject.getXCenter();
@@ -150,9 +136,9 @@ class Builder {
       objectToAppend = nodes[1];
       let overlap = 0;
       if (existingObject instanceof Frame && objectToAppend instanceof Pipe) {
-        overlap = existingObject.getFrameOptions().getBorderOptions().getThickness() + 1;
+        overlap = existingObject.getBorderOptions().getThickness() + 1;
       } else if (existingObject instanceof Pipe && objectToAppend instanceof Frame) {
-        overlap = objectToAppend.getFrameOptions().getBorderOptions().getThickness() + 1;
+        overlap = objectToAppend.getBorderOptions().getThickness() + 1;
       }
 
       let existingObjectXCenter = existingObject.getXCenter();
@@ -198,7 +184,7 @@ class Builder {
         previousY = centerY;
       }
     });
-    (nodes[0] as Frame).getFrameOptions().setPath(pathString);
+    (nodes[0] as Frame).setPath(pathString);
 
     return pathString;
   }
