@@ -3,6 +3,7 @@ import { FC, FunctionComponentElement, ReactNode } from "react";
 import { AssetProps } from "../Assets/AssetProps";
 import ElectricityBolt from "../Assets/ElectricityBolt";
 import { Bullet } from "../HeaderAnimation";
+import { LayerContainer } from "./Layers";
 import NodeObject from "./Node";
 import { BorderOptions, Position } from "./Types";
 
@@ -12,12 +13,7 @@ class Frame extends NodeObject {
   options: FrameOptions;
   pictureElement: FC<AssetProps>;
 
-  constructor(
-    id: string,
-    options?: FrameOptions,
-    positionObject?: Position,
-    pictureElement?: FC<AssetProps>
-  ) {
+  constructor(id: string, options?: FrameOptions, positionObject?: Position, pictureElement?: FC<AssetProps>) {
     if (!options) {
       options = new FrameOptions();
     }
@@ -31,18 +27,9 @@ class Frame extends NodeObject {
   */
   getNode() {
     let PicElement = this.pictureElement;
-    let top =
-      this.getTopOffset() === undefined
-        ? undefined
-        : this.getTopOffset() + "px";
-    let right =
-      this.getRightOffset() === undefined
-        ? undefined
-        : this.getRightOffset() + "px";
-    let left =
-      this.getLeftOffset() === undefined
-        ? undefined
-        : this.getLeftOffset() + "px";
+    let top = this.getTopOffsetInPx();
+    let right = this.getRightOffsetInPx();
+    let left = this.getLeftOffsetInPx();
 
     return (
       <Box
@@ -58,7 +45,7 @@ class Frame extends NodeObject {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        zIndex="-1"
+        zIndex="1"
         position="absolute"
       >
         <PicElement sizeInPx={this.options.getPictureSizeInPx()} />
@@ -78,11 +65,7 @@ export class FrameOptions {
   hasPath: boolean;
   path: string;
 
-  constructor(
-    size: FrameSize = "md",
-    backgroundColor: string = "#FF0000",
-    borderOptions?: BorderOptions
-  ) {
+  constructor(size: FrameSize = "md", backgroundColor: string = "#FF0000", borderOptions?: BorderOptions) {
     this.backgroundColor = backgroundColor;
     this.size = size;
     if (borderOptions === undefined) {

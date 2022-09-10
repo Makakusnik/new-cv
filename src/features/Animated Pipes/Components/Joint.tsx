@@ -18,36 +18,21 @@ class Joint extends NodeObject {
   getNode() {
     const after = {
       content: '""',
-      height: `${this.options.borderOptions?.getThickness()}px`,
-      width: `${this.options.borderOptions?.getThickness()}px`,
+      height: this.options.borderOptions?.getThicknessInPx(),
+      width: this.options.borderOptions?.getThicknessInPx(),
       bgColor: this.options.borderOptions?.getColor(),
       position: "absolute",
       bottom: 0,
       borderTopRightRadius: "50%",
     };
     const before = {
-      content: '""',
-      height: `${this.options.borderOptions?.getThickness()}px`,
-      width: `${this.options.borderOptions?.getThickness()}px`,
-      bgColor: this.options.borderOptions?.getColor(),
-      position: "absolute",
-      bottom: 0,
+      ...after,
       right: 0,
-      borderTopLeftRadius: "50%",
     };
 
-    let top =
-      this.getTopOffset() === undefined
-        ? undefined
-        : this.getTopOffset() + "px";
-    let right =
-      this.getRightOffset() === undefined
-        ? undefined
-        : this.getRightOffset() + "px";
-    let left =
-      this.getLeftOffset() === undefined
-        ? undefined
-        : this.getLeftOffset() + "px";
+    let top = this.getTopOffsetInPx();
+    let right = this.getRightOffsetInPx();
+    let left = this.getLeftOffsetInPx();
 
     let borderAttributes, additionalBoxAttributes;
     if (this.options.type === "knee") {
@@ -78,15 +63,6 @@ class Joint extends NodeObject {
 
     return (
       <Box
-        /*_after={{
-        content: '""',
-        height: "4px",
-        width: "4px",
-        bgColor: "primary.700",
-        position: "absolute",
-        bottom: 0,
-        borderTopRightRadius: "50%",
-        }}*/
         key={this.id}
         position="absolute"
         bgColor={this.options.getBackgroundColor()}
@@ -100,9 +76,7 @@ class Joint extends NodeObject {
         {...borderAttributes}
         borderColor={this.options.borderOptions?.getColor()}
       >
-        {this.options.type === "cross" && (
-          <Box position="relative" {...additionalBoxAttributes}></Box>
-        )}
+        {this.options.type === "cross" && <Box position="relative" {...additionalBoxAttributes}></Box>}
       </Box>
     );
   }

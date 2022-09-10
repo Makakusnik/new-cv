@@ -1,11 +1,7 @@
 import { border, Box } from "@chakra-ui/react";
 import { FC, FunctionComponentElement, ReactNode } from "react";
-import { AssetProps } from "../Assets/AssetProps";
-import ElectricityBolt from "../Assets/ElectricityBolt";
 import NodeObject from "./Node";
 import { BorderOptions, Position } from "./Types";
-
-type FrameSize = "sm" | "md" | "lg" | "xl";
 
 class Pipe extends NodeObject {
   options: PipeOptions;
@@ -29,31 +25,22 @@ class Pipe extends NodeObject {
     TODO Comment stuff
   */
   getNode() {
-    let top =
-      this.getTopOffset() === undefined
-        ? undefined
-        : this.getTopOffset() + "px";
-    let right =
-      this.getRightOffset() === undefined
-        ? undefined
-        : this.getRightOffset() + "px";
-    let left =
-      this.getLeftOffset() === undefined
-        ? undefined
-        : this.getLeftOffset() + "px";
+    let top = this.getTopOffsetInPx();
+    let right = this.getRightOffsetInPx();
+    let left = this.getLeftOffsetInPx();
 
     let height, width, borderAttributes;
     if (this.options.orientation === "horizontal") {
       borderAttributes = {
-        borderTop: `${this.options.borderOptions?.getThickness()}px ${this.options.borderOptions?.getType()}`,
-        borderBottom: `${this.options.borderOptions?.getThickness()}px ${this.options.borderOptions?.getType()}`,
+        borderTop: this.options.borderOptions?.getBorderString(),
+        borderBottom: this.options.borderOptions?.getBorderString(),
       };
       height = this.options.thickness + "px";
       width = this.options.length + "px";
     } else {
       borderAttributes = {
-        borderRight: `${this.options.borderOptions?.getThickness()}px ${this.options.borderOptions?.getType()}`,
-        borderLeft: `${this.options.borderOptions?.getThickness()}px ${this.options.borderOptions?.getType()}`,
+        borderRight: this.options.borderOptions?.getBorderString(),
+        borderLeft: this.options.borderOptions?.getBorderString(),
       };
       height = this.options.length + "px";
       width = this.options.thickness + "px";
@@ -68,9 +55,7 @@ class Pipe extends NodeObject {
         top={top}
         right={right}
         left={left}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
+        zIndex="2"
         position="absolute"
         {...borderAttributes}
         borderColor={this.options.borderOptions?.getColor()}

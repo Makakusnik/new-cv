@@ -1,14 +1,10 @@
-import { throws } from "assert";
-import { Position, VerticalPoints } from "./Types";
+import { Position } from "./Types";
 
 class NodeObject {
   id: string;
   top;
-  topCenter;
   right;
-  rightCenter;
   left;
-  leftCenter;
   width: number;
   height: number;
 
@@ -17,36 +13,39 @@ class NodeObject {
     this.width = width;
     this.height = height;
     if (position) {
-      if (position.top) {
-        this.top = position.top;
-        this.topCenter = position.top + height / 2;
-      } else {
-        this.top = 0;
-        this.topCenter = this.top + height / 2;
-      }
+      this.top = position.top;
       if (position.left) {
         this.left = position.left;
-        this.leftCenter = position.left + width / 2;
       } else if (position.right) {
         this.right = position.right;
-        this.rightCenter = position.right - width / 2;
       }
     } else {
       this.top = 0;
-      this.topCenter = this.top + height / 2;
     }
   }
 
-  getTopOffset(): number | undefined {
+  getTopOffset(): number {
     return this.top;
+  }
+
+  getTopOffsetInPx(): string {
+    return `${this.top}px`;
   }
 
   getRightOffset(): number | undefined {
     return this.right;
   }
 
+  getRightOffsetInPx(): string | undefined {
+    return this.right ? `${this.right}px` : undefined;
+  }
+
   getLeftOffset(): number | undefined {
     return this.left;
+  }
+
+  getLeftOffsetInPx(): string | undefined {
+    return this.left ? `${this.left}px` : undefined;
   }
 
   getYStart(): number {
