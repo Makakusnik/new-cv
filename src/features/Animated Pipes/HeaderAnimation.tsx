@@ -10,22 +10,43 @@ import Frame, { FrameOptionsType } from "./Components/Frame";
 import { BorderOptions, BorderOptionsType } from "./Components/Types";
 import Pipe, { PipeOptionsType } from "./Components/Pipe";
 import Joint, { JointOptionsType } from "./Components/Joint";
+import NodeObjectFactory from "./Builder/NodeFactory";
 
 const HeaderAnimation = () => {
   const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
 
-  let borderDefaultOptions: BorderOptionsType = { thickness: 4, type: "solid", color: primary700, overlap: 4 };
-  let frameDefaultOptions: FrameOptionsType = {
+  let defaultBorderOptions: BorderOptionsType = { thickness: 4, type: "solid", color: primary700, overlap: 4 };
+  let defaultJointOptions: JointOptionsType = {
+    backgroundColor: primary500,
+    thickness: 18,
+  };
+  let defaultFrameOptions: FrameOptionsType = {
+    backgroundColor: primary600,
+    size: "md",
+  };
+  let defaultPipeOptions: PipeOptionsType = {
+    backgroundColor: primary600,
+    thickness: 18,
+  };
+
+  let mainFrameOptions: FrameOptionsType = {
     size: "xl",
     backgroundColor: primary600,
-    borderOptions: borderDefaultOptions,
+    borderOptions: defaultBorderOptions,
   };
   let pipeDefaultOptions: PipeOptionsType = {
     thickness: 18,
     length: 50,
     backgroundColor: primary600,
-    borderOptions: borderDefaultOptions,
+    borderOptions: defaultBorderOptions,
   };
+
+  const factory = new NodeObjectFactory(
+    defaultBorderOptions,
+    defaultJointOptions,
+    defaultFrameOptions,
+    defaultPipeOptions
+  );
 
   let horizontalPipeOptions: PipeOptionsType = {
     ...pipeDefaultOptions,
@@ -36,81 +57,77 @@ const HeaderAnimation = () => {
     orientation: "vertical",
   };
 
-  let builder = new Builder(45, frameDefaultOptions);
-  let frameOptionss: FrameOptionsType = { backgroundColor: "white" };
-  let frame2 = new Frame("fr1", frameOptionss);
+  let builder = new Builder(45, mainFrameOptions);
+  // Vertical Pipes
 
-  let pipe1 = new Pipe("pipe1", horizontalPipeOptions);
-  let pipe2 = new Pipe("pipe2", horizontalPipeOptions);
-  let pipe3 = new Pipe("pipe3", horizontalPipeOptions);
-  let pipe4 = new Pipe("pipe4", verticalPipeOptions);
-  let pipe7 = new Pipe("pipe7", horizontalPipeOptions);
-  let pipe30V = new Pipe("pipe30V", verticalPipeOptions);
+  let leftUp1Pipe = factory.createVerticalPipe(30);
+  let leftUp4Pipe = factory.createVerticalPipe(100);
+  let downPipe = factory.createVerticalPipe(30);
+  let downFrame1Pipe = factory.createVerticalPipe(30);
+  let downFrame2Pipe = factory.createVerticalPipe(30);
+  let downFrame3Pipe = factory.createVerticalPipe(30);
 
-  let TJointOptions: JointOptionsType = {
-    backgroundColor: primary500,
-    borderOptions: borderDefaultOptions,
-    rotation: 90,
-    thickness: 18,
-    type: "T",
-  };
+  // Horizontal Pipes
 
-  let KneeJointOptions: JointOptionsType = {
-    backgroundColor: primary500,
-    borderOptions: borderDefaultOptions,
-    rotation: 90,
-    thickness: 18,
-    type: "knee",
-  };
+  let left1Pipe = factory.createHorizontalPipe(10);
+  let left2Pipe = factory.createHorizontalPipe(25);
+  let leftUp2Pipe = factory.createHorizontalPipe(50);
+  let leftUp3Pipe = factory.createHorizontalPipe(30);
+  let pipeFromJoint1 = factory.createHorizontalPipe(50);
+  let pipeFromJoint2 = factory.createHorizontalPipe(50);
+  let pipeFromJoint3 = factory.createHorizontalPipe(50);
 
-  let CrossJointOptions: JointOptionsType = {
-    backgroundColor: primary500,
-    borderOptions: borderDefaultOptions,
-    rotation: 0,
-    thickness: 18,
-    type: "cross",
-  };
+  // T Joints
 
-  let tJoint = new Joint("tJoint1", { ...TJointOptions, rotation: 0 });
+  let left1Joint = factory.createTJoint(0);
+  let left4Joint = factory.createTJoint(0);
+  let jointFromFrame1 = factory.createTJoint(90);
+  let jointFromFrame2 = factory.createTJoint(90);
+  let jointFromFrame3 = factory.createTJoint(90);
 
-  let kneeJoint2 = new Joint("knee1", KneeJointOptions);
+  // Knee Joints
 
-  let kneeJoint3 = new Joint("knee3", { ...KneeJointOptions, rotation: 180 });
+  let left2Joint = factory.createKneeJoint(180);
+  let left3Joint = factory.createKneeJoint(0);
 
-  let kneeJoint4 = new Joint("knee4", KneeJointOptions);
+  // Frames
 
-  let crossJoint4 = new Joint("cross", CrossJointOptions);
+  let frame1 = factory.createFrame("md");
+  let frame2 = factory.createFrame("sm");
+  let frame3 = factory.createFrame("sm");
+  let frame4 = factory.createFrame("sm");
 
   builder.getMainFrame();
 
+  builder.appendLeft(builder.getNodes()[0], left1Pipe).appendLeft(left1Joint).appendBottom(downPipe);
   builder
-    .appendLeft(builder.getNodes()[0], pipe1)
-    ?.appendLeft(frame2)
-    ?.appendLeft(pipe2)
-    ?.appendLeft(tJoint)
-    ?.appendLeft(pipe3);
-  builder
-    .appendBottom(tJoint, pipe4)
-    .appendBottom(kneeJoint2)
-    .appendLeft(pipe7)
-    .appendLeft(kneeJoint3)
-    .appendUp(pipe30V)
-    ?.appendUp(kneeJoint4)
-    ?.appendLeft(crossJoint4);
+    .appendLeft(left1Joint, left2Pipe)
+    .appendLeft(left2Joint)
+    .appendUp(leftUp1Pipe)
+    .appendUp(left3Joint)
+    .appendLeft(leftUp2Pipe)
+    .appendLeft(left4Joint)
+    .appendLeft(leftUp3Pipe)
+    .appendLeft(frame1)
+    .appendBottom(downFrame1Pipe)
+    .appendBottom(jointFromFrame1)
+    .appendBottom(downFrame2Pipe)
+    .appendBottom(jointFromFrame2)
+    .appendBottom(downFrame3Pipe)
+    .appendBottom(jointFromFrame3);
 
-  let path = builder.buildPath(
-    builder.getNodes()[0],
-    pipe1,
-    frame2,
-    pipe2,
-    tJoint,
-    pipe4,
-    kneeJoint2,
-    pipe7,
-    kneeJoint3,
-    pipe30V,
-    kneeJoint4
-  );
+  builder.appendLeft(jointFromFrame1, pipeFromJoint1);
+  builder.appendLeft(jointFromFrame2, pipeFromJoint2);
+  builder.appendLeft(jointFromFrame3, pipeFromJoint3);
+
+  builder.appendLeft(pipeFromJoint1, frame2);
+  builder.appendLeft(pipeFromJoint2, frame3);
+  builder.appendLeft(pipeFromJoint3, frame4);
+
+  builder.appendBottom(left4Joint, leftUp4Pipe);
+
+  builder.buildPath();
+
   return (
     <Container
       id="animation-root"
@@ -124,27 +141,9 @@ const HeaderAnimation = () => {
     >
       <LayerContainer top="0px">
         {builder.getNodes().map((node) => {
-          console.log(node);
-
           return node.getNode();
         })}
-        {path && <Bullet path={path} />}
       </LayerContainer>
-      <button
-        style={{
-          position: "absolute",
-          top: "100px",
-          left: "100px",
-          backgroundColor: "gray",
-          padding: "8px 16px",
-        }}
-        onClick={() => {
-          console.log(`Y S: ${frame2.getYStart()} C: ${frame2.getYCenter()} E: ${frame2.getYEnd()}`);
-          console.log(`X S: ${frame2.getXStart()} C: ${frame2.getXCenter()} E: ${frame2.getXEnd()}`);
-        }}
-      >
-        klik me
-      </button>
     </Container>
   );
 };
