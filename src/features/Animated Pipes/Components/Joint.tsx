@@ -117,7 +117,7 @@ class Joint extends NodeObject {
 
 type JointType = "knee" | "T" | "cross";
 
-type JointRotation = 0 | 90 | 180 | 270;
+export type JointRotation = 0 | 90 | 180 | 270;
 
 export type JointOptionsType = {
   thickness?: number;
