@@ -30,7 +30,7 @@ class Builder {
     return this.mainFrame;
   }
 
-  appendLeft(...nodes: NodeType[]) {
+  appendLeft(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
       existingObject = nodes[0];
@@ -63,7 +63,7 @@ class Builder {
     }
   }
 
-  appendRight(...nodes: NodeType[]) {
+  appendRight(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
       existingObject = nodes[0];
@@ -96,7 +96,7 @@ class Builder {
     }
   }
 
-  appendBottom(...nodes: NodeType[]) {
+  appendBottom(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
       existingObject = nodes[0];
@@ -129,7 +129,7 @@ class Builder {
     }
   }
 
-  appendUp(...nodes: NodeType[]) {
+  appendUp(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
       existingObject = nodes[0];
@@ -151,6 +151,7 @@ class Builder {
         this.lastAppended = null;
       }
       this.lastAppended = objectToAppend;
+      return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
@@ -162,6 +163,7 @@ class Builder {
   }
 
   buildPath(...nodes: NodeObject[]): string {
+    if (nodes.length === 0) return "";
     let pathString = "";
     let previousX: number, previousY: number;
     nodes.forEach((node, index) => {
