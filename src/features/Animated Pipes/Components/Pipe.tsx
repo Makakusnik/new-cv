@@ -16,7 +16,14 @@ class Pipe extends NodeObject {
   orientation?: PipeOrientation;
   backgroundColor?: string;
 
-  constructor(id: string, options: PipeOptionsType, positionObject?: Position) {
+  /**
+   * Represents Pipe object.
+   *
+   * @param id - ID so React stops bitching about unique keys.
+   * @param options - Object options `backgroundColor`, `borderOptions`, `length`, `thickness`,`orientation`.
+   * @param position - Optional, object position.
+   */
+  constructor(id: string, options: PipeOptionsType, position?: Position) {
     options = {
       length: Pipe.DEFAULT_LENGTH,
       thickness: Pipe.DEFAULT_THICKNESS,
@@ -26,7 +33,7 @@ class Pipe extends NodeObject {
       borderOptions: { ...Pipe.DEFAULT_BORDER_OPTIONS, ...options.borderOptions },
     };
 
-    super(id, Pipe.getPipeDimension(options).width, Pipe.getPipeDimension(options).height, positionObject);
+    super(id, Pipe.getPipeDimension(options).width, Pipe.getPipeDimension(options).height, position);
     this.borderOptions = new BorderOptions(options.borderOptions!);
     this.orientation = options.orientation;
     this.thickness = options.thickness;
@@ -34,9 +41,48 @@ class Pipe extends NodeObject {
     this.length = options.length;
   }
 
-  /* 
-    TODO Comment stuff
-  */
+  getLength(): number {
+    return this.length!;
+  }
+
+  getLengthInPx(): string {
+    return `${this.getLength()}px`;
+  }
+
+  getThickness(): number {
+    return this.thickness!;
+  }
+  getThicknessInPx(): string {
+    return `${this.getThickness()}px`;
+  }
+
+  /**
+   * Determines what dimensions will this instance of `Pipe` have based on `orientation`,`length`,`thickness`.
+   *
+   * @param options - `PipeOptionsType` parameter.
+   * @returns Object with `width` and `height` properties.
+   */
+  static getPipeDimension(options: PipeOptionsType): PipeDimensions {
+    let width: number, height: number;
+    switch (options.orientation) {
+      case "horizontal":
+        width = options.length!;
+        height = options.thickness!;
+        return { width, height };
+      case "vertical":
+        width = options.thickness!;
+        height = options.length!;
+        return { width, height };
+      default:
+        return { width: 150, height: 150 };
+    }
+  }
+
+  /**
+   * Creates Box element from Chakra.UI and sets all needed attributes on it.
+   *
+   * @returns `JSX.Element` with all attributes and optional picture.
+   */
   getNode() {
     let top = this.getTopOffsetInPx();
     let right = this.getRightOffsetInPx();
@@ -73,37 +119,6 @@ class Pipe extends NodeObject {
         borderColor={this.borderOptions?.getColor()}
       />
     );
-  }
-
-  getLength(): number {
-    return this.length!;
-  }
-
-  getLengthInPx(): string {
-    return `${this.getLength()}px`;
-  }
-
-  getThickness(): number {
-    return this.thickness!;
-  }
-  getThicknessInPx(): string {
-    return `${this.getThickness()}px`;
-  }
-
-  static getPipeDimension(options: PipeOptionsType): PipeDimensions {
-    let width: number, height: number;
-    switch (options.orientation) {
-      case "horizontal":
-        width = options.length!;
-        height = options.thickness!;
-        return { width, height };
-      case "vertical":
-        width = options.thickness!;
-        height = options.length!;
-        return { width, height };
-      default:
-        return { width: 150, height: 150 };
-    }
   }
 }
 
