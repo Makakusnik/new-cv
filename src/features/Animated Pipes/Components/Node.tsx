@@ -2,12 +2,20 @@ import { Position } from "./Types";
 
 class NodeObject {
   id: string;
-  top;
-  right;
-  left;
+  top: number;
+  right?: number;
+  left?: number;
   width: number;
   height: number;
 
+  /**
+   * Base class for `NodeType` objects.
+   *
+   * @param id - ID so React stops bitching about unique keys.
+   * @param width - Object width.
+   * @param height - Object height.
+   * @param position - Optional, object position.
+   */
   constructor(id: string, width: number, height: number, position?: Position) {
     this.id = id;
     this.width = width;
@@ -24,29 +32,34 @@ class NodeObject {
     }
   }
 
-  getTopOffset(): number {
-    return this.top;
+  // POSITION SETTERS
+
+  setXStart(value: number) {
+    this.left = undefined;
+    this.right = -value - this.width;
   }
 
-  getTopOffsetInPx(): string {
-    return `${this.top}px`;
+  setXCenter(value: number) {
+    this.left = undefined;
+    this.right = -value - this.width / 2;
   }
 
-  getRightOffset(): number | undefined {
-    return this.right;
+  setXEnd(value: number) {
+    this.left = undefined;
+    this.right = -value;
   }
 
-  getRightOffsetInPx(): string | undefined {
-    return this.right ? `${this.right}px` : undefined;
+  setYStart(value: number) {
+    this.top = value;
+  }
+  setYCenter(value: number) {
+    this.top = value - this.height / 2;
+  }
+  setYEnd(value: number) {
+    this.top = value - this.height;
   }
 
-  getLeftOffset(): number | undefined {
-    return this.left;
-  }
-
-  getLeftOffsetInPx(): string | undefined {
-    return this.left ? `${this.left}px` : undefined;
-  }
+  // POSITION GETTERS
 
   getYStart(): number {
     return this.top;
@@ -87,29 +100,30 @@ class NodeObject {
     return 0;
   }
 
-  // TODO prerob undefined na pouzivanie jednotnej strany
-  setXStart(value: number) {
-    this.left = undefined;
-    this.right = -value - this.width;
-  }
-  setXCenter(value: number) {
-    this.left = undefined;
-    this.right = -value - this.width / 2;
+  // GETTERS
+
+  getTopOffset(): number {
+    return this.top;
   }
 
-  setXEnd(value: number) {
-    this.left = undefined;
-    this.right = -value;
+  getTopOffsetInPx(): string {
+    return `${this.top}px`;
   }
 
-  setYStart(value: number) {
-    this.top = value;
+  getRightOffset(): number | undefined {
+    return this.right;
   }
-  setYCenter(value: number) {
-    this.top = value - this.height / 2;
+
+  getRightOffsetInPx(): string | undefined {
+    return this.right ? `${this.right}px` : undefined;
   }
-  setYEnd(value: number) {
-    this.top = value - this.height;
+
+  getLeftOffset(): number | undefined {
+    return this.left;
+  }
+
+  getLeftOffsetInPx(): string | undefined {
+    return this.left ? `${this.left}px` : undefined;
   }
 
   getNode() {
