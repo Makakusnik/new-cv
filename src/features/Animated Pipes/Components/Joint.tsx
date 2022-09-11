@@ -16,7 +16,14 @@ class Joint extends NodeObject {
   backgroundColor?: string;
   borderOptions: BorderOptions;
 
-  constructor(id: string, options: JointOptionsType, positionObject?: Position) {
+  /**
+   * Represents Joint object.
+   *
+   * @param id - ID so React stops bitching about unique keys.
+   * @param options - Object options `backgroundColor`, `thickness`, `borderOptions`, `rotation`, `type`.
+   * @param position - Optional, object position.
+   */
+  constructor(id: string, options: JointOptionsType, position?: Position) {
     options = {
       thickness: Joint.DEFAULT_THICKNESS,
       rotation: Joint.DEFAULT_ROTATION,
@@ -25,7 +32,7 @@ class Joint extends NodeObject {
       ...options,
       borderOptions: { ...Joint.DEFAULT_BORDER_OPTIONS, ...options.borderOptions },
     };
-    super(id, options.thickness!, options.thickness!, positionObject);
+    super(id, options.thickness!, options.thickness!, position);
     this.rotation = options.rotation;
     this.type = options.type;
     this.backgroundColor = options.backgroundColor;
@@ -33,9 +40,13 @@ class Joint extends NodeObject {
     this.borderOptions = new BorderOptions(options.borderOptions!);
   }
 
-  /* 
-    TODO Comment stuff
-  */
+  // GETTERS
+
+  /**
+   * Creates Box element from Chakra.UI and sets all needed attributes on it.
+   *
+   * @returns `JSX.Element` with all attributes and optional picture.
+   */
   getNode() {
     const after = {
       content: '""',
