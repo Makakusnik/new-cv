@@ -3,33 +3,35 @@ import { MutableRefObject, ReactNode, RefObject } from "react";
 import Frame, { FrameOptionsType } from "../Components/Frame";
 import NodeObject from "../Components/Node";
 import Pipe from "../Components/Pipe";
-import { NodeType } from "../Components/Types";
+import { NodeType, PositionType } from "../Components/Types";
 
 class Builder {
   private mainFrame: Frame;
   private nodes: Array<NodeType>;
-  private lastAppended: NodeType | null;
-  mainFrameOptions;
-  anchorPoint: number;
+  private lastAppended: NodeType | null = null;
 
-  constructor(anchorPoint: number, mainFrameOptions?: FrameOptionsType) {
+  /**
+   * Creates builder which can be used for building pipe structure through chain functions.
+   *
+   * @param anchorPosition - Sets position for main frame.
+   * @param mainFrameOptions - Optional, sets options for main frame.
+   */
+  constructor(anchorPosition: PositionType, mainFrameOptions?: FrameOptionsType) {
     this.nodes = new Array<NodeType>();
-    this.anchorPoint = anchorPoint;
-    this.lastAppended = null;
-
-    this.mainFrameOptions = mainFrameOptions;
-
-    this.mainFrame = new Frame("main-node", this.mainFrameOptions, {
-      top: this.anchorPoint,
-    });
+    this.mainFrame = new Frame("main-node", mainFrameOptions, { ...anchorPosition });
     this.nodes.push(this.mainFrame);
   }
 
-  //TODO spravit aby mohol byt anchor aj v lavo alebo v pravo
-  getMainFrame(): Frame {
-    return this.mainFrame;
-  }
-
+  /**
+   * Chain reaction for appending `NodeType` object to the left of another `NodeType` object
+   *
+   * @remarks
+   * In case 2 parameters. First is existing object second one is object to append.
+   * In case 1 parameters. There is only object to append.
+   *
+   * @param nodes - Can take one or two `NodeType` objects.
+   * @returns Instance of this builder.
+   */
   appendLeft(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
@@ -63,6 +65,16 @@ class Builder {
     }
   }
 
+  /**
+   * Chain reaction for appending `NodeType` object to the right of another `NodeType` object
+   *
+   * @remarks
+   * In case 2 parameters. First is existing object second one is object to append.
+   * In case 1 parameters. There is only object to append.
+   *
+   * @param nodes - Can take one or two `NodeType` objects.
+   * @returns Instance of this builder.
+   */
   appendRight(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
@@ -96,6 +108,16 @@ class Builder {
     }
   }
 
+  /**
+   * Chain reaction for appending `NodeType` object to the bottom of another `NodeType` object
+   *
+   * @remarks
+   * In case 2 parameters. First is existing object second one is object to append.
+   * In case 1 parameters. There is only object to append.
+   *
+   * @param nodes - Can take one or two `NodeType` objects.
+   * @returns Instance of this builder.
+   */
   appendBottom(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
@@ -129,7 +151,17 @@ class Builder {
     }
   }
 
-  appendUp(...nodes: NodeType[]): this {
+  /**
+   * Chain reaction for appending `NodeType` object to the top of another `NodeType` object
+   *
+   * @remarks
+   * In case 2 parameters. First is existing object second one is object to append.
+   * In case 1 parameters. There is only object to append.
+   *
+   * @param nodes - Can take one or two `NodeType` objects.
+   * @returns Instance of this builder.
+   */
+  appendTop(...nodes: NodeType[]): this {
     let existingObject: NodeType, objectToAppend: NodeType;
     if (nodes[1]) {
       existingObject = nodes[0];
@@ -155,14 +187,20 @@ class Builder {
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
-        this.appendUp(this.lastAppended, objectToAppend);
+        this.appendTop(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
       }
       return this;
     }
   }
 
-  buildPath(...nodes: NodeObject[]): string {
+  /**
+   * Creates SVG-like path which leads from center of frist `NodeType` parameter through center of objects in between the first and last one to the center of the last one.
+   *
+   * @param nodes - Array of `NodeType` objects.
+   * @returns SVG-like path.
+   */
+  buildPath(...nodes: NodeType[]): string {
     if (nodes.length === 0) return "";
     let pathString = "";
     let previousX: number, previousY: number;
@@ -191,8 +229,20 @@ class Builder {
     return pathString;
   }
 
+  /**
+   * Getter of nodes array.
+   * @returns Array of `NodeType` objects.
+   */
   getNodes(): NodeType[] {
     return this.nodes;
+  }
+
+  /**
+   * Getter for main frame.
+   * @returns main frame.
+   */
+  getMainFrame(): Frame {
+    return this.mainFrame;
   }
 }
 
