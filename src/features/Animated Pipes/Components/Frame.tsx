@@ -5,7 +5,7 @@ import ElectricityBolt from "../Assets/ElectricityBolt";
 import NodeObject from "./Node";
 import { BorderOptions, BorderOptionsType, Position } from "./Types";
 
-type FrameSize = "sm" | "md" | "lg" | "xl";
+export type FrameSize = "sm" | "md" | "lg" | "xl";
 
 class Frame extends NodeObject {
   private static DEFAULT_SIZE: FrameSize = "md";
