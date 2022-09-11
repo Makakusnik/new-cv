@@ -17,7 +17,15 @@ class Frame extends NodeObject {
   backgroundColor?: string;
   path: string;
 
-  constructor(id: string, options?: FrameOptionsType, positionObject?: Position, pictureElement?: FC<AssetProps>) {
+  /**
+   * Represents Frame object.
+   *
+   * @param id - ID so React stops bitching about unique keys.
+   * @param options - Object options `backgroundColor`, `size`, `borderOptions`.
+   * @param position - Optional, object position.
+   * @param pictureElement - Optional, picture inside frame.
+   */
+  constructor(id: string, options?: FrameOptionsType, position?: Position, pictureElement?: FC<AssetProps>) {
     options = {
       size: Frame.DEFAULT_SIZE,
       backgroundColor: Frame.DEFAULT_BACKGROUND_COLOR,
@@ -25,7 +33,7 @@ class Frame extends NodeObject {
       borderOptions: { ...Frame.DEFAULT_BORDER_OPTIONS, ...options?.borderOptions },
     };
 
-    super(id, Frame.getSize(options.size!), Frame.getSize(options.size!), positionObject);
+    super(id, Frame.getSize(options.size!), Frame.getSize(options.size!), position);
     this.pictureElement = pictureElement || ElectricityBolt;
     this.backgroundColor = options.backgroundColor;
     this.size = options.size;
@@ -33,10 +41,12 @@ class Frame extends NodeObject {
     this.path = "";
   }
 
-  /* 
-    TODO Comment stuff
-  */
-  getNode() {
+  /**
+   * Creates Box element from Chakra.UI and sets all needed attributes on it.
+   *
+   * @returns `JSX.Element` with all attributes and optional picture.
+   */
+  getNode(): JSX.Element {
     let PicElement = this.pictureElement;
     let top = this.getTopOffsetInPx();
     let right = this.getRightOffsetInPx();
@@ -59,10 +69,12 @@ class Frame extends NodeObject {
         zIndex="1"
         position="absolute"
       >
-        <PicElement sizeInPx={this.getPictureSizeInPx()} />
+        {this.pictureElement !== undefined && <PicElement sizeInPx={this.getPictureSizeInPx()} />}
       </Box>
     );
   }
+
+  // GETTERS
 
   getSizeInPx(): string {
     return Frame.getSize(this.size!) + "px";
@@ -84,6 +96,15 @@ class Frame extends NodeObject {
     return this.borderOptions;
   }
 
+  // STATIC GETTERS
+
+  /**
+   * Determines what size will be returned based on switch statement.
+   * @remarks
+   * `sm = 40` ; `md = 60` ; `lg = 80` ; `xl = 100`
+   * @param value - `FrameSize` parameter.
+   * @returns size of frame.
+   */
   static getSize(value: FrameSize): number {
     switch (value) {
       case "sm":
@@ -99,6 +120,13 @@ class Frame extends NodeObject {
     }
   }
 
+  /**
+   * Determines what size of picture will be returned based on `FrameSize` parameter and switch statement.
+   * @remarks
+   * `sm = 20` ; `md = 30` ; `lg = 40` ; `xl = 50`
+   * @param value - `FrameSize` parameter.
+   * @returns size of picture.
+   */
   static getPictureSize(value: FrameSize): number {
     switch (value) {
       case "sm":
@@ -115,10 +143,10 @@ class Frame extends NodeObject {
   }
 }
 
-export interface FrameOptionsType {
+export type FrameOptionsType = {
   size?: FrameSize;
   borderOptions?: BorderOptionsType;
   backgroundColor?: string;
-}
+};
 
 export default Frame;
