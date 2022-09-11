@@ -6,10 +6,10 @@ import styled from "@emotion/styled";
 // My Imports
 import { LayerContainer } from "./Components/Layers";
 import Builder from "./Builder/Builder";
-import Frame, { FrameOptionsType } from "./Components/Frame";
-import { BorderOptions, BorderOptionsType } from "./Components/Types";
-import Pipe, { PipeOptionsType } from "./Components/Pipe";
-import Joint, { JointOptionsType } from "./Components/Joint";
+import { FrameOptionsType } from "./Components/Frame";
+import { BorderOptionsType } from "./Components/Types";
+import { PipeOptionsType } from "./Components/Pipe";
+import { JointOptionsType } from "./Components/Joint";
 import NodeObjectFactory from "./Builder/NodeFactory";
 
 const HeaderAnimation = () => {
@@ -34,12 +34,8 @@ const HeaderAnimation = () => {
     backgroundColor: primary600,
     borderOptions: defaultBorderOptions,
   };
-  let pipeDefaultOptions: PipeOptionsType = {
-    thickness: 18,
-    length: 50,
-    backgroundColor: primary600,
-    borderOptions: defaultBorderOptions,
-  };
+
+  // Factory instance
 
   const factory = new NodeObjectFactory(
     defaultBorderOptions,
@@ -48,16 +44,10 @@ const HeaderAnimation = () => {
     defaultPipeOptions
   );
 
-  let horizontalPipeOptions: PipeOptionsType = {
-    ...pipeDefaultOptions,
-    orientation: "horizontal",
-  };
-  let verticalPipeOptions: PipeOptionsType = {
-    ...pipeDefaultOptions,
-    orientation: "vertical",
-  };
+  // Builder instance
 
-  let builder = new Builder(45, mainFrameOptions);
+  let builder = new Builder({ top: 45 }, mainFrameOptions);
+
   // Vertical Pipes
 
   let leftUp1Pipe = factory.createVerticalPipe(30);
@@ -99,12 +89,12 @@ const HeaderAnimation = () => {
 
   builder.getMainFrame();
 
-  builder.appendLeft(builder.getNodes()[0], left1Pipe).appendLeft(left1Joint).appendBottom(downPipe);
+  builder.appendLeft(builder.getMainFrame(), left1Pipe).appendLeft(left1Joint).appendBottom(downPipe);
   builder
     .appendLeft(left1Joint, left2Pipe)
     .appendLeft(left2Joint)
-    .appendUp(leftUp1Pipe)
-    .appendUp(left3Joint)
+    .appendTop(leftUp1Pipe)
+    .appendTop(left3Joint)
     .appendLeft(leftUp2Pipe)
     .appendLeft(left4Joint)
     .appendLeft(leftUp3Pipe)
