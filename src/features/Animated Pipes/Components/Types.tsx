@@ -67,10 +67,4 @@ export class BorderOptions {
   }
 }
 
-export type PositionType = {
-  top: number;
-  left?: number;
-  right?: number;
-};
-
 export type NodeType = Frame | Pipe | Joint;
