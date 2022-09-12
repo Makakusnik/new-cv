@@ -16,20 +16,11 @@ class NodeObject {
    * @param height - Object height.
    * @param position - Optional, object position.
    */
-  constructor(id: string, width: number, height: number, position?: Position) {
+  constructor(id: string, width: number, height: number) {
     this.id = id;
     this.width = width;
     this.height = height;
-    if (position) {
-      this.top = position.top;
-      if (position.left) {
-        this.left = position.left;
-      } else if (position.right) {
-        this.right = position.right;
-      }
-    } else {
-      this.top = 0;
-    }
+    this.top = 0;
   }
 
   // POSITION SETTERS
