@@ -11,6 +11,9 @@ import { BorderOptionsType } from "./Components/Types";
 import { PipeOptionsType } from "./Components/Pipe";
 import { JointOptionsType } from "./Components/Joint";
 import NodeObjectFactory from "./Builder/NodeFactory";
+import { AnimationProperties } from "./Components/Types";
+import ElectricityBolt from "./Assets/ElectricityBolt";
+import YoutubeLogo from "./Assets/YoutubeLogo";
 
 const HeaderAnimation = () => {
   const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
@@ -56,6 +59,7 @@ const HeaderAnimation = () => {
   let downFrame1Pipe = factory.createVerticalPipe(30);
   let downFrame2Pipe = factory.createVerticalPipe(30);
   let downFrame3Pipe = factory.createVerticalPipe(30);
+  let downFrame4Pipe = factory.createVerticalPipe(30);
 
   // Horizontal Pipes
 
@@ -83,7 +87,8 @@ const HeaderAnimation = () => {
   // Frames
 
   let frame1 = factory.createFrame("md");
-  let frame2 = factory.createFrame("sm");
+  let frame2 = factory.createFrame("sm", ElectricityBolt, { color: primary700, filterColor: "yellow" });
+  let frame5 = factory.createFrame("lg", YoutubeLogo, { color: primary700, filterColor: "red" });
   let frame3 = factory.createFrame("sm");
   let frame4 = factory.createFrame("sm");
 
@@ -104,7 +109,9 @@ const HeaderAnimation = () => {
     .appendBottom(downFrame2Pipe)
     .appendBottom(jointFromFrame2)
     .appendBottom(downFrame3Pipe)
-    .appendBottom(jointFromFrame3);
+    .appendBottom(jointFromFrame3)
+    .appendBottom(downFrame4Pipe)
+    .appendBottom(frame5);
 
   builder.appendLeft(jointFromFrame1, pipeFromJoint1);
   builder.appendLeft(jointFromFrame2, pipeFromJoint2);
@@ -117,6 +124,68 @@ const HeaderAnimation = () => {
   builder.appendBottom(left4Joint, leftUp4Pipe);
 
   builder.buildPath();
+
+  let animationProperties: AnimationProperties = { left: 0, duration: 6000 };
+  builder.createAnimation(
+    animationProperties,
+    builder.getMainFrame(),
+    left1Pipe,
+    left1Joint,
+    left2Pipe,
+    left2Joint,
+    leftUp1Pipe,
+    left3Joint,
+    leftUp2Pipe,
+    left4Joint,
+    leftUp3Pipe,
+    frame1
+  );
+
+  builder.createAnimation(
+    { ...animationProperties, delay: 500, duration: 2000 },
+    frame1,
+    downFrame1Pipe,
+    jointFromFrame1,
+    downFrame2Pipe,
+    jointFromFrame2,
+    pipeFromJoint2,
+    frame3
+  );
+
+  builder.createAnimation(
+    { ...animationProperties, delay: 250, duration: 3000 },
+    frame1,
+    downFrame1Pipe,
+    jointFromFrame1,
+    pipeFromJoint1,
+    frame2
+  );
+
+  builder.createAnimation(
+    { ...animationProperties, delay: 600, duration: 1400 },
+    frame1,
+    downFrame1Pipe,
+    jointFromFrame1,
+    downFrame2Pipe,
+    jointFromFrame2,
+    downFrame3Pipe,
+    jointFromFrame3,
+    pipeFromJoint3,
+    frame4
+  );
+
+  builder.createAnimation(
+    { ...animationProperties, backgroundColor: "yellow", delay: 0, duration: 2000 },
+    frame1,
+    downFrame1Pipe,
+    jointFromFrame1,
+    downFrame2Pipe,
+    jointFromFrame2,
+    downFrame3Pipe,
+    jointFromFrame3,
+    downFrame4Pipe,
+    frame5
+  );
 
   return (
     <Container
@@ -133,6 +202,7 @@ const HeaderAnimation = () => {
         {builder.getNodes().map((node) => {
           return node.getNode();
         })}
+        {builder.getAnimations().map((anim) => anim)}
       </LayerContainer>
     </Container>
   );
