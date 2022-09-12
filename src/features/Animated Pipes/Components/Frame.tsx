@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import { FC } from "react";
-import { AssetProps } from "../Assets/AssetProps";
 import ElectricityBolt from "../Assets/ElectricityBolt";
 import NodeObject from "./Node";
-import { BorderOptions, BorderOptionsType, Position } from "./Types";
+import { BorderOptions, BorderOptionsType, PictureOptions } from "./Types";
 
 export type FrameSize = "sm" | "md" | "lg" | "xl";
 
@@ -11,7 +10,12 @@ class Frame extends NodeObject {
   private static DEFAULT_SIZE: FrameSize = "md";
   private static DEFAULT_BACKGROUND_COLOR: string = "blue";
   private static DEFAULT_BORDER_OPTIONS: BorderOptionsType = { color: "red", overlap: 4, thickness: 4, type: "solid" };
-  pictureElement: FC<AssetProps>;
+  private static DEFAULT_PICTURE_OPTIONS: PictureOptions = {
+    color: "red",
+    filterColor: "purple",
+  };
+  pictureElement: (props: any) => JSX.Element;
+  pictureOptions: PictureOptions;
   borderOptions: BorderOptions;
   size?: FrameSize;
   backgroundColor?: string;
@@ -22,10 +26,14 @@ class Frame extends NodeObject {
    *
    * @param id - ID so React stops bitching about unique keys.
    * @param options - Object options `backgroundColor`, `size`, `borderOptions`.
-   * @param position - Optional, object position.
    * @param pictureElement - Optional, picture inside frame.
    */
-  constructor(id: string, options?: FrameOptionsType, position?: Position, pictureElement?: FC<AssetProps>) {
+  constructor(
+    id: string,
+    options?: FrameOptionsType,
+    pictureElement?: (props: any) => JSX.Element,
+    pictureOptions?: PictureOptions
+  ) {
     options = {
       size: Frame.DEFAULT_SIZE,
       backgroundColor: Frame.DEFAULT_BACKGROUND_COLOR,
@@ -33,12 +41,13 @@ class Frame extends NodeObject {
       borderOptions: { ...Frame.DEFAULT_BORDER_OPTIONS, ...options?.borderOptions },
     };
 
-    super(id, Frame.getSize(options.size!), Frame.getSize(options.size!), position);
+    super(id, Frame.getSize(options.size!), Frame.getSize(options.size!));
     this.pictureElement = pictureElement || ElectricityBolt;
     this.backgroundColor = options.backgroundColor;
     this.size = options.size;
     this.borderOptions = new BorderOptions(options.borderOptions!);
     this.path = "";
+    this.pictureOptions = { ...Frame.DEFAULT_PICTURE_OPTIONS, ...pictureOptions };
   }
 
   /**
@@ -69,7 +78,9 @@ class Frame extends NodeObject {
         zIndex="1"
         position="absolute"
       >
-        {this.pictureElement !== undefined && <PicElement sizeInPx={this.getPictureSizeInPx()} />}
+        {this.pictureElement !== undefined && (
+          <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
+        )}
       </Box>
     );
   }
