@@ -19,27 +19,9 @@ export const Header = () => {
       bgGradient="linear(to-br,primary.500,primary.300)"
     >
       <HeaderAnimation />
-      <Flex
-        position="relative"
-        alignItems="center"
-        justifyContent="center"
-        paddingBottom="32px"
-        w="450px"
-        h="100%"
-      >
-        <Flex
-          w="fit-content"
-          direction={"column"}
-          justifyContent="center"
-          alignItems={"center"}
-        >
-          <Box
-            position="relative"
-            width="170px"
-            height="193px"
-            borderRadius="xl"
-            overflow="hidden"
-          >
+      <Flex position="relative" alignItems="center" justifyContent="center" paddingBottom="32px" w="450px" h="100%">
+        <Flex w="fit-content" direction={"column"} justifyContent="center" alignItems={"center"}>
+          <Box position="relative" width="170px" height="193px" borderRadius="xl" overflow="hidden">
             <Image
               src="/MarekFodor.png"
               alt="Marek Fodor"
@@ -48,21 +30,10 @@ export const Header = () => {
               objectFit="contain"
             />
           </Box>
-          <Text
-            fontFamily="Poppins"
-            marginTop="16px"
-            fontSize="36"
-            fontWeight="200"
-            w="fit-content"
-          >
-            Hi, I'm <strong style={{ fontWeight: "400" }}>Marek Fodor</strong>
+          <Text fontFamily="Poppins" marginTop="16px" fontSize="36" fontWeight="200" w="fit-content">
+            Hi, I&apos;m <strong style={{ fontWeight: "400" }}>Marek Fodor</strong>
           </Text>
-          <Text
-            fontFamily="Poppins"
-            fontSize="24"
-            fontWeight="200"
-            w="fit-content"
-          >
+          <Text fontFamily="Poppins" fontSize="24" fontWeight="200" w="fit-content">
             Junior Frontend Developer
           </Text>
         </Flex>
