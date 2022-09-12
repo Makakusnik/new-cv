@@ -1,4 +1,5 @@
-import Frame from "./Frame";
+import { SerializedStyles } from "@emotion/react";
+import Frame, { FrameSize } from "./Frame";
 import Joint from "./Joint";
 import Pipe from "./Pipe";
 
@@ -68,3 +69,39 @@ export class BorderOptions {
 }
 
 export type NodeType = Frame | Pipe | Joint;
+
+export type CubicBezier = { p1: number; p2: number; p3: number; p4: number };
+
+export type TimingFunction = "ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear" | CubicBezier;
+
+export type AnimationProperties = {
+  top?: number;
+  left?: number;
+  right?: number;
+  bottom?: number;
+  backgroundColor?: string;
+  keyframes?: SerializedStyles;
+  duration: number; // ms
+  delay?: number; // ms
+  timingFunction?: TimingFunction;
+};
+
+export interface FilterProps {
+  filterId: string;
+  animationId: string;
+  duration: number; //ms
+  filterColor: string;
+  begin?: string;
+  calcMode?: "discrete" | "linear" | "paced" | "spline";
+  values?: string;
+}
+
+export interface AssetProps {
+  id: string;
+}
+
+export type PictureOptions = {
+  size?: FrameSize;
+  filterColor?: string;
+  color?: string;
+};
