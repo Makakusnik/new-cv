@@ -1,7 +1,7 @@
 import Frame, { FrameOptionsType, FrameSize } from "../Components/Frame";
 import Joint, { JointOptionsType, JointRotation } from "../Components/Joint";
 import Pipe, { PipeOptionsType } from "../Components/Pipe";
-import { BorderOptionsType } from "../Components/Types";
+import { BorderOptionsType, PictureOptions } from "../Components/Types";
 
 class NodeObjectFactory {
   private defaultBorderOptions: BorderOptionsType;
@@ -107,12 +107,17 @@ class NodeObjectFactory {
    * @param size - Sets size of this frame.
    * @returns New `Frame` object.
    */
-  createFrame(size?: FrameSize): Frame {
-    return new Frame(`frame${NodeObjectFactory.numOfFrames++}`, {
-      ...this.defaultFrameOptions,
-      borderOptions: this.defaultBorderOptions,
-      size: size,
-    });
+  createFrame(size?: FrameSize, picture?: (props: any) => JSX.Element, pictureOptions?: PictureOptions): Frame {
+    return new Frame(
+      `frame${NodeObjectFactory.numOfFrames++}`,
+      {
+        ...this.defaultFrameOptions,
+        borderOptions: this.defaultBorderOptions,
+        size: size,
+      },
+      picture,
+      pictureOptions
+    );
   }
 }
 
