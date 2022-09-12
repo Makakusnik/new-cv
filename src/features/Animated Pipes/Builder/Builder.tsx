@@ -1,13 +1,29 @@
 import { Box } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 import { MutableRefObject, ReactNode, RefObject } from "react";
+import { basicProjectileMovement } from "../Assets/AnimationKeyframes";
 import Frame, { FrameOptionsType } from "../Components/Frame";
 import NodeObject from "../Components/Node";
 import Pipe from "../Components/Pipe";
-import { NodeType, PositionType } from "../Components/Types";
+import { Projectile } from "../Components/Projectile";
+import { AnimationProperties, NodeType, Position } from "../Components/Types";
+import { Bullet } from "../HeaderAnimation";
 
 class Builder {
+  private static numOfAnimations: number = 0;
+  private static DEFAULT_ANIMATION_PROPERTIES: AnimationProperties = {
+    keyframes: css`
+      ${basicProjectileMovement}
+    `,
+    duration: 5000,
+    delay: 0,
+    timingFunction: "ease-in-out",
+    backgroundColor: "lime",
+  };
+
   private mainFrame: Frame;
   private nodes: Array<NodeType>;
+  private animations: Array<JSX.Element>;
   private lastAppended: NodeType | null = null;
 
   /**
@@ -16,11 +32,17 @@ class Builder {
    * @param anchorPosition - Sets position for main frame.
    * @param mainFrameOptions - Optional, sets options for main frame.
    */
-  constructor(anchorPosition: PositionType, mainFrameOptions?: FrameOptionsType) {
+  constructor(anchorPosition: Position, mainFrameOptions?: FrameOptionsType) {
     this.nodes = new Array<NodeType>();
-    this.mainFrame = new Frame("main-node", mainFrameOptions, { ...anchorPosition });
+    this.animations = new Array<JSX.Element>();
+    this.mainFrame = new Frame("main-node", mainFrameOptions);
+    anchorPosition.left ||
+      (anchorPosition.right && this.mainFrame.setXStart(anchorPosition.left || anchorPosition.right));
+    this.mainFrame.setYStart(anchorPosition.top);
     this.nodes.push(this.mainFrame);
   }
+
+  // APPENDING FUNCTIONS
 
   /**
    * Chain reaction for appending `NodeType` object to the left of another `NodeType` object
@@ -194,6 +216,24 @@ class Builder {
     }
   }
 
+  // PATH & ANIMATION
+
+  // TODO comment
+  createAnimation(animationProperties: AnimationProperties, ...nodes: NodeType[]) {
+    let path = this.buildPath(...nodes);
+    let id = ++Builder.numOfAnimations;
+    let element = (
+      <Projectile
+        key={`animation${id}`}
+        id={`animation${id}`}
+        {...Builder.DEFAULT_ANIMATION_PROPERTIES}
+        {...animationProperties}
+        offsetPath={path}
+      />
+    );
+    this.animations.push(element);
+  }
+
   /**
    * Creates SVG-like path which leads from center of frist `NodeType` parameter through center of objects in between the first and last one to the center of the last one.
    *
@@ -229,12 +269,22 @@ class Builder {
     return pathString;
   }
 
+  // GETTERS
+
   /**
    * Getter of nodes array.
    * @returns Array of `NodeType` objects.
    */
   getNodes(): NodeType[] {
     return this.nodes;
+  }
+
+  /**
+   * Getter of animations array.
+   * @returns Array of animated projectiles.
+   */
+  getAnimations(): JSX.Element[] {
+    return this.animations;
   }
 
   /**
