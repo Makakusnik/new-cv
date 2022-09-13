@@ -6,7 +6,7 @@ import Frame, { FrameOptionsType } from "../Components/Frame";
 import NodeObject from "../Components/Node";
 import Pipe from "../Components/Pipe";
 import { Projectile } from "../Components/Projectile";
-import { AnimationProperties, NodeType, Position } from "../Components/Types";
+import { AnimationProperties, NodeType, PictureOptions, Position } from "../Components/Types";
 import { Bullet } from "../HeaderAnimation";
 
 class Builder {
@@ -25,6 +25,7 @@ class Builder {
   private nodes: Array<NodeType>;
   private animations: Array<JSX.Element>;
   private lastAppended: NodeType | null = null;
+  private lastChain: NodeType[];
 
   /**
    * Creates builder which can be used for building pipe structure through chain functions.
@@ -32,14 +33,24 @@ class Builder {
    * @param anchorPosition - Sets position for main frame.
    * @param mainFrameOptions - Optional, sets options for main frame.
    */
-  constructor(anchorPosition: Position, mainFrameOptions?: FrameOptionsType) {
+  constructor(
+    anchorPosition: Position,
+    mainFrameOptions?: FrameOptionsType,
+    pictureElement?: (props: any) => JSX.Element,
+    pictureOptions?: PictureOptions
+  ) {
     this.nodes = new Array<NodeType>();
+    this.lastChain = new Array<NodeType>();
     this.animations = new Array<JSX.Element>();
-    this.mainFrame = new Frame("main-node", mainFrameOptions);
+    this.mainFrame = new Frame(mainFrameOptions, pictureElement, pictureOptions);
     anchorPosition.left ||
       (anchorPosition.right && this.mainFrame.setXStart(anchorPosition.left || anchorPosition.right));
     this.mainFrame.setYStart(anchorPosition.top);
     this.nodes.push(this.mainFrame);
+  }
+
+  endChain(): NodeType[] {
+    return this.lastChain;
   }
 
   // APPENDING FUNCTIONS
@@ -76,12 +87,14 @@ class Builder {
         this.lastAppended = null;
       }
       this.lastAppended = objectToAppend;
+      this.lastChain.push(this.lastAppended);
       return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
         this.appendLeft(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
+        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -119,12 +132,14 @@ class Builder {
         this.lastAppended = null;
       }
       this.lastAppended = objectToAppend;
+      this.lastChain.push(this.lastAppended);
       return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
         this.appendRight(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
+        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -162,12 +177,14 @@ class Builder {
         this.lastAppended = null;
       }
       this.lastAppended = objectToAppend;
+      this.lastChain.push(this.lastAppended);
       return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
         this.appendBottom(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
+        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -205,12 +222,14 @@ class Builder {
         this.lastAppended = null;
       }
       this.lastAppended = objectToAppend;
+      this.lastChain.push(this.lastAppended);
       return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
         this.appendTop(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
+        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
