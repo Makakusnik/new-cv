@@ -4,18 +4,21 @@ import { AssetProps, PictureOptions } from "../Components/Types";
 import { FillUpFilter } from "./Filter";
 
 const ElectricityBolt = (props: AssetProps & PictureOptions): JSX.Element => {
+  let width, height;
+  if (props.width && props.height) {
+    width = props.width;
+    height = props.height;
+  } else {
+    width = props.size ? `${props.size}px` : "40px";
+    height = props.size ? `${props.size}px` : "40px";
+  }
   return (
-    <svg
-      width={props.size ? `${props.size}px` : "40px"}
-      height={props.size ? `${props.size}px` : "40px"}
-      viewBox="0 0 25 25"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width={width} height={height} viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
       <FillUpFilter
         filterId={props.id}
         filterColor={props.filterColor!}
         animationId="powerSourceAnimation"
-        duration={1000}
+        duration={3000}
         begin="0;powerSourceAnimation.end+200ms"
       />
       <g filter={`url(#${props.id})`}>
