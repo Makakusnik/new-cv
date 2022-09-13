@@ -50,7 +50,10 @@ class Builder {
   }
 
   endChain(): NodeType[] {
-    return this.lastChain;
+    let result = this.lastChain;
+    this.lastChain = [];
+    this.lastAppended = null;
+    return result;
   }
 
   // APPENDING FUNCTIONS
@@ -85,6 +88,8 @@ class Builder {
       this.nodes.push(objectToAppend);
       if (this.lastAppended) {
         this.lastAppended = null;
+      } else {
+        this.lastChain.push(existingObject);
       }
       this.lastAppended = objectToAppend;
       this.lastChain.push(this.lastAppended);
@@ -94,7 +99,6 @@ class Builder {
       if (this.lastAppended) {
         this.appendLeft(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
-        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -130,6 +134,8 @@ class Builder {
       this.nodes.push(objectToAppend);
       if (this.lastAppended) {
         this.lastAppended = null;
+      } else {
+        this.lastChain.push(existingObject);
       }
       this.lastAppended = objectToAppend;
       this.lastChain.push(this.lastAppended);
@@ -139,7 +145,6 @@ class Builder {
       if (this.lastAppended) {
         this.appendRight(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
-        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -175,16 +180,18 @@ class Builder {
       this.nodes.push(objectToAppend);
       if (this.lastAppended) {
         this.lastAppended = null;
+      } else {
+        this.lastChain.push(existingObject);
       }
       this.lastAppended = objectToAppend;
       this.lastChain.push(this.lastAppended);
+
       return this;
     } else {
       objectToAppend = nodes[0];
       if (this.lastAppended) {
         this.appendBottom(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
-        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
@@ -220,6 +227,8 @@ class Builder {
       this.nodes.push(objectToAppend);
       if (this.lastAppended) {
         this.lastAppended = null;
+      } else {
+        this.lastChain.push(existingObject);
       }
       this.lastAppended = objectToAppend;
       this.lastChain.push(this.lastAppended);
@@ -229,7 +238,6 @@ class Builder {
       if (this.lastAppended) {
         this.appendTop(this.lastAppended, objectToAppend);
         this.lastAppended = objectToAppend;
-        this.lastChain.push(this.lastAppended);
       }
       return this;
     }
