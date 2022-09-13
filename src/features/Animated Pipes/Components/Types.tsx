@@ -102,6 +102,8 @@ export interface AssetProps {
 
 export type PictureOptions = {
   size?: FrameSize;
+  height?: number;
+  width?: number;
   filterColor?: string;
   color?: string;
 };
