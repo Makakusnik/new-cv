@@ -8,10 +8,12 @@ export const basicProjectileMovement = keyframes`
     30% {
       opacity: 1
     }
-    90% {
+    80% {
+      transform:scale(1);
       opacity: 1;
     }
     100% {
+      transform:scale(2);
       offset-distance: 100%;
       opacity: 0;
     }
