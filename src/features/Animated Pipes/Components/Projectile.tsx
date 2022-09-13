@@ -30,6 +30,7 @@ const ProjectileStyle = styled.div<ProjectileProps>`
   justify-content: center;
   align-items: center;
   margin: auto;
+  left: 0;
 `;
 
 export const Projectile = (props: ProjectileProps) => {
