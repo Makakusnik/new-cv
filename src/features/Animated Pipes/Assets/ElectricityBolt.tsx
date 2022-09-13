@@ -18,8 +18,8 @@ const ElectricityBolt = (props: AssetProps & PictureOptions): JSX.Element => {
         filterId={props.id}
         filterColor={props.filterColor!}
         animationId="powerSourceAnimation"
-        duration={3000}
-        begin="0;powerSourceAnimation.end+200ms"
+        duration={1000}
+        begin="0;powerSourceAnimation.end+1000ms"
       />
       <g filter={`url(#${props.id})`}>
         <path

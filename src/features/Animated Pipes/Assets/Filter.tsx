@@ -3,8 +3,17 @@ import { FilterProps } from "../Components/Types";
 export const FillUpFilter = (props: FilterProps) => {
   return (
     <filter id={props.filterId} primitiveUnits="objectBoundingBox">
-      <feFlood floodColor={props.filterColor} />
-
+      <feFlood floodColor={props.filterColor} floodOpacity="0">
+        <animate
+          id={props.animationId + "flood"}
+          attributeName="flood-opacity"
+          from="0"
+          to="1"
+          dur={`1ms`}
+          fill="freeze"
+          begin={`${props.begin}`}
+        />
+      </feFlood>
       <feOffset>
         <animate
           id={props.animationId}

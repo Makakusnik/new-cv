@@ -13,17 +13,13 @@ const YoutubeLogo = (props: AssetProps & PictureOptions): JSX.Element => {
   }
   return (
     <svg width={width} height={height} viewBox="0 0 25 17" xmlns="http://www.w3.org/2000/svg">
-      <filter id={`${props.id}`} primitiveUnits="objectBoundingBox">
-        <feFlood floodColor={`#FF0000`}></feFlood>
-
-        <feOffset>
-          <animate id="ytb1" attributeName="y" from="1" to="0" dur="1s" begin="0s;ytb1.end+1s" />
-        </feOffset>
-
-        <feComposite operator="in" in2="SourceGraphic" />
-        <feComposite operator="over" in2="SourceGraphic" />
-      </filter>
-
+      <FillUpFilter
+        filterId={props.id}
+        filterColor={props.filterColor!}
+        animationId="youtubeAnimation"
+        duration={2000}
+        begin="10s;youtubeAnimation.end"
+      />
       <path
         filter={`url(#${props.id})`}
         fill={props.color}
