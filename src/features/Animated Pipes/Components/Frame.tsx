@@ -7,6 +7,7 @@ import { BorderOptions, BorderOptionsType, PictureOptions } from "./Types";
 export type FrameSize = "sm" | "md" | "lg" | "xl";
 
 class Frame extends NodeObject {
+  private static numOfFrames: number = 0;
   private static DEFAULT_SIZE: FrameSize = "md";
   private static DEFAULT_BACKGROUND_COLOR: string = "blue";
   private static DEFAULT_BORDER_OPTIONS: BorderOptionsType = { color: "red", overlap: 4, thickness: 4, type: "solid" };
@@ -24,12 +25,10 @@ class Frame extends NodeObject {
   /**
    * Represents Frame object.
    *
-   * @param id - ID so React stops bitching about unique keys.
    * @param options - Object options `backgroundColor`, `size`, `borderOptions`.
    * @param pictureElement - Optional, picture inside frame.
    */
   constructor(
-    id: string,
     options?: FrameOptionsType,
     pictureElement?: (props: any) => JSX.Element,
     pictureOptions?: PictureOptions
@@ -41,13 +40,25 @@ class Frame extends NodeObject {
       borderOptions: { ...Frame.DEFAULT_BORDER_OPTIONS, ...options?.borderOptions },
     };
 
-    super(id, Frame.getSize(options.size!), Frame.getSize(options.size!));
+    super(`frame${++Frame.numOfFrames}`, Frame.getSize(options.size!), Frame.getSize(options.size!));
     this.pictureElement = pictureElement || ElectricityBolt;
     this.backgroundColor = options.backgroundColor;
     this.size = options.size;
     this.borderOptions = new BorderOptions(options.borderOptions!);
     this.path = "";
     this.pictureOptions = { ...Frame.DEFAULT_PICTURE_OPTIONS, ...pictureOptions };
+  }
+
+  clone(): Frame {
+    return new Frame(
+      {
+        backgroundColor: this.backgroundColor,
+        size: this.size,
+        borderOptions: this.borderOptions,
+      },
+      this.pictureElement,
+      this.pictureOptions
+    );
   }
 
   /**

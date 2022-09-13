@@ -14,7 +14,6 @@ class NodeObject {
    * @param id - ID so React stops bitching about unique keys.
    * @param width - Object width.
    * @param height - Object height.
-   * @param position - Optional, object position.
    */
   constructor(id: string, width: number, height: number) {
     this.id = id;

@@ -8,9 +8,6 @@ class NodeObjectFactory {
   private defaultJointOptions: JointOptionsType;
   private defaultFrameOptions: FrameOptionsType;
   private defaultPipeOptions: PipeOptionsType;
-  private static numOfPipes: number = 0;
-  private static numOfJoints: number = 0;
-  private static numOfFrames: number = 0;
 
   /**
    * Creates factory instance with default options that can be modified through factory functions.
@@ -38,8 +35,7 @@ class NodeObjectFactory {
    * @returns New `Pipe` object.
    */
   createHorizontalPipe(length: number): Pipe {
-    NodeObjectFactory.numOfPipes++;
-    return new Pipe(`pipe${NodeObjectFactory.numOfPipes++}`, {
+    return new Pipe({
       ...this.defaultPipeOptions,
       borderOptions: this.defaultBorderOptions,
       orientation: "horizontal",
@@ -53,8 +49,7 @@ class NodeObjectFactory {
    * @returns New `Pipe` object.
    */
   createVerticalPipe(length: number): Pipe {
-    NodeObjectFactory.numOfPipes++;
-    return new Pipe(`pipe${NodeObjectFactory.numOfPipes++}`, {
+    return new Pipe({
       ...this.defaultPipeOptions,
       borderOptions: this.defaultBorderOptions,
       orientation: "vertical",
@@ -68,7 +63,7 @@ class NodeObjectFactory {
    * @returns New knee type `Joint` object.
    */
   createKneeJoint(rotation?: JointRotation): Joint {
-    return new Joint(`joint${NodeObjectFactory.numOfJoints++}`, {
+    return new Joint({
       ...this.defaultJointOptions,
       borderOptions: this.defaultBorderOptions,
       type: "knee",
@@ -82,7 +77,7 @@ class NodeObjectFactory {
    * @returns New T type `Joint` object.
    */
   createTJoint(rotation?: JointRotation): Joint {
-    return new Joint(`joint${NodeObjectFactory.numOfJoints++}`, {
+    return new Joint({
       ...this.defaultJointOptions,
       borderOptions: this.defaultBorderOptions,
       type: "T",
@@ -95,7 +90,7 @@ class NodeObjectFactory {
    * @returns New cross type `Joint` object.
    */
   createCrossJoint(): Joint {
-    return new Joint(`joint${NodeObjectFactory.numOfJoints++}`, {
+    return new Joint({
       ...this.defaultJointOptions,
       borderOptions: this.defaultBorderOptions,
       type: "cross",
@@ -109,7 +104,6 @@ class NodeObjectFactory {
    */
   createFrame(size?: FrameSize, picture?: (props: any) => JSX.Element, pictureOptions?: PictureOptions): Frame {
     return new Frame(
-      `frame${NodeObjectFactory.numOfFrames++}`,
       {
         ...this.defaultFrameOptions,
         borderOptions: this.defaultBorderOptions,

@@ -5,6 +5,7 @@ import NodeObject from "./Node";
 import { BorderOptions, BorderOptionsType, Position } from "./Types";
 
 class Pipe extends NodeObject {
+  private static numOfPipes = 0;
   private static DEFAULT_LENGTH: number = 1500;
   private static DEFAULT_THICKNESS: number = 20;
   private static DEFAULT_ORIENTATION: PipeOrientation = "horizontal";
@@ -19,11 +20,9 @@ class Pipe extends NodeObject {
   /**
    * Represents Pipe object.
    *
-   * @param id - ID so React stops bitching about unique keys.
    * @param options - Object options `backgroundColor`, `borderOptions`, `length`, `thickness`,`orientation`.
-   * @param position - Optional, object position.
    */
-  constructor(id: string, options: PipeOptionsType, position?: Position) {
+  constructor(options: PipeOptionsType) {
     options = {
       length: Pipe.DEFAULT_LENGTH,
       thickness: Pipe.DEFAULT_THICKNESS,
@@ -33,13 +32,25 @@ class Pipe extends NodeObject {
       borderOptions: { ...Pipe.DEFAULT_BORDER_OPTIONS, ...options.borderOptions },
     };
 
-    super(id, Pipe.getPipeDimension(options).width, Pipe.getPipeDimension(options).height, position);
+    super(`pipe${++Pipe.numOfPipes}`, Pipe.getPipeDimension(options).width, Pipe.getPipeDimension(options).height);
     this.borderOptions = new BorderOptions(options.borderOptions!);
     this.orientation = options.orientation;
     this.thickness = options.thickness;
     this.backgroundColor = options.backgroundColor;
     this.length = options.length;
   }
+
+  clone(): Pipe {
+    return new Pipe({
+      backgroundColor: this.backgroundColor,
+      borderOptions: this.borderOptions,
+      length: this.length,
+      thickness: this.thickness,
+      orientation: this.orientation,
+    });
+  }
+
+  // GETTERS
 
   getLength(): number {
     return this.length!;

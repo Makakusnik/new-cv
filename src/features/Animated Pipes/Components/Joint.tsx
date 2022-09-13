@@ -2,9 +2,8 @@ import { border, Box } from "@chakra-ui/react";
 import NodeObject from "./Node";
 import { BorderOptions, BorderOptionsType, Position } from "./Types";
 
-type FrameSize = "sm" | "md" | "lg" | "xl";
-
 class Joint extends NodeObject {
+  private static numOfJoints = 0;
   private static DEFAULT_THICKNESS: number = 20;
   private static DEFAULT_ROTATION: JointRotation = 90;
   private static DEFAULT_BACKGROUND_COLOR: string = "blue";
@@ -19,11 +18,9 @@ class Joint extends NodeObject {
   /**
    * Represents Joint object.
    *
-   * @param id - ID so React stops bitching about unique keys.
    * @param options - Object options `backgroundColor`, `thickness`, `borderOptions`, `rotation`, `type`.
-   * @param position - Optional, object position.
    */
-  constructor(id: string, options: JointOptionsType, position?: Position) {
+  constructor(options: JointOptionsType) {
     options = {
       thickness: Joint.DEFAULT_THICKNESS,
       rotation: Joint.DEFAULT_ROTATION,
@@ -32,12 +29,22 @@ class Joint extends NodeObject {
       ...options,
       borderOptions: { ...Joint.DEFAULT_BORDER_OPTIONS, ...options.borderOptions },
     };
-    super(id, options.thickness!, options.thickness!, position);
+    super(`joint${++Joint.numOfJoints}`, options.thickness!, options.thickness!);
     this.rotation = options.rotation;
     this.type = options.type;
     this.backgroundColor = options.backgroundColor;
     this.thickness = options.thickness;
     this.borderOptions = new BorderOptions(options.borderOptions!);
+  }
+
+  clone(): Joint {
+    return new Joint({
+      backgroundColor: this.backgroundColor,
+      thickness: this.thickness,
+      borderOptions: this.borderOptions,
+      rotation: this.rotation,
+      type: this.type,
+    });
   }
 
   // GETTERS
