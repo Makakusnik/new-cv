@@ -21,6 +21,7 @@ import Coursera from "./Assets/Coursera";
 import Khan from "./Assets/Khan";
 import Udemy from "./Assets/Udemy";
 import Gears from "./Assets/Gears";
+import WebDevSimplified from "./Assets/Webdev";
 
 const HeaderAnimation = () => {
   const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
@@ -84,7 +85,7 @@ const HeaderAnimation = () => {
   const vPipeCoursera3 = factory.createVerticalPipe(20);
   const vPipeCoursera4 = factory.createVerticalPipe(20);
   const vPipeCoursera5 = factory.createVerticalPipe(20);
-  const vPipeCoursera6 = factory.createVerticalPipe(250);
+  const vPipeCoursera6 = factory.createVerticalPipe(270);
 
   // khan
   const vPipeKhan1 = factory.createVerticalPipe(54);
@@ -96,18 +97,15 @@ const HeaderAnimation = () => {
   // youtube
   const vPipeYoutube1 = factory.createVerticalPipe(40);
   const vPipeYoutube2 = factory.createVerticalPipe(60);
-  const vPipeYoutube3 = factory.createVerticalPipe(30);
-  const vPipeYoutube4 = factory.createVerticalPipe(30);
-  const vPipeYoutube5 = factory.createVerticalPipe(30);
-  const vPipeYoutube6 = factory.createVerticalPipe(30);
-  const vPipeYoutube7 = factory.createVerticalPipe(30);
-  const vPipeYoutube8 = factory.createVerticalPipe(30);
-  const vPipeChannel1Out1 = factory.createVerticalPipe(30);
-  const vPipeChannel2Out1 = factory.createVerticalPipe(30);
-  const vPipeChannel3Out1 = factory.createVerticalPipe(30);
-  const vPipeChannel4Out1 = factory.createVerticalPipe(30);
-  const vPipeChannel5Out1 = factory.createVerticalPipe(30);
-  const vPipeChannel6Out1 = factory.createVerticalPipe(30);
+  const vPipeYoutube3 = factory.createVerticalPipe(45);
+  const vPipeYoutube4 = factory.createVerticalPipe(45);
+  const vPipeYoutube5 = factory.createVerticalPipe(45);
+  const vPipeYoutube6 = factory.createVerticalPipe(45);
+  const vPipeChannel1Out1 = factory.createVerticalPipe(45);
+  const vPipeChannel2Out1 = factory.createVerticalPipe(45);
+  const vPipeChannel3Out1 = factory.createVerticalPipe(45);
+  const vPipeChannel4Out1 = factory.createVerticalPipe(45);
+  const vPipeChannel5Out1 = factory.createVerticalPipe(45);
 
   /* 
     HORIZONTAL PIPES
@@ -160,19 +158,17 @@ const HeaderAnimation = () => {
   const hPipeYoutube2 = factory.createHorizontalPipe(20);
   const hPipeYoutube3 = factory.createHorizontalPipe(20);
 
-  const hPipeChannelIn1 = factory.createHorizontalPipe(30);
-  const hPipeChannelIn2 = factory.createHorizontalPipe(30);
-  const hPipeChannelIn3 = factory.createHorizontalPipe(30);
-  const hPipeChannelIn4 = factory.createHorizontalPipe(30);
-  const hPipeChannelIn5 = factory.createHorizontalPipe(30);
-  const hPipeChannelIn6 = factory.createHorizontalPipe(30);
-  const hPipeChannel1Out1 = factory.createHorizontalPipe(30);
-  const hPipeChannel2Out1 = factory.createHorizontalPipe(30);
-  const hPipeChannel3Out1 = factory.createHorizontalPipe(30);
+  const hPipeChannelIn1 = factory.createHorizontalPipe(25);
+  const hPipeChannelIn2 = factory.createHorizontalPipe(25);
+  const hPipeChannelIn3 = factory.createHorizontalPipe(25);
+  const hPipeChannelIn4 = factory.createHorizontalPipe(25);
+  const hPipeChannelIn5 = factory.createHorizontalPipe(25);
+  const hPipeChannel1Out1 = factory.createHorizontalPipe(25);
+  const hPipeChannel2Out1 = factory.createHorizontalPipe(25);
+  const hPipeChannel3Out1 = factory.createHorizontalPipe(25);
   const hPipeChannel3Out2 = factory.createHorizontalPipe(222);
-  const hPipeChannel4Out1 = factory.createHorizontalPipe(30);
-  const hPipeChannel5Out1 = factory.createHorizontalPipe(30);
-  const hPipeChannel6Out1 = factory.createHorizontalPipe(30);
+  const hPipeChannel4Out1 = factory.createHorizontalPipe(25);
+  const hPipeChannel5Out1 = factory.createHorizontalPipe(25);
   vPipeGears2;
   /* 
     CROSS JOINTS
@@ -206,7 +202,6 @@ const HeaderAnimation = () => {
   const tJointYoutube5 = factory.createTJoint(90);
   const tJointChannel1 = factory.createTJoint(270);
   const tJointChannel2 = factory.createTJoint(270);
-  const tJointChannel3 = factory.createTJoint(270);
 
   /* 
     KNEE JOINTS
@@ -273,13 +268,17 @@ const HeaderAnimation = () => {
   let courseraFrame1 = factory.createFrame("md", Coursera, { width: 40, height: 40 });
   let udemyFrame = factory.createFrame("md", Udemy, { filterColor: "black", color: primary700, height: 40 });
   let gearsFrame = factory.createFrame("md", Gears, { filterColor: "black", color: "lightgray", height: 40 });
-  let youtubeFrame = factory.createFrame("md", YoutubeLogo, { filterColor: "black", color: primary700, height: 32 });
-  let channel1Frame = factory.createFrame("sm");
-  let channel2Frame = factory.createFrame("sm");
-  let channel3Frame = factory.createFrame("sm");
-  let channel4Frame = factory.createFrame("sm");
-  let channel5Frame = factory.createFrame("sm");
-  let channel6Frame = factory.createFrame("sm");
+  let youtubeFrame = factory.createFrame("md", YoutubeLogo, { filterColor: "red", color: primary700, height: 32 });
+  let channel1Frame = factory.createFrame("md", WebDevSimplified, {
+    filterColor: "#00aaff",
+    color: primary700,
+    width: 48,
+    height: 48,
+  });
+  let channel2Frame = factory.createFrame("md");
+  let channel3Frame = factory.createFrame("md");
+  let channel4Frame = factory.createFrame("md");
+  let channel5Frame = factory.createFrame("md");
 
   builder
     .appendRight(builder.getMainFrame(), hPipeInternet1)
@@ -324,7 +323,8 @@ const HeaderAnimation = () => {
     .appendRight(kneeJointCoursera10)
     .appendBottom(vPipeCoursera6)
     .appendBottom(kneeJointCoursera11) // BOTTOM right joint
-    .appendLeft(hPipeCoursera7);
+    .appendLeft(hPipeCoursera7)
+    .endChain();
 
   builder
     .appendBottom(tJointDb1, vPipeDb1Joint1) // 1 Server Joint
@@ -333,14 +333,16 @@ const HeaderAnimation = () => {
     .appendLeft(khanFrame) // KHAN FRAME
     .appendLeft(hPipeKhan1)
     .appendLeft(kneeJointKhan1)
-    .appendBottom(vPipeKhan1);
+    .appendBottom(vPipeKhan1)
+    .endChain();
 
   builder
     .appendBottom(tJointDb2, vPipeDb1Joint2) // 2 Server Joint
     .appendBottom(kneeJointDb1Joint2)
     .appendLeft(hPipeDb1Joint2)
     .appendLeft(udemyFrame) // Udemy Frame
-    .appendLeft(hPipeUdemy1);
+    .appendLeft(hPipeUdemy1)
+    .endChain();
 
   builder
     .appendBottom(tJointDb3, vPipeDb1Joint3) // 3 Server Joint
@@ -352,7 +354,8 @@ const HeaderAnimation = () => {
     .appendLeft(hPipeGears2)
     .appendLeft(kneeJointGears3)
     .appendBottom(vPipeGears2)
-    .appendBottom(gearsFrame); // GEAARS
+    .appendBottom(gearsFrame) // GEAARS
+    .endChain();
 
   builder
     .appendBottom(tJointDb4, vPipeDb2) // 4 Server Joint
@@ -374,9 +377,8 @@ const HeaderAnimation = () => {
     .appendBottom(vPipeYoutube5)
     .appendBottom(tJointYoutube4)
     .appendBottom(vPipeYoutube6)
-    .appendBottom(tJointYoutube5)
-    .appendBottom(vPipeYoutube7)
-    .appendBottom(kneeJointYoutube5);
+    .appendBottom(kneeJointYoutube5)
+    .endChain();
 
   // First youtube channel
   builder
@@ -384,7 +386,8 @@ const HeaderAnimation = () => {
     .appendLeft(channel1Frame)
     .appendLeft(hPipeChannel1Out1)
     .appendLeft(kneeJointChannel1)
-    .appendBottom(vPipeChannel1Out1);
+    .appendBottom(vPipeChannel1Out1)
+    .endChain();
 
   // Second youtube channel
   builder
@@ -392,7 +395,8 @@ const HeaderAnimation = () => {
     .appendLeft(channel2Frame)
     .appendLeft(hPipeChannel2Out1)
     .appendLeft(tJointChannel1)
-    .appendBottom(vPipeChannel2Out1);
+    .appendBottom(vPipeChannel2Out1)
+    .endChain();
 
   // Third youtube channel
   builder
@@ -402,7 +406,8 @@ const HeaderAnimation = () => {
     .appendLeft(tJointChannel2)
     .appendBottom(vPipeChannel3Out1)
     .appendBottom(crossJointChannel1)
-    .appendLeft(hPipeChannel3Out2);
+    .appendLeft(hPipeChannel3Out2)
+    .endChain();
 
   // Fourth youtube channel
   builder
@@ -410,25 +415,19 @@ const HeaderAnimation = () => {
     .appendLeft(channel4Frame)
     .appendLeft(hPipeChannel4Out1)
     .appendLeft(crossJointChannel2)
-    .appendTop(vPipeChannel4Out1);
+    .appendTop(vPipeChannel4Out1)
+    .endChain();
 
   // Fifth youtube channel
   builder
-    .appendLeft(tJointYoutube5, hPipeChannelIn5)
+    .appendLeft(kneeJointYoutube5, hPipeChannelIn5)
     .appendLeft(channel5Frame)
     .appendLeft(hPipeChannel5Out1)
-    .appendLeft(tJointChannel3)
-    .appendTop(vPipeChannel5Out1);
-
-  // Sixth youtube channel
-  builder
-    .appendLeft(kneeJointYoutube5, hPipeChannelIn6)
-    .appendLeft(channel6Frame)
-    .appendLeft(hPipeChannel6Out1)
     .appendLeft(kneeJointChannel2)
-    .appendTop(vPipeChannel6Out1);
+    .appendTop(vPipeChannel5Out1)
+    .endChain();
 
-  builder
+  const firstJointToSwitch = builder
     .appendBottom(tJointInternet, vPipeSwitch)
     .appendBottom(kneeJointSwitch1)
     .appendLeft(hSmallPipeSwitch1)
@@ -438,7 +437,99 @@ const HeaderAnimation = () => {
     .appendRight(hSmallPipeSwitch2)
     .appendRight(kneeJointSwitch4)
     .appendBottom(vSmallPipeSwitch2)
-    .appendBottom(switchFrame1); // SWITCH path from first joint
+    .appendBottom(switchFrame1)
+    .endChain(); // SWITCH path from first joint
+
+  // prettier-ignore
+  const pathMainToSwitch = [builder.getMainFrame(), hPipeInternet1, ...firstJointToSwitch];
+
+  // prettier-ignore
+  const pathMainToInternet = [builder.getMainFrame(), hPipeInternet1, tJointInternet, hPipeInternet2,internetFrame1];
+
+  // prettier-ignore
+  const pathInternetToDatabase = [internetFrame1, hPipeDb1, kneeJointDb1, vPipeDb1, kneeJointDb2, hPipeDb2, dbFrame];
+
+  // prettier-ignore
+  const pathDatabaseToCoursera = [dbFrame, hPipeDb3, tJointDb1, hPipeDb4, tJointDb2, hPipeDb5, tJointDb3, hPipeDb6, tJointDb4, hPipeCoursera1, courseraFrame1];
+
+  // prettier-ignore
+  const pathDatabaseToYoutube = [dbFrame, hPipeDb3, tJointDb1, hPipeDb4, tJointDb2, hPipeDb5, tJointDb3, hPipeDb6, tJointDb4, vPipeDb2, kneeJointYoutube1, hPipeYoutube1, kneeJointYoutube2, vPipeYoutube1, kneeJointYoutube3, hPipeYoutube2, youtubeFrame];
+
+  // prettier-ignore
+  const pathYoutubeToFirstChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1,hPipeChannelIn1,channel1Frame];
+
+  // prettier-ignore
+  const pathYoutubeToSecondChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1, vPipeYoutube3, tJointYoutube2, hPipeChannelIn2, channel2Frame];
+
+  // prettier-ignore
+  const pathYoutubeToThirdChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1, vPipeYoutube3, tJointYoutube2, vPipeYoutube4, tJointYoutube3, hPipeChannelIn3, channel3Frame];
+
+  // prettier-ignore
+  const pathYoutubeToFourthChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1, vPipeYoutube3, tJointYoutube2, vPipeYoutube4, tJointYoutube3, vPipeYoutube5, tJointYoutube4, hPipeChannelIn4, channel4Frame];
+
+  // prettier-ignore
+  const pathYoutubeToFifthChannel = [
+    youtubeFrame,
+    hPipeYoutube3,
+    kneeJointYoutube4,
+    vPipeYoutube2,
+    tJointYoutube1,
+    vPipeYoutube3,
+    tJointYoutube2,
+    vPipeYoutube4,
+    tJointYoutube3,
+    vPipeYoutube5,
+    tJointYoutube4,
+    vPipeYoutube6,
+    kneeJointYoutube5,
+    hPipeChannelIn5,
+    channel5Frame,
+  ];
+
+  builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
+  builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
+  builder.createAnimation({ duration: 2000, delay: 1400, backgroundColor: "yellow" }, ...pathMainToInternet);
+  builder.createAnimation({ duration: 2000, delay: 1200, backgroundColor: "yellow" }, ...pathMainToInternet);
+  builder.createAnimation({ duration: 2000, delay: 1000, backgroundColor: "yellow" }, ...pathMainToInternet);
+  builder.createAnimation({ duration: 2000, delay: 900, backgroundColor: "yellow" }, ...pathMainToSwitch);
+  builder.createAnimation({ duration: 2000, delay: 1100, backgroundColor: "yellow" }, ...pathMainToSwitch);
+  builder.createAnimation({ duration: 2000, delay: 1200, backgroundColor: "yellow" }, ...pathMainToSwitch);
+
+  builder.createAnimation({ duration: 2500, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
+  builder.createAnimation({ duration: 3000, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
+  builder.createAnimation({ duration: 4000, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
+  builder.createAnimation({ duration: 1500, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
+  builder.createAnimation({ duration: 1700, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
+
+  builder.createAnimation({ duration: 1700, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
+  builder.createAnimation({ duration: 1500, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
+  builder.createAnimation({ duration: 1200, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
+  builder.createAnimation({ duration: 2000, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
+
+  builder.createAnimation({ duration: 3200, delay: 9100, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
+  builder.createAnimation({ duration: 2500, delay: 8700, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
+  builder.createAnimation({ duration: 1500, delay: 8500, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
+  builder.createAnimation({ duration: 1980, delay: 9300, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
+  builder.createAnimation({ duration: 2300, delay: 8600, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
+
+  builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "white" }, ...pathYoutubeToFirstChannel);
+  builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFirstChannel);
+  builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFirstChannel);
+
+  builder.createAnimation({ duration: 1800, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToSecondChannel);
+  builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToSecondChannel);
+
+  builder.createAnimation({ duration: 2600, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
+  builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
+  builder.createAnimation({ duration: 1900, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
+
+  builder.createAnimation({ duration: 1200, delay: 11300, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
+  builder.createAnimation({ duration: 900, delay: 11800, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
+  builder.createAnimation({ duration: 2300, delay: 12000, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
+  builder.createAnimation({ duration: 2300, delay: 11400, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
+
+  builder.createAnimation({ duration: 1980, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFifthChannel);
+  builder.createAnimation({ duration: 3200, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFifthChannel);
 
   return (
     <Container
