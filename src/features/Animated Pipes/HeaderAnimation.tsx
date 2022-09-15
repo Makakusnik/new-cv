@@ -22,6 +22,15 @@ import Khan from "./Assets/Khan";
 import Udemy from "./Assets/Udemy";
 import Gears from "./Assets/Gears";
 import WebDevSimplified from "./Assets/Webdev";
+import Fireship from "./Assets/Fireship";
+import TraversyMedia from "./Assets/TraversyMedia";
+import NetNinja from "./Assets/Netninja";
+import FreeCodeCamp from "./Assets/Freedcodecamp";
+import Brain from "./Assets/Brain";
+import QuestionMark from "./Assets/QuestionMark";
+import PluralSight from "./Assets/PluralSight";
+import Mdn from "./Assets/Mdn";
+import StackOverflow from "./Assets/StackOverflow";
 
 const HeaderAnimation = () => {
   const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
@@ -48,12 +57,7 @@ const HeaderAnimation = () => {
 
   // Factory instance
 
-  const factory = new NodeObjectFactory(
-    defaultBorderOptions,
-    defaultJointOptions,
-    defaultFrameOptions,
-    defaultPipeOptions
-  );
+  const factory = new NodeObjectFactory(defaultBorderOptions, defaultJointOptions, defaultFrameOptions, defaultPipeOptions);
 
   // Builder instance
 
@@ -85,14 +89,28 @@ const HeaderAnimation = () => {
   const vPipeCoursera3 = factory.createVerticalPipe(20);
   const vPipeCoursera4 = factory.createVerticalPipe(20);
   const vPipeCoursera5 = factory.createVerticalPipe(20);
-  const vPipeCoursera6 = factory.createVerticalPipe(270);
+  const vPipeCoursera6 = factory.createVerticalPipe(20);
+  const vPipeCoursera7 = factory.createVerticalPipe(20);
+  const vPipeCoursera8 = factory.createVerticalPipe(20);
+  const vPipeCoursera9 = factory.createVerticalPipe(20);
+  const vPipeCoursera10 = factory.createVerticalPipe(20);
+  const vPipeCoursera11 = factory.createVerticalPipe(20);
+  const vPipeCoursera12 = factory.createVerticalPipe(20);
+  const vPipeCoursera13 = factory.createVerticalPipe(20);
+  const vPipeCoursera14 = factory.createVerticalPipe(525);
+  const vPipeCoursera15 = factory.createVerticalPipe(500);
+  const vPipeCoursera16 = factory.createVerticalPipe(163);
 
   // khan
   const vPipeKhan1 = factory.createVerticalPipe(54);
 
+  // pluralsight
+  const vPipePluralSight1 = factory.createVerticalPipe(50);
+
   // gears
   const vPipeGears1 = factory.createVerticalPipe(50);
   const vPipeGears2 = factory.createVerticalPipe(114);
+  const vPipeGears3 = factory.createVerticalPipe(100, { thickness: 30 });
 
   // youtube
   const vPipeYoutube1 = factory.createVerticalPipe(40);
@@ -104,8 +122,22 @@ const HeaderAnimation = () => {
   const vPipeChannel1Out1 = factory.createVerticalPipe(45);
   const vPipeChannel2Out1 = factory.createVerticalPipe(45);
   const vPipeChannel3Out1 = factory.createVerticalPipe(45);
-  const vPipeChannel4Out1 = factory.createVerticalPipe(45);
   const vPipeChannel5Out1 = factory.createVerticalPipe(45);
+  const vPipeChannelAllOut1 = factory.createVerticalPipe(27);
+
+  // Brain
+  const vPipeBrain1 = factory.createVerticalPipe(150, { thickness: 30 });
+
+  // mdn
+  const vPipeMdn1 = factory.createVerticalPipe(80);
+  const vPipeMdn2 = factory.createVerticalPipe(62);
+
+  // stack overflow
+  const vPipeStack1 = factory.createVerticalPipe(20);
+  const vPipeStack2 = factory.createVerticalPipe(38);
+
+  // window
+  const vPipeWindow = factory.createVerticalPipe(176);
 
   /* 
     HORIZONTAL PIPES
@@ -124,11 +156,6 @@ const HeaderAnimation = () => {
   const hPipeDb1Joint1 = factory.createHorizontalPipe(40);
   const hPipeDb1Joint2 = factory.createHorizontalPipe(40);
 
-  // server
-  const hPipeServer1 = factory.createHorizontalPipe(50);
-  const hPipeServer2 = factory.createHorizontalPipe(50);
-  const hPipeServer3 = factory.createHorizontalPipe(50);
-
   // internet
   const hPipeInternet1 = factory.createHorizontalPipe(100);
   const hPipeInternet2 = factory.createHorizontalPipe(100);
@@ -140,18 +167,31 @@ const HeaderAnimation = () => {
   const hPipeCoursera4 = factory.createHorizontalPipe(20);
   const hPipeCoursera5 = factory.createHorizontalPipe(20);
   const hPipeCoursera6 = factory.createHorizontalPipe(20);
-  const hPipeCoursera7 = factory.createHorizontalPipe(500);
+  const hPipeCoursera7 = factory.createHorizontalPipe(20);
+  const hPipeCoursera8 = factory.createHorizontalPipe(20);
+  const hPipeCoursera9 = factory.createHorizontalPipe(20);
+  const hPipeCoursera10 = factory.createHorizontalPipe(20);
+  const hPipeCoursera11 = factory.createHorizontalPipe(20);
+  const hPipeCoursera12 = factory.createHorizontalPipe(20);
+  const hPipeCoursera13 = factory.createHorizontalPipe(20);
+  const hPipeCoursera14 = factory.createHorizontalPipe(60);
+  const hPipeCoursera15 = factory.createHorizontalPipe(20);
+  const hPipeCoursera16 = factory.createHorizontalPipe(506);
 
   // khan
   const hPipeKhan1 = factory.createHorizontalPipe(24);
 
   // udemy
   const hPipeUdemy1 = factory.createHorizontalPipe(52);
-  const hPipeUdemy2 = factory.createHorizontalPipe(20);
+
+  // pluralsight
+  const hPipePluralSight1 = factory.createHorizontalPipe(110);
+  const hPipePluralSight2 = factory.createHorizontalPipe(10);
 
   // gears
-  const hPipeGears1 = factory.createHorizontalPipe(170);
   const hPipeGears2 = factory.createHorizontalPipe(10);
+  const hPipeGearsOut1 = factory.createHorizontalPipe(90, { thickness: 30 });
+  const hPipeGearsOut2 = factory.createHorizontalPipe(175, { thickness: 30 });
 
   // youtube
   const hPipeYoutube1 = factory.createHorizontalPipe(40);
@@ -166,10 +206,28 @@ const HeaderAnimation = () => {
   const hPipeChannel1Out1 = factory.createHorizontalPipe(25);
   const hPipeChannel2Out1 = factory.createHorizontalPipe(25);
   const hPipeChannel3Out1 = factory.createHorizontalPipe(25);
-  const hPipeChannel3Out2 = factory.createHorizontalPipe(222);
+  const hPipeChannel3Out2 = factory.createHorizontalPipe(50);
   const hPipeChannel4Out1 = factory.createHorizontalPipe(25);
   const hPipeChannel5Out1 = factory.createHorizontalPipe(25);
-  vPipeGears2;
+  const hPipeChannelAllOut1 = factory.createHorizontalPipe(144);
+
+  // brain
+  const hPipeBrain1 = factory.createHorizontalPipe(320, { thickness: 30 });
+
+  // mdn
+  const hPipeMdn1 = factory.createHorizontalPipe(20);
+  const hPipeMdn2 = factory.createHorizontalPipe(10);
+  const hPipeMdn3 = factory.createHorizontalPipe(40);
+
+  // stack overflow
+  const hPipeStack1 = factory.createHorizontalPipe(10);
+  const hPipeStack2 = factory.createHorizontalPipe(20);
+
+  // connector
+  const hPipeConnector1 = factory.createHorizontalPipe(16);
+
+  // window
+  const hPipeWindow = factory.createHorizontalPipe(351);
   /* 
     CROSS JOINTS
   */
@@ -179,13 +237,11 @@ const HeaderAnimation = () => {
 
   // youtube
   const crossJointChannel1 = factory.createCrossJoint();
-  const crossJointChannel2 = factory.createCrossJoint();
 
   /* 
     T JOINTS
   */
 
-  const tJointServer = factory.createTJoint();
   const tJointInternet = factory.createTJoint();
 
   // db
@@ -199,9 +255,20 @@ const HeaderAnimation = () => {
   const tJointYoutube2 = factory.createTJoint(90);
   const tJointYoutube3 = factory.createTJoint(90);
   const tJointYoutube4 = factory.createTJoint(90);
-  const tJointYoutube5 = factory.createTJoint(90);
   const tJointChannel1 = factory.createTJoint(270);
   const tJointChannel2 = factory.createTJoint(270);
+
+  //mdn
+  const tJointMdn1 = factory.createTJoint(90);
+
+  //stackoverflow
+  const tJointStack1 = factory.createTJoint(270);
+
+  // gears
+  const tJointGears1 = factory.createTJoint(0);
+
+  // connector
+  const tJointConnector1 = factory.createTJoint(0);
 
   /* 
     KNEE JOINTS
@@ -231,6 +298,25 @@ const HeaderAnimation = () => {
   const kneeJointCoursera9 = factory.createKneeJoint(180);
   const kneeJointCoursera10 = factory.createKneeJoint();
   const kneeJointCoursera11 = factory.createKneeJoint(90);
+  const kneeJointCoursera12 = factory.createKneeJoint(270);
+  const kneeJointCoursera13 = factory.createKneeJoint(180);
+  const kneeJointCoursera14 = factory.createKneeJoint();
+  const kneeJointCoursera15 = factory.createKneeJoint(90);
+  const kneeJointCoursera16 = factory.createKneeJoint(270);
+  const kneeJointCoursera17 = factory.createKneeJoint(180);
+  const kneeJointCoursera18 = factory.createKneeJoint();
+  const kneeJointCoursera19 = factory.createKneeJoint(90);
+  const kneeJointCoursera20 = factory.createKneeJoint(270);
+  const kneeJointCoursera21 = factory.createKneeJoint(180);
+  const kneeJointCoursera22 = factory.createKneeJoint();
+  const kneeJointCoursera23 = factory.createKneeJoint(90);
+  const kneeJointCoursera24 = factory.createKneeJoint(270);
+  const kneeJointCoursera25 = factory.createKneeJoint(180);
+  const kneeJointCoursera26 = factory.createKneeJoint(90);
+  const kneeJointCoursera30 = factory.createKneeJoint(270);
+  const kneeJointCoursera31 = factory.createKneeJoint(0);
+  const kneeJointCoursera32 = factory.createKneeJoint(90);
+  const kneeJointCoursera33 = factory.createKneeJoint(180);
 
   // khan
   const kneeJointKhan1 = factory.createKneeJoint(270);
@@ -238,7 +324,8 @@ const HeaderAnimation = () => {
   // gears
   const kneeJointGears1 = factory.createKneeJoint(90);
   const kneeJointGears2 = factory.createKneeJoint(180);
-  const kneeJointGears3 = factory.createKneeJoint(270);
+  const kneeJointGears4 = factory.createKneeJoint(270, { thickness: 30 });
+  const kneeJointGears5 = factory.createKneeJoint(90, { thickness: 30 });
 
   // youtube
   const kneeJointYoutube1 = factory.createKneeJoint(90);
@@ -248,8 +335,25 @@ const HeaderAnimation = () => {
   const kneeJointYoutube5 = factory.createKneeJoint(90);
   const kneeJointChannel1 = factory.createKneeJoint(270);
   const kneeJointChannel2 = factory.createKneeJoint(180);
+  const kneeJointChannelOut1 = factory.createKneeJoint(180);
+  const kneeJointChannelOut2 = factory.createKneeJoint(0);
 
-  const kneeJointServer = factory.createKneeJoint();
+  // brian
+  const kneeJointBrain1 = factory.createKneeJoint(180, { thickness: 30 });
+
+  // pluralsight
+  const kneeJointPluralSight = factory.createKneeJoint(180);
+
+  // mdn
+  const kneeJointMdn1 = factory.createKneeJoint(270);
+  const kneeJointMdn2 = factory.createKneeJoint(0);
+
+  // stack overflow
+  const kneeJointStack1 = factory.createKneeJoint(180);
+  const kneeJointStack2 = factory.createKneeJoint(90);
+
+  // window
+  const kneeJointWindow = factory.createKneeJoint(270);
 
   /* 
     FRAMES
@@ -263,11 +367,16 @@ const HeaderAnimation = () => {
     width: 40,
   });
   let dbFrame = factory.createFrame("lg", Database, {});
-  let serverFrame1 = factory.createFrame("md");
   let khanFrame = factory.createFrame("md", Khan, { filterColor: "#14BF96", color: primary700 });
   let courseraFrame1 = factory.createFrame("md", Coursera, { width: 40, height: 40 });
   let udemyFrame = factory.createFrame("md", Udemy, { filterColor: "black", color: primary700, height: 40 });
-  let gearsFrame = factory.createFrame("md", Gears, { filterColor: "black", color: "lightgray", height: 40 });
+  let pluralSightFrame = factory.createFrame("md", PluralSight, {
+    filterColor: "black",
+    color: primary700,
+    height: 40,
+    width: 40,
+  });
+  let gearsFrame = factory.createFrame("md", Gears, { filterColor: "black", color: "#2f2f2f", height: 40 });
   let youtubeFrame = factory.createFrame("md", YoutubeLogo, { filterColor: "red", color: primary700, height: 32 });
   let channel1Frame = factory.createFrame("md", WebDevSimplified, {
     filterColor: "#00aaff",
@@ -275,10 +384,55 @@ const HeaderAnimation = () => {
     width: 48,
     height: 48,
   });
-  let channel2Frame = factory.createFrame("md");
-  let channel3Frame = factory.createFrame("md");
-  let channel4Frame = factory.createFrame("md");
-  let channel5Frame = factory.createFrame("md");
+  let channel2Frame = factory.createFrame("md", Fireship, {
+    color: primary700,
+    width: 40,
+    height: 32,
+  });
+  let channel3Frame = factory.createFrame("md", TraversyMedia, {
+    color: primary700,
+    width: 40,
+    height: 40,
+  });
+  let channel4Frame = factory.createFrame("md", NetNinja, {
+    color: primary700,
+    filterColor: "#d91b41",
+    width: 40,
+    height: 40,
+  });
+  let channel5Frame = factory.createFrame("md", FreeCodeCamp, {
+    color: primary700,
+    filterColor: "darkblue",
+    width: 40,
+    height: 40,
+  });
+
+  let brainFrame = factory.createFrame("xl2", Brain, {
+    color: primary700,
+    width: 100,
+    height: 100,
+  });
+
+  let mdnFrame = factory.createFrame("lg", Mdn, {
+    color: primary700,
+    filterColor: "white",
+    width: 75,
+    height: 75,
+  });
+
+  let stackFrame = factory.createFrame("xl", StackOverflow, {
+    color: primary700,
+    filterColor: "white",
+    width: 100,
+    height: 100,
+  });
+
+  let eeFrame = factory.createFrame("xl", QuestionMark, {
+    color: primary700,
+    filterColor: "white",
+    width: 40,
+    height: 40,
+  });
 
   builder
     .appendRight(builder.getMainFrame(), hPipeInternet1)
@@ -301,7 +455,10 @@ const HeaderAnimation = () => {
     .appendRight(tJointDb4)
     .appendRight(hPipeCoursera1) // TOP RIGHT joint
     .appendRight(courseraFrame1) // COURSERA
-    .appendBottom(vPipeCoursera1)
+    .endChain();
+
+  const pathCourseraToLastPipe = builder
+    .appendBottom(courseraFrame1, vPipeCoursera1)
     .appendBottom(kneeJointCoursera1)
     .appendRight(hPipeCoursera2)
     .appendRight(kneeJointCoursera2)
@@ -322,8 +479,46 @@ const HeaderAnimation = () => {
     .appendRight(hPipeCoursera6)
     .appendRight(kneeJointCoursera10)
     .appendBottom(vPipeCoursera6)
-    .appendBottom(kneeJointCoursera11) // BOTTOM right joint
+    .appendBottom(kneeJointCoursera11)
     .appendLeft(hPipeCoursera7)
+    .appendLeft(kneeJointCoursera12)
+    .appendBottom(vPipeCoursera7)
+    .appendBottom(kneeJointCoursera13)
+    .appendRight(hPipeCoursera8)
+    .appendRight(kneeJointCoursera14)
+    .appendBottom(vPipeCoursera8)
+    .appendBottom(kneeJointCoursera15)
+    .appendLeft(hPipeCoursera9)
+    .appendLeft(kneeJointCoursera16)
+    .appendBottom(vPipeCoursera9)
+    .appendBottom(kneeJointCoursera17) // last
+    .appendRight(hPipeCoursera10)
+    .appendRight(kneeJointCoursera18)
+    .appendBottom(vPipeCoursera10)
+    .appendBottom(kneeJointCoursera19)
+    .appendLeft(hPipeCoursera11)
+    .appendLeft(kneeJointCoursera20)
+    .appendBottom(vPipeCoursera11)
+    .appendBottom(kneeJointCoursera21)
+    .appendRight(hPipeCoursera12)
+    .appendRight(kneeJointCoursera22)
+    .appendBottom(vPipeCoursera12)
+    .appendBottom(kneeJointCoursera23)
+    .appendLeft(hPipeCoursera13)
+    .appendLeft(kneeJointCoursera24)
+    .appendBottom(vPipeCoursera13)
+    .appendBottom(kneeJointCoursera25)
+    .appendRight(hPipeCoursera14)
+    .appendRight(kneeJointCoursera26)
+    .appendTop(vPipeCoursera15)
+    .appendTop(kneeJointCoursera30)
+    .appendRight(hPipeCoursera15)
+    .appendRight(kneeJointCoursera31)
+    .appendBottom(vPipeCoursera14)
+    .appendBottom(kneeJointCoursera32)
+    .appendLeft(hPipeCoursera16)
+    .appendLeft(kneeJointCoursera33)
+    .appendTop(vPipeCoursera16)
     .endChain();
 
   builder
@@ -347,14 +542,29 @@ const HeaderAnimation = () => {
   builder
     .appendBottom(tJointDb3, vPipeDb1Joint3) // 3 Server Joint
     .appendBottom(kneeJointGears1)
-    .appendLeft(hPipeGears1)
-    .appendLeft(kneeJointGears2)
-    .appendTop(vPipeGears1)
-    .appendTop(crossJointGears1)
+    .appendLeft(hPipePluralSight1)
+    .appendLeft(pluralSightFrame)
+    .appendLeft(hPipePluralSight2)
+    .appendLeft(kneeJointPluralSight)
+    .appendTop(vPipePluralSight1)
+    .endChain();
+
+  builder
+    .appendLeft(hPipeUdemy1, crossJointGears1)
     .appendLeft(hPipeGears2)
-    .appendLeft(kneeJointGears3)
+    .appendLeft(tJointGears1)
     .appendBottom(vPipeGears2)
     .appendBottom(gearsFrame) // GEAARS
+    .appendLeft(hPipeGearsOut1)
+    .appendLeft(kneeJointGears4)
+    .appendBottom(vPipeGears3)
+    .appendBottom(kneeJointGears5)
+    .appendLeft(hPipeGearsOut2)
+    .appendLeft(brainFrame) // BRAIN
+    .appendLeft(hPipeBrain1)
+    .appendLeft(kneeJointBrain1)
+    .appendTop(vPipeBrain1)
+    .appendTop(eeFrame)
     .endChain();
 
   builder
@@ -375,9 +585,9 @@ const HeaderAnimation = () => {
     .appendBottom(vPipeYoutube4)
     .appendBottom(tJointYoutube3) // third youtube channel
     .appendBottom(vPipeYoutube5)
-    .appendBottom(tJointYoutube4)
+    .appendBottom(tJointYoutube4) // fourth youtube channel
     .appendBottom(vPipeYoutube6)
-    .appendBottom(kneeJointYoutube5)
+    .appendBottom(kneeJointYoutube5) // fifth youtube channel
     .endChain();
 
   // First youtube channel
@@ -407,16 +617,14 @@ const HeaderAnimation = () => {
     .appendBottom(vPipeChannel3Out1)
     .appendBottom(crossJointChannel1)
     .appendLeft(hPipeChannel3Out2)
+    .appendLeft(kneeJointChannelOut1)
+    .appendTop(vPipeChannelAllOut1)
+    .appendTop(kneeJointChannelOut2)
+    .appendLeft(hPipeChannelAllOut1)
     .endChain();
 
   // Fourth youtube channel
-  builder
-    .appendLeft(tJointYoutube4, hPipeChannelIn4)
-    .appendLeft(channel4Frame)
-    .appendLeft(hPipeChannel4Out1)
-    .appendLeft(crossJointChannel2)
-    .appendTop(vPipeChannel4Out1)
-    .endChain();
+  builder.appendLeft(tJointYoutube4, hPipeChannelIn4).appendLeft(channel4Frame).appendLeft(hPipeChannel4Out1).endChain();
 
   // Fifth youtube channel
   builder
@@ -439,6 +647,36 @@ const HeaderAnimation = () => {
     .appendBottom(vSmallPipeSwitch2)
     .appendBottom(switchFrame1)
     .endChain(); // SWITCH path from first joint
+
+  builder
+    .appendRight(switchFrame1, hPipeMdn1)
+    .appendRight(tJointMdn1)
+    .appendTop(vPipeMdn1)
+    .appendTop(kneeJointMdn1)
+    .appendRight(hPipeMdn2)
+    .appendRight(mdnFrame)
+    .appendRight(hPipeMdn3)
+    .appendRight(kneeJointMdn2)
+    .appendBottom(vPipeMdn2)
+    .endChain(); // MDN Frame
+
+  builder
+    .appendBottom(tJointMdn1, vPipeStack1)
+    .appendBottom(kneeJointStack1)
+    .appendRight(hPipeStack1)
+    .appendRight(stackFrame)
+    .appendRight(hPipeStack2)
+    .appendRight(kneeJointStack2)
+    .appendTop(vPipeStack2)
+    .appendTop(tJointStack1)
+    .appendRight(hPipeConnector1)
+    .endChain(); // STACK Frame
+
+  const mainToLastPipe = builder
+    .appendLeft(builder.getMainFrame(), hPipeWindow)
+    .appendLeft(kneeJointWindow)
+    .appendBottom(vPipeWindow)
+    .endChain();
 
   // prettier-ignore
   const pathMainToSwitch = [builder.getMainFrame(), hPipeInternet1, ...firstJointToSwitch];
@@ -468,68 +706,306 @@ const HeaderAnimation = () => {
   const pathYoutubeToFourthChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1, vPipeYoutube3, tJointYoutube2, vPipeYoutube4, tJointYoutube3, vPipeYoutube5, tJointYoutube4, hPipeChannelIn4, channel4Frame];
 
   // prettier-ignore
-  const pathYoutubeToFifthChannel = [
-    youtubeFrame,
-    hPipeYoutube3,
-    kneeJointYoutube4,
-    vPipeYoutube2,
-    tJointYoutube1,
-    vPipeYoutube3,
-    tJointYoutube2,
-    vPipeYoutube4,
-    tJointYoutube3,
-    vPipeYoutube5,
-    tJointYoutube4,
-    vPipeYoutube6,
-    kneeJointYoutube5,
-    hPipeChannelIn5,
-    channel5Frame,
-  ];
+  const pathYoutubeToFifthChannel = [youtubeFrame, hPipeYoutube3, kneeJointYoutube4, vPipeYoutube2, tJointYoutube1, vPipeYoutube3, tJointYoutube2, vPipeYoutube4, tJointYoutube3, vPipeYoutube5, tJointYoutube4, vPipeYoutube6, kneeJointYoutube5, hPipeChannelIn5, channel5Frame];
 
+  // prettier-ignore
+  const pathFirstYoutubeChannelToGears = [channel1Frame, hPipeChannel1Out1, kneeJointChannel1, vPipeChannel1Out1, tJointChannel1, vPipeChannel2Out1, tJointChannel2, vPipeChannel3Out1, crossJointChannel1, hPipeChannel3Out2, kneeJointChannelOut1, vPipeChannelAllOut1, kneeJointChannelOut2, hPipeChannelAllOut1, gearsFrame];
+
+  // prettier-ignore
+  const pathSecondYoutubeChannelToGears = [channel2Frame, hPipeChannel2Out1, tJointChannel1, vPipeChannel2Out1, tJointChannel2, vPipeChannel3Out1, crossJointChannel1, hPipeChannel3Out2, kneeJointChannelOut1, vPipeChannelAllOut1, kneeJointChannelOut2, hPipeChannelAllOut1, gearsFrame];
+
+  // prettier-ignore
+  const pathThirdYoutubeChannelToGears = [channel3Frame, hPipeChannel3Out1, tJointChannel2, vPipeChannel3Out1, crossJointChannel1, hPipeChannel3Out2, kneeJointChannelOut1, vPipeChannelAllOut1, kneeJointChannelOut2, hPipeChannelAllOut1, gearsFrame];
+
+  // prettier-ignore
+  const pathFourthYoutubeChannelToGears = [channel4Frame, hPipeChannel4Out1, crossJointChannel1, hPipeChannel3Out2, kneeJointChannelOut1, vPipeChannelAllOut1, kneeJointChannelOut2, hPipeChannelAllOut1, gearsFrame];
+
+  // prettier-ignore
+  const pathFifthYoutubeChannelToGears = [channel5Frame, hPipeChannel5Out1, kneeJointChannel2, vPipeChannel5Out1, crossJointChannel1, hPipeChannel3Out2, kneeJointChannelOut1, vPipeChannelAllOut1, kneeJointChannelOut2, hPipeChannelAllOut1, gearsFrame];
+
+  // prettier-ignore
+  const pathGearsToBrain = [gearsFrame, hPipeGearsOut1, kneeJointGears4, vPipeGears3, kneeJointGears5, hPipeGearsOut2, brainFrame];
+
+  // prettier-ignore
+  const pathCourseraToGears = [...pathCourseraToLastPipe, gearsFrame];
+
+  // prettier-ignore
+  const pathDatabaseToKhan = [dbFrame, hPipeDb3, tJointDb1, vPipeDb1Joint1, kneeJointDb1Joint1, hPipeDb1Joint1, khanFrame];
+
+  // prettier-ignore
+  const pathDatabaseToUdemy = [dbFrame, hPipeDb3, tJointDb1, hPipeDb4, tJointDb2, vPipeDb1Joint2, kneeJointDb1Joint2, hPipeDb1Joint2, udemyFrame];
+
+  // prettier-ignore
+  const pathDatabaseToPluralSight = [dbFrame, hPipeDb3, tJointDb1, hPipeDb4, tJointDb2, hPipeDb5, tJointDb3, vPipeDb1Joint3, kneeJointGears1, hPipePluralSight1, pluralSightFrame];
+
+  // prettier-ignore
+  const pathKhanToGears = [khanFrame, hPipeKhan1, kneeJointKhan1, vPipeKhan1, crossJointGears1, hPipeGears2, tJointGears1, vPipeGears2, gearsFrame];
+
+  // prettier-ignore
+  const pathUdemyToGears = [udemyFrame, hPipeUdemy1, crossJointGears1, hPipeGears2, tJointGears1, vPipeGears2, gearsFrame];
+
+  // prettier-ignore
+  const pathPluralSightToGears = [pluralSightFrame, hPipePluralSight2, kneeJointPluralSight, vPipePluralSight1, crossJointGears1, hPipeGears2, tJointGears1, vPipeGears2, gearsFrame];
+
+  // prettier-ignore
+  const pathSwitchToMdn = [switchFrame1, hPipeMdn1, tJointMdn1, vPipeMdn1, kneeJointMdn1, hPipeMdn2, mdnFrame];
+
+  // prettier-ignore
+  const pathMdnToGears = [mdnFrame, hPipeMdn3, kneeJointMdn2, vPipeMdn2, tJointStack1, hPipeConnector1, tJointGears1, vPipeGears2, gearsFrame];
+
+  // prettier-ignore
+  const pathStackToGears = [stackFrame, hPipeStack2, kneeJointStack2, vPipeStack2, tJointStack1, hPipeConnector1, tJointGears1, vPipeGears2, gearsFrame];
+
+  // prettier-ignore
+  const pathMainToEEFrame = [...mainToLastPipe, eeFrame];
+
+  // prettier-ignore
+  const pathSwitchToStack = [switchFrame1, hPipeMdn1, tJointMdn1, vPipeStack1, kneeJointStack1, hPipeStack1, stackFrame];
+
+  // electric -> internet
   builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
   builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
   builder.createAnimation({ duration: 2000, delay: 1400, backgroundColor: "yellow" }, ...pathMainToInternet);
   builder.createAnimation({ duration: 2000, delay: 1200, backgroundColor: "yellow" }, ...pathMainToInternet);
   builder.createAnimation({ duration: 2000, delay: 1000, backgroundColor: "yellow" }, ...pathMainToInternet);
+
+  // electric -> switch
   builder.createAnimation({ duration: 2000, delay: 900, backgroundColor: "yellow" }, ...pathMainToSwitch);
   builder.createAnimation({ duration: 2000, delay: 1100, backgroundColor: "yellow" }, ...pathMainToSwitch);
   builder.createAnimation({ duration: 2000, delay: 1200, backgroundColor: "yellow" }, ...pathMainToSwitch);
 
+  // internet -> db
   builder.createAnimation({ duration: 2500, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
   builder.createAnimation({ duration: 3000, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
   builder.createAnimation({ duration: 4000, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
   builder.createAnimation({ duration: 1500, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
   builder.createAnimation({ duration: 1700, delay: 5500, backgroundColor: "white" }, ...pathInternetToDatabase);
 
+  // db -> coursera
   builder.createAnimation({ duration: 1700, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
   builder.createAnimation({ duration: 1500, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
   builder.createAnimation({ duration: 1200, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
   builder.createAnimation({ duration: 2000, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToCoursera);
 
+  // db -> khan
+  builder.createAnimation({ duration: 2100, delay: 8100, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+  builder.createAnimation({ duration: 2000, delay: 8200, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+  builder.createAnimation({ duration: 2300, delay: 8300, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+  builder.createAnimation({ duration: 1800, delay: 8100, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+  builder.createAnimation({ duration: 1400, delay: 7900, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+  builder.createAnimation({ duration: 3700, delay: 8500, backgroundColor: "lightgreen" }, ...pathDatabaseToKhan);
+
+  // khan -> gears
+  builder.createAnimation({ duration: 2100, delay: 12100, backgroundColor: "#14BF96" }, ...pathKhanToGears);
+  builder.createAnimation({ duration: 2000, delay: 12200, backgroundColor: "#14BF96" }, ...pathKhanToGears);
+  builder.createAnimation({ duration: 2300, delay: 12300, backgroundColor: "#14BF96" }, ...pathKhanToGears);
+  builder.createAnimation({ duration: 1800, delay: 12100, backgroundColor: "#14BF96" }, ...pathKhanToGears);
+
+  // db -> udemy
+  builder.createAnimation({ duration: 1600, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToUdemy);
+  builder.createAnimation({ duration: 2150, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToUdemy);
+  builder.createAnimation({ duration: 2300, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToUdemy);
+  builder.createAnimation({ duration: 3000, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToUdemy);
+
+  // udemy -> gears
+  builder.createAnimation({ duration: 1600, delay: 12000, backgroundColor: "#A435F0" }, ...pathUdemyToGears);
+  builder.createAnimation({ duration: 2150, delay: 12000, backgroundColor: "#A435F0" }, ...pathUdemyToGears);
+  builder.createAnimation({ duration: 2300, delay: 12000, backgroundColor: "#A435F0" }, ...pathUdemyToGears);
+  builder.createAnimation({ duration: 3000, delay: 12000, backgroundColor: "#A435F0" }, ...pathUdemyToGears);
+
+  // db -> pluralSight
+  builder.createAnimation({ duration: 2700, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToPluralSight);
+  builder.createAnimation({ duration: 3100, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToPluralSight);
+  builder.createAnimation({ duration: 2100, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToPluralSight);
+  builder.createAnimation({ duration: 1400, delay: 8000, backgroundColor: "lightgreen" }, ...pathDatabaseToPluralSight);
+
+  // pluralSight -> gears
+  builder.createAnimation({ duration: 2700, delay: 11000, backgroundColor: "#e80a88" }, ...pathPluralSightToGears);
+  builder.createAnimation({ duration: 3100, delay: 11000, backgroundColor: "#e80a88" }, ...pathPluralSightToGears);
+  builder.createAnimation({ duration: 2100, delay: 11000, backgroundColor: "#e80a88" }, ...pathPluralSightToGears);
+  builder.createAnimation({ duration: 1400, delay: 11000, backgroundColor: "#e80a88" }, ...pathPluralSightToGears);
+
+  // db -> ytb
   builder.createAnimation({ duration: 3200, delay: 9100, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
   builder.createAnimation({ duration: 2500, delay: 8700, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
   builder.createAnimation({ duration: 1500, delay: 8500, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
   builder.createAnimation({ duration: 1980, delay: 9300, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
   builder.createAnimation({ duration: 2300, delay: 8600, backgroundColor: "lightgreen" }, ...pathDatabaseToYoutube);
 
+  // Ytb -> 1
   builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "white" }, ...pathYoutubeToFirstChannel);
   builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFirstChannel);
   builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFirstChannel);
 
+  // Ytb -> 2
   builder.createAnimation({ duration: 1800, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToSecondChannel);
   builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToSecondChannel);
 
+  // Ytb -> 3
   builder.createAnimation({ duration: 2600, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
   builder.createAnimation({ duration: 2300, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
   builder.createAnimation({ duration: 1900, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToThirdChannel);
 
+  // Ytb -> 4
   builder.createAnimation({ duration: 1200, delay: 11300, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
   builder.createAnimation({ duration: 900, delay: 11800, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
   builder.createAnimation({ duration: 2300, delay: 12000, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
   builder.createAnimation({ duration: 2300, delay: 11400, backgroundColor: "red" }, ...pathYoutubeToFourthChannel);
 
+  // Ytb -> 5
   builder.createAnimation({ duration: 1980, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFifthChannel);
   builder.createAnimation({ duration: 3200, delay: 11500, backgroundColor: "red" }, ...pathYoutubeToFifthChannel);
+
+  // coursera -> gears
+  builder.createAnimation({ duration: 8200, delay: 10500, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 9200, delay: 10500, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 12000, delay: 10500, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 7200, delay: 10420, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 15200, delay: 10700, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 6200, delay: 10120, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 9700, delay: 10000, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 8560, delay: 10400, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10200, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10240, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10100, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10600, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10680, backgroundColor: "#003176" }, ...pathCourseraToGears);
+  builder.createAnimation({ duration: 10200, delay: 10400, backgroundColor: "#003176" }, ...pathCourseraToGears);
+
+  // 1 Ytb -> gears
+  builder.createAnimation({ duration: 2500, delay: 15600, backgroundColor: "#00aaff" }, ...pathFirstYoutubeChannelToGears);
+  builder.createAnimation({ duration: 1900, delay: 15700, backgroundColor: "#00aaff" }, ...pathFirstYoutubeChannelToGears);
+  builder.createAnimation({ duration: 3400, delay: 15800, backgroundColor: "#00aaff" }, ...pathFirstYoutubeChannelToGears);
+  builder.createAnimation({ duration: 2000, delay: 15900, backgroundColor: "#00aaff" }, ...pathFirstYoutubeChannelToGears);
+
+  // 2 Ytb -> gears
+  builder.createAnimation({ duration: 4000, delay: 14600, backgroundColor: "#ee4658" }, ...pathSecondYoutubeChannelToGears);
+  builder.createAnimation({ duration: 3700, delay: 14700, backgroundColor: "#ee4658" }, ...pathSecondYoutubeChannelToGears);
+  builder.createAnimation({ duration: 4500, delay: 14800, backgroundColor: "#ee4658" }, ...pathSecondYoutubeChannelToGears);
+  builder.createAnimation({ duration: 3000, delay: 14900, backgroundColor: "#ee4658" }, ...pathSecondYoutubeChannelToGears);
+
+  // 3 Ytb -> gears
+  builder.createAnimation({ duration: 2200, delay: 15400, backgroundColor: "#60aade" }, ...pathThirdYoutubeChannelToGears);
+  builder.createAnimation({ duration: 3500, delay: 15200, backgroundColor: "#60aade" }, ...pathThirdYoutubeChannelToGears);
+  builder.createAnimation({ duration: 2900, delay: 15600, backgroundColor: "#60aade" }, ...pathThirdYoutubeChannelToGears);
+  builder.createAnimation({ duration: 2000, delay: 15450, backgroundColor: "#60aade" }, ...pathThirdYoutubeChannelToGears);
+
+  // 4 Ytb -> gears
+  builder.createAnimation({ duration: 2900, delay: 14900, backgroundColor: "white" }, ...pathFourthYoutubeChannelToGears);
+  builder.createAnimation({ duration: 4500, delay: 15100, backgroundColor: "white" }, ...pathFourthYoutubeChannelToGears);
+  builder.createAnimation({ duration: 1900, delay: 14800, backgroundColor: "white" }, ...pathFourthYoutubeChannelToGears);
+
+  // 5 Ytb -> gears
+  builder.createAnimation({ duration: 2500, delay: 14700, backgroundColor: "orange" }, ...pathFifthYoutubeChannelToGears);
+  builder.createAnimation({ duration: 3000, delay: 14800, backgroundColor: "orange" }, ...pathFifthYoutubeChannelToGears);
+  builder.createAnimation({ duration: 1900, delay: 14600, backgroundColor: "orange" }, ...pathFifthYoutubeChannelToGears);
+
+  // switch -> mdn
+  builder.createAnimation({ duration: 1200, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToMdn);
+  builder.createAnimation({ duration: 1000, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToMdn);
+  builder.createAnimation({ duration: 800, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToMdn);
+  builder.createAnimation({ duration: 1600, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToMdn);
+
+  // switch -> stack
+  builder.createAnimation({ duration: 1400, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToStack);
+  builder.createAnimation({ duration: 2100, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToStack);
+  builder.createAnimation({ duration: 1800, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToStack);
+  builder.createAnimation({ duration: 900, delay: 3200, backgroundColor: "lightgreen" }, ...pathSwitchToStack);
+
+  // switch -> mdn
+  builder.createAnimation({ duration: 1200, delay: 5800, backgroundColor: "white" }, ...pathMdnToGears);
+  builder.createAnimation({ duration: 1000, delay: 5800, backgroundColor: "white" }, ...pathMdnToGears);
+  builder.createAnimation({ duration: 800, delay: 5800, backgroundColor: "white" }, ...pathMdnToGears);
+  builder.createAnimation({ duration: 1600, delay: 5800, backgroundColor: "white" }, ...pathMdnToGears);
+
+  // switch -> stack
+  builder.createAnimation({ duration: 1400, delay: 5800, backgroundColor: "orange" }, ...pathStackToGears);
+  builder.createAnimation({ duration: 2100, delay: 5800, backgroundColor: "orange" }, ...pathStackToGears);
+  builder.createAnimation({ duration: 1800, delay: 5800, backgroundColor: "orange" }, ...pathStackToGears);
+  builder.createAnimation({ duration: 900, delay: 5800, backgroundColor: "orange" }, ...pathStackToGears);
+
+  // Gears -> brain
+
+  builder.createAnimation(
+    {
+      duration: 2500,
+      delay: 6500,
+      backgroundColor: "#2f2f2f",
+      size: 16,
+    },
+    ...pathGearsToBrain
+  );
+
+  builder.createAnimation(
+    {
+      duration: 2000,
+      delay: 6500,
+      backgroundColor: "#2f2f2f",
+      size: 16,
+    },
+    ...pathGearsToBrain
+  );
+  builder.createAnimation(
+    {
+      duration: 3000,
+      delay: 6500,
+      backgroundColor: "#2f2f2f",
+      size: 16,
+    },
+    ...pathGearsToBrain
+  );
+  builder.createAnimation(
+    {
+      duration: 1800,
+      delay: 6500,
+      backgroundColor: "#2f2f2f",
+      size: 16,
+    },
+    ...pathGearsToBrain
+  );
+  builder.createAnimation(
+    {
+      duration: 2700,
+      delay: 6500,
+      backgroundColor: "#2f2f2f",
+      size: 16,
+    },
+    ...pathGearsToBrain
+  );
+
+  let gradient = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(0,170,255,1) 51%, rgba(0,170,255,1) 100%)";
+  builder.createAnimation(
+    {
+      duration: 2000,
+      delay: 800,
+      backgroundColor: "yellow",
+    },
+    ...pathMainToEEFrame
+  );
+  builder.createAnimation(
+    {
+      duration: 2000,
+      delay: 650,
+      backgroundColor: "yellow",
+    },
+    ...pathMainToEEFrame
+  );
+  builder.createAnimation(
+    {
+      duration: 2000,
+      delay: 900,
+      backgroundColor: "yellow",
+    },
+    ...pathMainToEEFrame
+  );
+  builder.createAnimation(
+    {
+      duration: 2000,
+      delay: 600,
+      backgroundColor: "yellow",
+    },
+    ...pathMainToEEFrame
+  );
 
   return (
     <Container
@@ -550,53 +1026,6 @@ const HeaderAnimation = () => {
       </LayerContainer>
     </Container>
   );
-};
-
-const move = keyframes`
-    0% {
-      offset-distance: 0%;
-      opacity: 0
-    }
-    30% {
-      opacity: 1
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      offset-distance: 100%;
-      opacity: 0;
-    }
-`;
-
-interface BoxikProps {
-  left: number;
-  top: number;
-  right: number;
-  bottom: number;
-  path: string;
-  bgColor: string;
-}
-
-const Boxik = styled.div<BoxikProps>`
-  offset-path: ${(props) => `path("${props.path}")`};
-  position: absolute;
-  animation: ${move} 6000ms infinite normal ease-in-out;
-  animation-delay: 4000ms;
-  top: ${(props) => props.top};
-  left: ${(props) => props.left};
-  right: ${(props) => props.right};
-  bottom: ${(props) => props.bottom};
-  opacity: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background: ${(props) => props.bgColor || "yellow"};
-  z-index: 2;
-`;
-
-export const Bullet = (props: any) => {
-  return <Boxik {...props} left="0" right="0" path={props.path} id="motion-demo" bgColor={props.color} />;
 };
 
 export default HeaderAnimation;
