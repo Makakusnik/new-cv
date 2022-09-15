@@ -83,6 +83,7 @@ export type AnimationProperties = {
   keyframes?: SerializedStyles;
   duration: number; // ms
   delay?: number; // ms
+  size?: number;
   timingFunction?: TimingFunction;
 };
 

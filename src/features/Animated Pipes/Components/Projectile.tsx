@@ -21,8 +21,8 @@ const ProjectileStyle = styled.div<ProjectileProps>`
   left: ${({ left }) => left && `${left}px`};
   right: ${({ right }) => right && `${right}px`};
   opacity: 0;
-  width: 8px;
-  height: 8px;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
   border-radius: 100%;
   background: ${({ backgroundColor }) => backgroundColor || "yellow"};
   z-index: 2;
