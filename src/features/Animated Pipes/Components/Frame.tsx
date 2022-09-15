@@ -4,7 +4,7 @@ import ElectricityBolt from "../Assets/ElectricityBolt";
 import NodeObject from "./Node";
 import { BorderOptions, BorderOptionsType, PictureOptions } from "./Types";
 
-export type FrameSize = "sm" | "md" | "lg" | "xl";
+export type FrameSize = "sm" | "md" | "lg" | "xl" | "xl2";
 
 class Frame extends NodeObject {
   private static numOfFrames: number = 0;
@@ -28,11 +28,7 @@ class Frame extends NodeObject {
    * @param options - Object options `backgroundColor`, `size`, `borderOptions`.
    * @param pictureElement - Optional, picture inside frame.
    */
-  constructor(
-    options?: FrameOptionsType,
-    pictureElement?: (props: any) => JSX.Element,
-    pictureOptions?: PictureOptions
-  ) {
+  constructor(options?: FrameOptionsType, pictureElement?: (props: any) => JSX.Element, pictureOptions?: PictureOptions) {
     options = {
       size: Frame.DEFAULT_SIZE,
       backgroundColor: Frame.DEFAULT_BACKGROUND_COLOR,
@@ -89,9 +85,11 @@ class Frame extends NodeObject {
         zIndex="1"
         position="absolute"
       >
-        {this.pictureElement !== undefined && (
-          <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
-        )}
+        <a href="https://www.google.sk">
+          {this.pictureElement !== undefined && (
+            <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
+          )}
+        </a>
       </Box>
     );
   }
@@ -137,6 +135,8 @@ class Frame extends NodeObject {
         return 80;
       case "xl":
         return 100;
+      case "xl2":
+        return 140;
       default:
         return 60;
     }
