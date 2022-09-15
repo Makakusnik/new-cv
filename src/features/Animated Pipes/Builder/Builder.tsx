@@ -1,13 +1,9 @@
-import { Box } from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import { MutableRefObject, ReactNode, RefObject } from "react";
 import { basicProjectileMovement } from "../Assets/AnimationKeyframes";
 import Frame, { FrameOptionsType } from "../Components/Frame";
-import NodeObject from "../Components/Node";
 import Pipe from "../Components/Pipe";
 import { Projectile } from "../Components/Projectile";
 import { AnimationProperties, NodeType, PictureOptions, Position } from "../Components/Types";
-import { Bullet } from "../HeaderAnimation";
 
 class Builder {
   private static numOfAnimations: number = 0;
@@ -17,8 +13,9 @@ class Builder {
     `,
     duration: 5000,
     delay: 0,
-    timingFunction: "ease-in-out",
+    timingFunction: "linear",
     backgroundColor: "lime",
+    size: 8,
   };
 
   private mainFrame: Frame;
@@ -43,8 +40,7 @@ class Builder {
     this.lastChain = new Array<NodeType>();
     this.animations = new Array<JSX.Element>();
     this.mainFrame = new Frame(mainFrameOptions, pictureElement, pictureOptions);
-    anchorPosition.left ||
-      (anchorPosition.right && this.mainFrame.setXStart(anchorPosition.left || anchorPosition.right));
+    anchorPosition.left || (anchorPosition.right && this.mainFrame.setXStart(anchorPosition.left || anchorPosition.right));
     this.mainFrame.setYStart(anchorPosition.top);
     this.nodes.push(this.mainFrame);
   }
