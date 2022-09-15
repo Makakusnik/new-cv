@@ -34,12 +34,13 @@ class NodeObjectFactory {
    * @param length - Length of horziontal pipe.
    * @returns New `Pipe` object.
    */
-  createHorizontalPipe(length: number): Pipe {
+  createHorizontalPipe(length: number, options?: PipeOptionsType): Pipe {
     return new Pipe({
       ...this.defaultPipeOptions,
       borderOptions: this.defaultBorderOptions,
       orientation: "horizontal",
       length: length,
+      ...options,
     });
   }
 
@@ -48,12 +49,13 @@ class NodeObjectFactory {
    * @param length - Length of vertical pipe.
    * @returns New `Pipe` object.
    */
-  createVerticalPipe(length: number): Pipe {
+  createVerticalPipe(length: number, options?: PipeOptionsType): Pipe {
     return new Pipe({
       ...this.defaultPipeOptions,
       borderOptions: this.defaultBorderOptions,
       orientation: "vertical",
       length: length,
+      ...options,
     });
   }
 
@@ -62,12 +64,13 @@ class NodeObjectFactory {
    * @param rotation - Sets rotation of joint.
    * @returns New knee type `Joint` object.
    */
-  createKneeJoint(rotation?: JointRotation): Joint {
+  createKneeJoint(rotation?: JointRotation, options?: JointOptionsType): Joint {
     return new Joint({
       ...this.defaultJointOptions,
       borderOptions: this.defaultBorderOptions,
       type: "knee",
       rotation: rotation,
+      ...options,
     });
   }
 
