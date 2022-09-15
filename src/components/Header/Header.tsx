@@ -19,7 +19,15 @@ export const Header = () => {
       bgGradient="linear(to-br,primary.500,primary.300)"
     >
       <HeaderAnimation />
-      <Flex position="relative" alignItems="center" justifyContent="center" paddingBottom="32px" w="450px" h="100%">
+      <Flex
+        zIndex="4"
+        position="relative"
+        alignItems="center"
+        justifyContent="center"
+        paddingBottom="32px"
+        w="450px"
+        h="100%"
+      >
         <Flex w="fit-content" direction={"column"} justifyContent="center" alignItems={"center"}>
           <Box position="relative" width="170px" height="193px" borderRadius="xl" overflow="hidden">
             <Image
