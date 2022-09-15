@@ -17,7 +17,7 @@ const Khan = (props: AssetProps & PictureOptions): JSX.Element => {
         filterColor={props.filterColor!}
         animationId="khanFill"
         duration={3000}
-        begin="0;khanFill.end+500ms"
+        begin="9.5s;khanFill.end+500ms"
       />
       <path
         filter={`url(#${props.id})`}

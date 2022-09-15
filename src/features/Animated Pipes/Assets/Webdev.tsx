@@ -17,23 +17,19 @@ const WebDevSimplified = (props: AssetProps & PictureOptions): JSX.Element => {
         filterColor={props.filterColor!}
         animationId="webdevSimplfiedAnimation"
         duration={2000}
-        begin="10.5s;internetAnimation.end"
+        begin="13.5s;webdevSimplfiedAnimation.end+2s"
       />
-      {/* <filter id={`${props.id}`} primitiveUnits="objectBoundingBox">
-        <feFlood floodColor={props.filterColor}></feFlood>
-        <feOffset>
-          <animate
-            id={`${props.id}anim`}
-            attributeName="y"
-            dur={`2000ms`}
-            from="1"
-            to="0"
-            begin={`0s;${props.id}anim.end+1s`}
-          />
-        </feOffset>
-        <feComposite operator="in" in2="SourceGraphic" />
-        <feComposite operator="over" in2="SourceGraphic" /> 
-      </filter>*/}
+
+      <rect fill="white" fillOpacity="0" width="17.721865" height="8.5736694" x="6.9826794" y="11.954524">
+        <animate
+          id={`${props.id}animOpacity`}
+          attributeName="fill-opacity"
+          dur={`2s`}
+          values="0;1;0"
+          calcMode="linear"
+          begin={`15.5s;${props.id}animOpacity.end+2s`}
+        />
+      </rect>
       <path
         filter={`url(#${props.id})`}
         fill={props.color}

@@ -16,8 +16,8 @@ const Udemy = (props: AssetProps & PictureOptions): JSX.Element => {
         filterId={props.id}
         filterColor={props.filterColor!}
         animationId="UdemyFill"
-        duration={3000}
-        begin="0;UdemyFill.end+2s"
+        duration={2000}
+        begin="10s;UdemyFill.end+2s"
       />
       <filter id={`${props.id}2`} primitiveUnits="objectBoundingBox">
         <feFlood floodColor={"#A435F0"} floodOpacity="0">
@@ -25,7 +25,7 @@ const Udemy = (props: AssetProps & PictureOptions): JSX.Element => {
             id={`${props.id}anim`}
             attributeName="flood-opacity"
             dur={`2000ms`}
-            begin={`3s;${props.id}anim.end+3s`}
+            begin={`12s;${props.id}anim.end+2s`}
             calcMode="linear"
             values="0;1;0"
           />
