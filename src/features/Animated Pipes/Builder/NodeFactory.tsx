@@ -105,7 +105,13 @@ class NodeObjectFactory {
    * @param size - Sets size of this frame.
    * @returns New `Frame` object.
    */
-  createFrame(size?: FrameSize, picture?: (props: any) => JSX.Element, pictureOptions?: PictureOptions): Frame {
+  createFrame(
+    size?: FrameSize,
+    picture?: (props: any) => JSX.Element,
+    pictureOptions?: PictureOptions,
+    href?: string,
+    hrefTitle?: string
+  ): Frame {
     return new Frame(
       {
         ...this.defaultFrameOptions,
@@ -113,7 +119,9 @@ class NodeObjectFactory {
         size: size,
       },
       picture,
-      pictureOptions
+      pictureOptions,
+      href,
+      hrefTitle
     );
   }
 }

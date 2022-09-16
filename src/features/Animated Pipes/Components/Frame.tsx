@@ -21,6 +21,8 @@ class Frame extends NodeObject {
   size?: FrameSize;
   backgroundColor?: string;
   path: string;
+  href?: string;
+  hrefTitle?: string;
 
   /**
    * Represents Frame object.
@@ -28,7 +30,13 @@ class Frame extends NodeObject {
    * @param options - Object options `backgroundColor`, `size`, `borderOptions`.
    * @param pictureElement - Optional, picture inside frame.
    */
-  constructor(options?: FrameOptionsType, pictureElement?: (props: any) => JSX.Element, pictureOptions?: PictureOptions) {
+  constructor(
+    options?: FrameOptionsType,
+    pictureElement?: (props: any) => JSX.Element,
+    pictureOptions?: PictureOptions,
+    href?: string,
+    hrefTitle?: string
+  ) {
     options = {
       size: Frame.DEFAULT_SIZE,
       backgroundColor: Frame.DEFAULT_BACKGROUND_COLOR,
@@ -43,6 +51,8 @@ class Frame extends NodeObject {
     this.borderOptions = new BorderOptions(options.borderOptions!);
     this.path = "";
     this.pictureOptions = { ...Frame.DEFAULT_PICTURE_OPTIONS, ...pictureOptions };
+    this.href = href;
+    this.hrefTitle = hrefTitle;
   }
 
   clone(): Frame {
@@ -53,7 +63,9 @@ class Frame extends NodeObject {
         borderOptions: this.borderOptions,
       },
       this.pictureElement,
-      this.pictureOptions
+      this.pictureOptions,
+      this.href,
+      this.hrefTitle
     );
   }
 
@@ -85,11 +97,17 @@ class Frame extends NodeObject {
         zIndex="1"
         position="absolute"
       >
-        <a href="https://www.google.sk">
-          {this.pictureElement !== undefined && (
+        {this.href ? (
+          <a href={this.href} title={this.hrefTitle || "Unknown :{"} target="_blank">
+            {this.pictureElement !== undefined && (
+              <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
+            )}
+          </a>
+        ) : (
+          this.pictureElement !== undefined && (
             <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
-          )}
-        </a>
+          )
+        )}
       </Box>
     );
   }
