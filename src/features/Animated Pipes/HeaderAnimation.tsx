@@ -367,45 +367,93 @@ const HeaderAnimation = () => {
     width: 40,
   });
   let dbFrame = factory.createFrame("lg", Database, {});
-  let khanFrame = factory.createFrame("md", Khan, { filterColor: "#14BF96", color: primary700 });
-  let courseraFrame1 = factory.createFrame("md", Coursera, { width: 40, height: 40 });
-  let udemyFrame = factory.createFrame("md", Udemy, { filterColor: "black", color: primary700, height: 40 });
-  let pluralSightFrame = factory.createFrame("md", PluralSight, {
-    filterColor: "black",
-    color: primary700,
-    height: 40,
-    width: 40,
-  });
+  let khanFrame = factory.createFrame(
+    "md",
+    Khan,
+    { filterColor: "#14BF96", color: primary700 },
+    "https://www.khanacademy.org/",
+    "Khan Academy"
+  );
+  let courseraFrame1 = factory.createFrame("md", Coursera, { width: 40, height: 40 }, "https://www.coursera.org/", "Coursera");
+  let udemyFrame = factory.createFrame(
+    "md",
+    Udemy,
+    { filterColor: "black", color: primary700, height: 40 },
+    "https://www.udemy.com/",
+    "Udemy"
+  );
+  let pluralSightFrame = factory.createFrame(
+    "md",
+    PluralSight,
+    {
+      filterColor: "black",
+      color: primary700,
+      height: 40,
+      width: 40,
+    },
+    "https://www.pluralsight.com/",
+    "Plural Sight"
+  );
   let gearsFrame = factory.createFrame("md", Gears, { filterColor: "black", color: "#2f2f2f", height: 40 });
   let youtubeFrame = factory.createFrame("md", YoutubeLogo, { filterColor: "red", color: primary700, height: 32 });
-  let channel1Frame = factory.createFrame("md", WebDevSimplified, {
-    filterColor: "#00aaff",
-    color: primary700,
-    width: 48,
-    height: 48,
-  });
-  let channel2Frame = factory.createFrame("md", Fireship, {
-    color: primary700,
-    width: 40,
-    height: 32,
-  });
-  let channel3Frame = factory.createFrame("md", TraversyMedia, {
-    color: primary700,
-    width: 40,
-    height: 40,
-  });
-  let channel4Frame = factory.createFrame("md", NetNinja, {
-    color: primary700,
-    filterColor: "#d91b41",
-    width: 40,
-    height: 40,
-  });
-  let channel5Frame = factory.createFrame("md", FreeCodeCamp, {
-    color: primary700,
-    filterColor: "darkblue",
-    width: 40,
-    height: 40,
-  });
+  let channel1Frame = factory.createFrame(
+    "md",
+    WebDevSimplified,
+    {
+      filterColor: "#00aaff",
+      color: primary700,
+      width: 48,
+      height: 48,
+    },
+    "https://www.youtube.com/c/WebDevSimplified",
+    "Web Dev Simplified"
+  );
+  let channel2Frame = factory.createFrame(
+    "md",
+    Fireship,
+    {
+      color: primary700,
+      width: 40,
+      height: 32,
+    },
+    "https://www.youtube.com/c/Fireship",
+    "Fireship"
+  );
+  let channel3Frame = factory.createFrame(
+    "md",
+    TraversyMedia,
+    {
+      color: primary700,
+      width: 40,
+      height: 40,
+    },
+    "https://www.youtube.com/c/TraversyMedia",
+    "Traversy Media"
+  );
+  let channel4Frame = factory.createFrame(
+    "md",
+    NetNinja,
+    {
+      color: primary700,
+      filterColor: "#d91b41",
+      width: 40,
+      height: 40,
+    },
+    "https://www.youtube.com/c/TheNetNinja",
+    "Net Ninja"
+  );
+  let channel5Frame = factory.createFrame(
+    "md",
+    FreeCodeCamp,
+    {
+      color: primary700,
+      filterColor: "darkblue",
+      width: 40,
+      height: 40,
+    },
+    "https://www.youtube.com/c/Freecodecamp",
+    "FreeCodeCamp"
+  );
 
   let brainFrame = factory.createFrame("xl2", Brain, {
     color: primary700,
@@ -413,26 +461,44 @@ const HeaderAnimation = () => {
     height: 100,
   });
 
-  let mdnFrame = factory.createFrame("lg", Mdn, {
-    color: primary700,
-    filterColor: "white",
-    width: 75,
-    height: 75,
-  });
+  let mdnFrame = factory.createFrame(
+    "lg",
+    Mdn,
+    {
+      color: primary700,
+      filterColor: "white",
+      width: 75,
+      height: 75,
+    },
+    "https://developer.mozilla.org/en-US/",
+    "MDN Web Docs"
+  );
 
-  let stackFrame = factory.createFrame("xl", StackOverflow, {
-    color: primary700,
-    filterColor: "white",
-    width: 100,
-    height: 100,
-  });
+  let stackFrame = factory.createFrame(
+    "xl",
+    StackOverflow,
+    {
+      color: primary700,
+      filterColor: "white",
+      width: 100,
+      height: 100,
+    },
+    "https://stackoverflow.com/",
+    "Stack Overflow"
+  );
 
-  let eeFrame = factory.createFrame("xl", QuestionMark, {
-    color: primary700,
-    filterColor: "white",
-    width: 40,
-    height: 40,
-  });
+  let eeFrame = factory.createFrame(
+    "xl",
+    QuestionMark,
+    {
+      color: primary700,
+      filterColor: "white",
+      width: 40,
+      height: 40,
+    },
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "Try me"
+  );
 
   builder
     .appendRight(builder.getMainFrame(), hPipeInternet1)
@@ -762,6 +828,8 @@ const HeaderAnimation = () => {
   // prettier-ignore
   const pathSwitchToStack = [switchFrame1, hPipeMdn1, tJointMdn1, vPipeStack1, kneeJointStack1, hPipeStack1, stackFrame];
 
+  const pathBrainToEEFrame = [brainFrame, hPipeBrain1, kneeJointBrain1, vPipeBrain1, eeFrame];
+
   // electric -> internet
   builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
   builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
@@ -973,7 +1041,6 @@ const HeaderAnimation = () => {
     ...pathGearsToBrain
   );
 
-  let gradient = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(0,170,255,1) 51%, rgba(0,170,255,1) 100%)";
   builder.createAnimation(
     {
       duration: 2000,
@@ -1005,6 +1072,28 @@ const HeaderAnimation = () => {
       backgroundColor: "yellow",
     },
     ...pathMainToEEFrame
+  );
+
+  let gradient = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(0,170,255,1) 51%, rgba(0,170,255,1) 100%)";
+
+  builder.createAnimation(
+    {
+      duration: 1500,
+      delay: 11600,
+      backgroundColor: gradient,
+      size: 16,
+    },
+    ...pathBrainToEEFrame
+  );
+
+  builder.createAnimation(
+    {
+      duration: 2100,
+      delay: 11600,
+      backgroundColor: gradient,
+      size: 16,
+    },
+    ...pathBrainToEEFrame
   );
 
   return (
