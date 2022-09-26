@@ -115,7 +115,7 @@ class NodeObjectFactory {
     return new Frame(
       {
         ...this.defaultFrameOptions,
-        borderOptions: this.defaultBorderOptions,
+        borderOptions: { ...this.defaultBorderOptions },
         size: size,
       },
       picture,

@@ -1,6 +1,7 @@
 import { Box, Container, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import HeaderAnimation from "@features/Animated Pipes/HeaderAnimation";
+import InfoSection from "./InfoSection";
 
 export const Header = () => {
   return (
@@ -19,24 +20,11 @@ export const Header = () => {
       bgGradient="linear(to-br,primary.500,primary.300)"
     >
       <HeaderAnimation />
-      <Flex
-        zIndex="4"
-        position="relative"
-        alignItems="center"
-        justifyContent="center"
-        paddingBottom="32px"
-        w="450px"
-        h="100%"
-      >
+      <InfoSection />
+      <Flex zIndex="4" position="relative" alignItems="center" justifyContent="center" paddingBottom="32px" w="450px" h="100%">
         <Flex w="fit-content" direction={"column"} justifyContent="center" alignItems={"center"}>
           <Box position="relative" width="170px" height="193px" borderRadius="xl" overflow="hidden">
-            <Image
-              src="/MarekFodor.png"
-              alt="Marek Fodor"
-              objectPosition={"50% 20px"}
-              layout="fill"
-              objectFit="contain"
-            />
+            <Image src="/MarekFodor.png" alt="Marek Fodor" objectPosition={"50% 20px"} layout="fill" objectFit="contain" />
           </Box>
           <Text fontFamily="Poppins" marginTop="16px" fontSize="36" fontWeight="200" w="fit-content">
             Hi, I&apos;m <strong style={{ fontWeight: "400" }}>Marek Fodor</strong>
