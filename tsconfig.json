@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@features/*": ["src/features/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
