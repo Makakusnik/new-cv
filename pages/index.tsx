@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
+import { Header } from "@components/UI/Header";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Header } from "../src/components/Header";
 
 const Home: NextPage = () => {
   return (
