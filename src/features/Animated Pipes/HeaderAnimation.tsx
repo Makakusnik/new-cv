@@ -1,17 +1,14 @@
 // Lib Imports
 import { Container, useToken } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
-import styled from "@emotion/styled";
 
 // My Imports
 import { LayerContainer } from "./Components/Layers";
 import Builder from "./Builder/Builder";
 import { FrameOptionsType } from "./Components/Frame";
 import { BorderOptionsType } from "./Components/Types";
-import Pipe, { PipeOptionsType } from "./Components/Pipe";
+import { PipeOptionsType } from "./Components/Pipe";
 import { JointOptionsType } from "./Components/Joint";
 import NodeObjectFactory from "./Builder/NodeFactory";
-import { AnimationProperties } from "./Components/Types";
 import ElectricityBolt from "./Assets/ElectricityBolt";
 import YoutubeLogo from "./Assets/YoutubeLogo";
 import InternetLogo from "./Assets/Internet";
@@ -27,31 +24,36 @@ import TraversyMedia from "./Assets/TraversyMedia";
 import NetNinja from "./Assets/Netninja";
 import FreeCodeCamp from "./Assets/Freedcodecamp";
 import Brain from "./Assets/Brain";
-import QuestionMark from "./Assets/QuestionMark";
 import PluralSight from "./Assets/PluralSight";
 import Mdn from "./Assets/Mdn";
 import StackOverflow from "./Assets/StackOverflow";
 
 const HeaderAnimation = () => {
-  const [primary500, primary600, primary700] = useToken("colors", ["primary.500", "primary.600", "primary.700"]);
+  const [primary300, primary400, primary500, primary600, primary700] = useToken("colors", [
+    "primary300",
+    "primary.400",
+    "primary.500",
+    "primary.600",
+    "primary.700",
+  ]);
 
-  let defaultBorderOptions: BorderOptionsType = { thickness: 4, type: "solid", color: primary700, overlap: 4 };
+  let defaultBorderOptions: BorderOptionsType = { thickness: 4, type: "solid", color: primary600, overlap: 4 };
   let defaultJointOptions: JointOptionsType = {
-    backgroundColor: primary500,
+    backgroundColor: primary300,
     thickness: 18,
   };
   let defaultFrameOptions: FrameOptionsType = {
-    backgroundColor: primary600,
+    backgroundColor: primary400,
     size: "md",
   };
   let defaultPipeOptions: PipeOptionsType = {
-    backgroundColor: primary600,
+    backgroundColor: primary400,
     thickness: 18,
   };
 
   let mainFrameOptions: FrameOptionsType = {
     size: "xl",
-    backgroundColor: primary600,
+    backgroundColor: primary400,
     borderOptions: defaultBorderOptions,
   };
 
@@ -487,19 +489,6 @@ const HeaderAnimation = () => {
     "Stack Overflow"
   );
 
-  let eeFrame = factory.createFrame(
-    "xl",
-    QuestionMark,
-    {
-      color: primary700,
-      filterColor: "white",
-      width: 40,
-      height: 40,
-    },
-    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "Try me"
-  );
-
   builder
     .appendRight(builder.getMainFrame(), hPipeInternet1)
     .appendRight(tJointInternet)
@@ -627,10 +616,6 @@ const HeaderAnimation = () => {
     .appendBottom(kneeJointGears5)
     .appendLeft(hPipeGearsOut2)
     .appendLeft(brainFrame) // BRAIN
-    .appendLeft(hPipeBrain1)
-    .appendLeft(kneeJointBrain1)
-    .appendTop(vPipeBrain1)
-    .appendTop(eeFrame)
     .endChain();
 
   builder
@@ -738,12 +723,6 @@ const HeaderAnimation = () => {
     .appendRight(hPipeConnector1)
     .endChain(); // STACK Frame
 
-  const mainToLastPipe = builder
-    .appendLeft(builder.getMainFrame(), hPipeWindow)
-    .appendLeft(kneeJointWindow)
-    .appendBottom(vPipeWindow)
-    .endChain();
-
   // prettier-ignore
   const pathMainToSwitch = [builder.getMainFrame(), hPipeInternet1, ...firstJointToSwitch];
 
@@ -823,12 +802,7 @@ const HeaderAnimation = () => {
   const pathStackToGears = [stackFrame, hPipeStack2, kneeJointStack2, vPipeStack2, tJointStack1, hPipeConnector1, tJointGears1, vPipeGears2, gearsFrame];
 
   // prettier-ignore
-  const pathMainToEEFrame = [...mainToLastPipe, eeFrame];
-
-  // prettier-ignore
   const pathSwitchToStack = [switchFrame1, hPipeMdn1, tJointMdn1, vPipeStack1, kneeJointStack1, hPipeStack1, stackFrame];
-
-  const pathBrainToEEFrame = [brainFrame, hPipeBrain1, kneeJointBrain1, vPipeBrain1, eeFrame];
 
   // electric -> internet
   builder.createAnimation({ duration: 2000, delay: 800, backgroundColor: "yellow" }, ...pathMainToInternet);
@@ -1041,70 +1015,16 @@ const HeaderAnimation = () => {
     ...pathGearsToBrain
   );
 
-  builder.createAnimation(
-    {
-      duration: 2000,
-      delay: 800,
-      backgroundColor: "yellow",
-    },
-    ...pathMainToEEFrame
-  );
-  builder.createAnimation(
-    {
-      duration: 2000,
-      delay: 650,
-      backgroundColor: "yellow",
-    },
-    ...pathMainToEEFrame
-  );
-  builder.createAnimation(
-    {
-      duration: 2000,
-      delay: 900,
-      backgroundColor: "yellow",
-    },
-    ...pathMainToEEFrame
-  );
-  builder.createAnimation(
-    {
-      duration: 2000,
-      delay: 600,
-      backgroundColor: "yellow",
-    },
-    ...pathMainToEEFrame
-  );
-
-  let gradient = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 49%, rgba(0,170,255,1) 51%, rgba(0,170,255,1) 100%)";
-
-  builder.createAnimation(
-    {
-      duration: 1500,
-      delay: 11600,
-      backgroundColor: gradient,
-      size: 16,
-    },
-    ...pathBrainToEEFrame
-  );
-
-  builder.createAnimation(
-    {
-      duration: 2100,
-      delay: 11600,
-      backgroundColor: gradient,
-      size: 16,
-    },
-    ...pathBrainToEEFrame
-  );
-
   return (
     <Container
       id="animation-root"
-      display="flex"
+      display={{ base: "flex", "2xl": "flex", xl: "none", lg: "none", md: "none", sm: "none" }}
       alignItems="center"
       justifyContent="center"
       position="absolute"
       minW="100%"
       height="100%"
+      opacity="0.30"
       p="0"
     >
       <LayerContainer top="0px">
