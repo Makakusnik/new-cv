@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
 import { Header } from "@components/UI/Header";
+import { PageNavigationBar } from "@components/UI/PageNavigationBar";
+import { Section } from "@components/UI/Section";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -13,7 +13,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main></main>
+      <main>
+        <Section type="brown">
+          <PageNavigationBar />
+        </Section>
+      </main>
       <footer></footer>
     </>
   );
