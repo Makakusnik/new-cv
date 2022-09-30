@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 export const NavigationBar = () => {
   return (
     <Container display="flex" justifyContent="center" width="full" bgColor="transparent">
-      <HStack fontFamily="Poppins" justifyContent="center" spacing="16px" width={"fit-content"}>
+      <HStack fontFamily="Poppins" justifyContent="center" columnGap="16px" width={"fit-content"}>
         <ButtonWrapper>
           <Button
             bgColor="secondary.300"
@@ -89,6 +89,9 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 8px;
+  width: 54px;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease-in-out;
   p {
     transition: font-weight 0.2s ease-in-out;
