@@ -6,7 +6,7 @@ interface HeadingProps {
   as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   children: ReactNode | ReactNode[];
-  id: string;
+  id?: string;
   color: "blue" | "brown";
 }
 
@@ -39,7 +39,7 @@ export const SectionHeading = ({ color, as, fontWeight = 900, children, id }: He
   }
 
   return (
-    <a href={`#${id}`}>
+    <a href={id && `#${id}`}>
       <Heading hashtagColor={hashTagColor} id={id} as={as} fontSize={fontSizeHeading} fontWeight={fontWeight} color={secondary600}>
         {children}
       </Heading>
@@ -65,13 +65,20 @@ const Heading = styled.h6<HeadingStyleProps>`
   cursor: pointer;
 
   &::before {
+    transition: filter 0.3s ease-in-out;
+    ${({ id }) => {
+      return (
+        id == undefined &&
+        `display: none;
+  `
+      );
+    }}
     content: "#";
     color: ${({ hashtagColor }) => hashtagColor};
     position: absolute;
     left: ${({ fontSize }) => -fontSize - 4 + "px"};
   }
-
   &:hover::before {
-    display: flex;
+    filter: ${({ hashtagColor }) => `drop-shadow(0px 0px 8px ${hashtagColor})`};
   }
 `;
