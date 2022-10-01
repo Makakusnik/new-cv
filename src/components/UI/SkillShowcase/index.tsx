@@ -1,0 +1,1 @@
+export { SkillCompononent } from "./SkillComponent";
