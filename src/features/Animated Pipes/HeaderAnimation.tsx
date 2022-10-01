@@ -1038,3 +1038,5 @@ const HeaderAnimation = () => {
 };
 
 export default HeaderAnimation;
+
+// TODO porozmyslaj ako spravit animaciu tak aby sa dali iste casti podla responzivity odstranit/upravit

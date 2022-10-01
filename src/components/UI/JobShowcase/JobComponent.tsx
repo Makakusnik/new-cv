@@ -21,7 +21,7 @@ interface JobTitleProps {
 export const JobTitle = ({ workDuration, children }: JobTitleProps) => {
   const [secondary600] = useToken("colors", ["secondary.600"]);
   return (
-    <HStack>
+    <HStack alignItems="center">
       <Text fontWeight={500} fontSize="24px" marginRight="8px">
         {children}
       </Text>
