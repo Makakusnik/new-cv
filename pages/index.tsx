@@ -20,7 +20,7 @@ import {
   SiTypescript,
   SiVuedotjs,
 } from "react-icons/si";
-import { HStack, VStack } from "@chakra-ui/react";
+import { HStack, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 
 import { Header } from "@components/UI/Header";
@@ -31,6 +31,15 @@ import { BraintItIcon } from "@assets/BraintITIcon";
 import { JobContainer, JobDetails, JobImage, JobTitle } from "@components/UI/JobShowcase";
 import { SkillCompononent } from "@components/UI/SkillShowcase";
 import { IoLogoVue } from "react-icons/io5";
+import {
+  ProjectComponent,
+  ProjectImage,
+  ProjectMainContent,
+  ProjectSideInformations,
+  ProjectTitleDescription,
+} from "@components/UI/ProjectShowcase";
+import { IconWrapper } from "@components/UI/Icon";
+import { Footer } from "@components/UI/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -47,20 +56,25 @@ const Home: NextPage = () => {
           <SectionHeading as="h2" color="brown" id="me" fontWeight={600}>
             me
           </SectionHeading>
+          #webDevelopmentPath
           <SectionContent>
-            I'm 24 years old, self-taught junior full-stack developer. Currently I live in Bratislava where I work as full stack developer
-            at Automobilove Opravarne MV SR.
-            <br></br>
-            <br></br>
-            In near future, I want to start with freelance work as a side hustle, while working full-time. My target audience will be small
-            local businesess
+            <Text>
+              I&apos;m 24 years old, self-taught junior full-stack developer. Currently I live in Bratislava where I work as full stack
+              developer at Automobilove Opravarne MV SR.
+              <br></br>
+              <br></br>
+              In near future, I want to start with freelance work as a side hustle, while working full-time. My target audience will be
+              small local businesess
+            </Text>
           </SectionContent>
           <SectionHeading as="h3" color="brown" id="webDevelopmentPath" fontWeight={600}>
             web development path
           </SectionHeading>
           <SectionContent>
-            I discovered path of web development in november 2020 when I started learning basics of HTML, CSS and javascript. Later I
-            discovered mongodb, node.js, express.js and react.js a.k.a. MERN stack in which I'm planning to get more experience.
+            <Text>
+              I discovered path of web development in november 2020 when I started learning basics of HTML, CSS and javascript. Later I
+              discovered mongodb, node.js, express.js and react.js a.k.a. MERN stack in which I&apos;m planning to get more experience.
+            </Text>
           </SectionContent>
         </Section>
         <Section type="blue">
@@ -115,31 +129,31 @@ const Home: NextPage = () => {
           </SectionHeading>
           <SectionContent>
             <HStack spacing="16px">
-              <SkillCompononent experience={4} title="HTML 5">
+              <SkillCompononent color="#E44D26" experience={4} title="HTML 5">
                 <AiFillHtml5 size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={4} title="CSS 3">
+              <SkillCompononent color="#264DE4" experience={4} title="CSS 3">
                 <IoLogoCss3 size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={3} title="JavaScript">
+              <SkillCompononent color="#F7E018" experience={3} title="JavaScript">
                 <SiJavascript size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={3} title="TypeScript">
+              <SkillCompononent color="#2E72BC" experience={3} title="TypeScript">
                 <SiTypescript size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={4} title="React">
+              <SkillCompononent color="#61DBFB" experience={4} title="React">
                 <SiReact size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={2} title="Nextjs">
+              <SkillCompononent color="black" experience={2} title="Nextjs">
                 <SiNextdotjs size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={2} title="Redux TK">
+              <SkillCompononent color="#793FB9" experience={2} title="Redux TK">
                 <SiRedux size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={4} title="ChakraUI">
+              <SkillCompononent color="#67BFBF" experience={4} title="ChakraUI">
                 <SiChakraui size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={1} title="Vue">
+              <SkillCompononent color="#3FB984" experience={1} title="Vue">
                 <IoLogoVue size="30px" />
               </SkillCompononent>
             </HStack>
@@ -149,13 +163,13 @@ const Home: NextPage = () => {
           </SectionHeading>
           <SectionContent>
             <HStack>
-              <SkillCompononent experience={2} title="Express.js">
+              <SkillCompononent color="black" experience={2} title="Express.js">
                 <SiExpress size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={2} title="MongoDB">
+              <SkillCompononent color="#14A04D" experience={2} title="MongoDB">
                 <SiMongodb size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={2} title="NodeJS">
+              <SkillCompononent color="#3B7F3A" experience={2} title="NodeJS">
                 <SiNodedotjs size="30px" />
               </SkillCompononent>
             </HStack>
@@ -165,13 +179,13 @@ const Home: NextPage = () => {
           </SectionHeading>
           <SectionContent>
             <HStack>
-              <SkillCompononent experience={1} title="Docker">
+              <SkillCompononent color="#1197D0" experience={1} title="Docker">
                 <SiDocker size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={2} title="Git">
+              <SkillCompononent color="#E44C30" experience={2} title="Git">
                 <SiGit size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={3} title="GitHub">
+              <SkillCompononent color="black" experience={3} title="GitHub">
                 <SiGithub size="30px" />
               </SkillCompononent>
             </HStack>
@@ -181,10 +195,10 @@ const Home: NextPage = () => {
           </SectionHeading>
           <SectionContent>
             <HStack>
-              <SkillCompononent experience={2} title="Linux">
+              <SkillCompononent color="black" experience={2} title="Linux">
                 <SiLinux size="30px" />
               </SkillCompononent>
-              <SkillCompononent experience={1} title="Nginx">
+              <SkillCompononent color="#008E36" experience={1} title="Nginx">
                 <SiNginx size="30px" />
               </SkillCompononent>
             </HStack>
@@ -194,9 +208,46 @@ const Home: NextPage = () => {
           <SectionHeading as="h2" color="brown" id="me" fontWeight={600}>
             projects
           </SectionHeading>
+          <SectionContent direction="row">
+            <ProjectComponent>
+              <ProjectMainContent>
+                <ProjectImage src="/oldcv.png" alt="My Old CV website."></ProjectImage>
+                <ProjectTitleDescription title="Old CV" url="https://marekus.eu" />
+              </ProjectMainContent>
+              <ProjectSideInformations>
+                <SiLinux size="30px" />
+              </ProjectSideInformations>
+            </ProjectComponent>
+            <ProjectComponent>
+              <ProjectMainContent>
+                <ProjectImage src="/nupp.png" alt="Diet and cost planning website. Not released yet."></ProjectImage>
+                <ProjectTitleDescription title="Nupp" info="not released yet" />
+              </ProjectMainContent>
+              <ProjectSideInformations>
+                <IconWrapper color="#E44D26">
+                  <AiFillHtml5 size="30px" />
+                </IconWrapper>
+                <IconWrapper color="#008E36">
+                  <SiNginx size="30px" />
+                </IconWrapper>
+                <IconWrapper color="#264DE4">
+                  <IoLogoCss3 size="30px" />
+                </IconWrapper>
+                <IconWrapper color="black">
+                  <SiNextdotjs size="30px" />
+                </IconWrapper>
+                <IconWrapper color="#3B7F3A">
+                  <SiNodedotjs size="30px" />
+                </IconWrapper>
+                <IconWrapper color="black">
+                  <SiLinux size="30px" />
+                </IconWrapper>
+              </ProjectSideInformations>
+            </ProjectComponent>
+          </SectionContent>
         </Section>
       </main>
-      <footer></footer>
+      <Footer />
     </>
   );
 };
