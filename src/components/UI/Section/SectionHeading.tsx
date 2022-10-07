@@ -39,11 +39,19 @@ export const SectionHeading = ({ color, as, fontWeight = 900, children, id }: He
   }
 
   return (
-    <a href={id && `#${id}`}>
-      <Heading hashtagColor={hashTagColor} id={id} as={as} fontSize={fontSizeHeading} fontWeight={fontWeight} color={secondary600}>
-        {children}
-      </Heading>
-    </a>
+    <>
+      {id ? (
+        <a href={id && `#${id}`}>
+          <Heading hashtagColor={hashTagColor} id={id} as={as} fontSize={fontSizeHeading} fontWeight={fontWeight} color={secondary600}>
+            {children}
+          </Heading>
+        </a>
+      ) : (
+        <Heading hashtagColor={hashTagColor} id={id} as={as} fontSize={fontSizeHeading} fontWeight={fontWeight} color={secondary600}>
+          {children}
+        </Heading>
+      )}
+    </>
   );
 };
 
@@ -57,12 +65,11 @@ const Heading = styled.h6<HeadingStyleProps>`
   font-weight: ${({ fontWeight }) => fontWeight};
   font-size: ${({ fontSize }) => fontSize + "px"};
   font-family: Poppins;
-  padding-top: 16px;
-  padding-bottom: 8px;
+  padding-top: 24px;
+  padding-bottom: 16px;
   color: ${({ color }) => color};
   width: fit-content;
   position: relative;
-  cursor: pointer;
 
   &::before {
     transition: filter 0.3s ease-in-out;
