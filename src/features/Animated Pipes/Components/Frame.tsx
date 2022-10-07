@@ -98,7 +98,7 @@ class Frame extends NodeObject {
         position="absolute"
       >
         {this.href ? (
-          <a href={this.href} title={this.hrefTitle || "Unknown :{"} target="_blank">
+          <a href={this.href} rel="noreferrer" title={this.hrefTitle || "Unknown :{"} target="_blank">
             {this.pictureElement !== undefined && (
               <PicElement id={`${this.id}Picture`} {...this.pictureOptions} size={Frame.getPictureSize(this.size!)} />
             )}
