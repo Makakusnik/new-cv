@@ -1,6 +1,16 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      html: {
+        scrollBehavior: "smooth",
+      },
+      abbr: {
+        textDecoration: "none !important",
+      },
+    },
+  },
   colors: {
     primary: {
       50: "#E0F2F9",
