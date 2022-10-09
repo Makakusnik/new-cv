@@ -40,6 +40,8 @@ import {
 } from "@components/UI/ProjectShowcase";
 import { IconWrapper } from "@components/UI/Icon";
 import { Footer } from "@components/UI/Footer";
+import { useState } from "react";
+import { CVModal, NuppModal } from "@components/UI/Modals";
 
 const Home: NextPage = () => {
   return (
@@ -50,7 +52,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main style={{ fontFamily: "Poppins" }}>
+      <main style={{ fontFamily: "Poppins", scrollBehavior: "smooth" }}>
         <Section type="brown">
           <PageNavigationBar />
           <SectionHeading as="h2" color="brown" id="me" fontWeight={600}>
@@ -212,7 +214,9 @@ const Home: NextPage = () => {
             <ProjectComponent>
               <ProjectMainContent>
                 <ProjectImage src="/oldcv.png" alt="My Old CV website."></ProjectImage>
-                <ProjectTitleDescription title="Old CV" url="https://marekus.eu" />
+                <ProjectTitleDescription title="Old CV" url="https://marekus.eu">
+                  <CVModal />
+                </ProjectTitleDescription>
               </ProjectMainContent>
               <ProjectSideInformations>
                 <SiLinux size="30px" />
@@ -221,7 +225,9 @@ const Home: NextPage = () => {
             <ProjectComponent>
               <ProjectMainContent>
                 <ProjectImage src="/nupp.png" alt="Diet and cost planning website. Not released yet."></ProjectImage>
-                <ProjectTitleDescription title="Nupp" info="not released yet" />
+                <ProjectTitleDescription title="Nupp" info="not released yet">
+                  <NuppModal />
+                </ProjectTitleDescription>
               </ProjectMainContent>
               <ProjectSideInformations>
                 <IconWrapper color="#E44D26">
