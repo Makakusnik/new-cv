@@ -54,9 +54,10 @@ interface ProjectTitleDescriptionProps {
   title: string;
   url?: string;
   info?: string;
+  children: ReactNode;
 }
 
-export const ProjectTitleDescription = ({ title, url, info }: ProjectTitleDescriptionProps) => {
+export const ProjectTitleDescription = ({ title, url, info, children }: ProjectTitleDescriptionProps) => {
   return (
     <HStack alignItems="end" justifyContent="space-between" width="100%">
       <VStack alignItems="start" spacing="4px">
@@ -73,15 +74,7 @@ export const ProjectTitleDescription = ({ title, url, info }: ProjectTitleDescri
           </Text>
         )}
       </VStack>
-      <Button
-        size="sm"
-        color="secondary.100"
-        bgColor="primary.500"
-        _hover={{ bgColor: "primary.400" }}
-        _active={{ bgColor: "primary.600" }}
-      >
-        Read More
-      </Button>
+      {children}
     </HStack>
   );
 };
