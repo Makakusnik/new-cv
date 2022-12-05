@@ -10,13 +10,19 @@ import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 import theme from "../src/styles/theme";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <CSSReset />
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <ChakraProvider theme={theme}>
+        <CSSReset />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }
 
