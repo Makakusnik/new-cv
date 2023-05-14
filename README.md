@@ -8,4 +8,4 @@ Typescript, React, NextJS, ChakraUI,
 
 #### Current State
 
-I am developing "Pipeline Animation generator" which I will use also on this site. I'm planning to release it as small library.
+abandoned
